@@ -28,9 +28,15 @@
   };
   window.GOOBUS = COMPANY;
 
-  /* ---------- Base path (páginas em /servicos/ sobem um nível) ---------- */
-  const BASE = location.pathname.includes("/servicos/") ? "../" : "";
-  const url = (p) => BASE + p;
+  /* ---------- Rotas públicas limpas ---------- */
+  const cleanPath = (pathname) => {
+    let p = pathname || "/";
+    if (p.endsWith("/index.html")) p = p.slice(0, -10) || "/";
+    if (p.endsWith(".html")) p = p.slice(0, -5) + "/";
+    if (p !== "/" && !p.endsWith("/")) p += "/";
+    return p;
+  };
+  const url = (p) => p.startsWith("/") ? p : "/" + p;
 
   /* ---------- Ícones ---------- */
   const I = {
@@ -87,7 +93,7 @@
     </svg>`;
   }
   function brand(onHero, forDark) {
-    return `<a class="brand ${onHero ? "on-hero" : ""}" href="${url("index.html")}" aria-label="GOOBUS | página inicial">
+    return `<a class="brand ${onHero ? "on-hero" : ""}" href="${url("/")}" aria-label="GOOBUS | página inicial">
       ${mark(forDark)}<span class="word">GOO<b>BUS</b></span></a>`;
   }
   window.GOOBUS_MARK = mark;
@@ -104,16 +110,16 @@
 
   /* ---------- Navegação ---------- */
   const NAV = [
-    { label: "Início", href: "index.html", match: ["index.html", ""] },
-    { label: "Empresa", href: "empresa.html", match: ["empresa.html"] },
-    { label: "Serviços", href: "servicos.html", match: ["servicos.html", "/servicos/"] },
-    { label: "Frota", href: "frota.html", match: ["frota.html"] },
-    { label: "Orçamento", href: "orcamento.html", match: ["orcamento.html"] },
-    { label: "Contato", href: "contato.html", match: ["contato.html"] }
+    { label: "Início", href: "/", match: ["/"] },
+    { label: "Empresa", href: "/empresa/", match: ["/empresa/"] },
+    { label: "Serviços", href: "/servicos/", match: ["/servicos/"] },
+    { label: "Frota", href: "/frota/", match: ["/frota/"] },
+    { label: "Orçamento", href: "/orcamento/", match: ["/orcamento/"] },
+    { label: "Contato", href: "/contato/", match: ["/contato/"] }
   ];
-  const path = location.pathname;
+  const path = cleanPath(location.pathname);
   const isActive = (m) =>
-    m.some((x) => (x === "" ? /\/(index\.html)?$/.test(path) : path.includes(x)));
+    m.some((x) => (x === "/" ? path === "/" : path.startsWith(x)));
 
   /* ---------- HEADER ---------- */
   function buildHeader() {
@@ -128,7 +134,7 @@
         </nav>
         <div class="header-actions">
           <a class="icon-btn wa-icon" href="${waLink("Olá! Gostaria de falar com a equipe GOOBUS.")}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">${I.wa}</a>
-          <a class="btn btn-primary" href="${url("orcamento.html")}">Solicitar orçamento</a>
+          <a class="btn btn-primary" href="${url("/orcamento/")}">Solicitar orçamento</a>
           <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">${I.menu}</button>
         </div>
       </div>`;
@@ -165,7 +171,7 @@
           ${NAV.map((n) => `<a class="d-link ${isActive(n.match) ? "active" : ""}" href="${url(n.href)}">${n.label}</a>`).join("")}
         </nav>
         <div class="d-cta">
-          <a class="btn btn-primary btn-lg btn-block" href="${url("orcamento.html")}">Solicitar orçamento</a>
+          <a class="btn btn-primary btn-lg btn-block" href="${url("/orcamento/")}">Solicitar orçamento</a>
           <a class="btn btn-wa btn-lg btn-block" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} Falar no WhatsApp</a>
         </div>
       </div>`;
@@ -194,14 +200,14 @@
     const f = document.createElement("footer");
     f.className = "site-footer";
     const svcLinks = [
-      ["Aluguel de ônibus", "servicos/aluguel-de-onibus.html"],
-      ["Fretamento corporativo", "servicos/fretamento-corporativo.html"],
-      ["Turismo e excursões", "servicos/turismo-excursoes.html"],
-      ["Romarias", "servicos/romarias.html"],
-      ["Eventos e congressos", "servicos/eventos.html"],
-      ["Escolas e formaturas", "servicos/escolas-formaturas.html"],
-      ["Bandas e produções", "servicos/bandas-producoes.html"],
-      ["Transfers e city tour", "servicos/transfers.html"]
+      ["Aluguel de ônibus", "/servicos/aluguel-de-onibus/"],
+      ["Fretamento corporativo", "/servicos/fretamento-corporativo/"],
+      ["Turismo e excursões", "/servicos/turismo-excursoes/"],
+      ["Romarias", "/servicos/romarias/"],
+      ["Eventos e congressos", "/servicos/eventos/"],
+      ["Escolas e formaturas", "/servicos/escolas-formaturas/"],
+      ["Bandas e produções", "/servicos/bandas-producoes/"],
+      ["Transfers e city tour", "/servicos/transfers/"]
     ];
     f.innerHTML = `
       <div class="container container-wide">
@@ -217,7 +223,7 @@
           <div>
             <h4>Navegação</h4>
             <ul>${NAV.map((n) => `<li><a href="${url(n.href)}">${n.label}</a></li>`).join("")}
-              <li><a href="${url("politica-de-privacidade.html")}">Política de Privacidade</a></li>
+              <li><a href="${url("/politica-de-privacidade/")}">Política de Privacidade</a></li>
             </ul>
           </div>
           <div>
@@ -261,7 +267,7 @@
     mbar.setAttribute("aria-label", "Ações rápidas");
     mbar.innerHTML = `
       <a class="m-wa" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} WhatsApp</a>
-      <a class="m-quote" href="${url("orcamento.html")}">${I.arrow} Orçamento</a>`;
+      <a class="m-quote" href="${url("/orcamento/")}">${I.arrow} Orçamento</a>`;
     document.body.appendChild(mbar);
     document.body.classList.add("has-mbar");
     const onScroll = () => {
@@ -309,7 +315,7 @@
   function buildSeo() {
     const head = document.head;
     const origin = location.origin && location.origin !== "null" ? location.origin : "";
-    const canonical = (origin + location.pathname).replace(/index\.html$/, "");
+    const canonical = origin + cleanPath(location.pathname);
     const title = document.title;
     const descEl = document.querySelector('meta[name="description"]');
     const desc = descEl ? descEl.getAttribute("content") : "";
@@ -325,7 +331,7 @@
     const ensureMeta = (sel, make) => { if (!document.querySelector(sel)) make(); };
 
     // favicon + theme-color + lang
-    if (!document.querySelector('link[rel="icon"]')) add("link", { rel: "icon", type: "image/svg+xml", href: url("assets/favicon.svg") });
+    if (!document.querySelector('link[rel="icon"]')) add("link", { rel: "icon", type: "image/svg+xml", href: "/assets/favicon.svg" });
     ensureMeta('meta[name="theme-color"]', () => add("meta", { name: "theme-color", content: "#0b2545" }));
     if (!document.documentElement.lang) document.documentElement.lang = "pt-BR";
 

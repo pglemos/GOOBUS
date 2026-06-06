@@ -1,7 +1,12 @@
 Options -MultiViews
 RewriteEngine On
 
-# Serve extensionless URLs such as /frota from the matching .html file.
+# Redirect legacy .html URLs to public clean routes.
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
+RewriteRule ^(.+)\.html$ /$1/ [R=301,L]
+
+# Serve extensionless URLs from the matching .html file when no route directory exists.
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+)$ $1.html [L]
+RewriteRule ^(.+?)/?$ $1.html [L]
