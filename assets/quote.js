@@ -320,7 +320,6 @@
       const all = JSON.parse(localStorage.getItem("goobus.leads") || "[]");
       all.push(lead); localStorage.setItem("goobus.leads", JSON.stringify(all));
     } catch (e) {}
-    console.log("[GOOBUS] Lead capturado (enviar ao backend/Supabase em produção):", lead);
     if (window.dataLayer) window.dataLayer.push({ event: "submit_lead", service_type: lead.service_type });
 
     const waBtn = $("#qSuccessWa");

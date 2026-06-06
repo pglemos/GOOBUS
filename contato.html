@@ -135,7 +135,6 @@
     var msg = "Olá! Meu nome é " + f.name.value + ". " + f.message.value;
     var wa = document.getElementById("contactWa");
     wa.href = waLink(msg); wa.target="_blank"; wa.rel="noopener";
-    console.log("[GOOBUS] Contato:", {name:f.name.value, whatsapp:f.whatsapp.value, email:f.email.value, message:f.message.value});
     f.hidden = true;
     document.getElementById("contactOk").hidden = false;
   });

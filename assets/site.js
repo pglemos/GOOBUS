@@ -1,13 +1,13 @@
 /* ============================================================
    GOOBUS — site engine (vanilla)
-   Header/footer/mobile chrome · navegação · WhatsApp · tema · formulários
+   Header/footer/mobile chrome · navegação · WhatsApp · formulários
    ============================================================ */
 (function () {
   "use strict";
 
   /* ---------- CONFIG CENTRAL DA EMPRESA ----------
      Edite SOMENTE aqui os dados oficiais. Nada de telefone/endereço
-     espalhado pelos componentes. Marcadores [ ] = pendente de validação. */
+     espalhado pelos componentes. */
   const COMPANY = {
     name: "GOOBUS",
     legalName: "GOOBUS TRANSPORTES E TURISMO LTDA",
@@ -310,7 +310,8 @@
     const title = document.title;
     const descEl = document.querySelector('meta[name="description"]');
     const desc = descEl ? descEl.getAttribute("content") : "";
-    const ogImg = (origin || "https://goobuss.com") + "/assets/img/seg-aeroportos.jpg";
+    const siteUrl = origin || "https://goobuss.com";
+    const ogImg = siteUrl + "/assets/img/seg-aeroportos.jpg";
 
     const add = (tag, attrs) => {
       const el = document.createElement(tag);
@@ -348,12 +349,12 @@
       const ld = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "@id": (origin || "https://goobuss.com") + "/#goobus",
+        "@id": siteUrl + "/#goobus",
         name: "GOOBUS",
         legalName: COMPANY.legalName,
         taxID: COMPANY.cnpj,
         description: desc,
-        url: origin || "https://goobuss.com",
+        url: siteUrl,
         image: ogImg,
         telephone: COMPANY.phoneTel,
         address: {

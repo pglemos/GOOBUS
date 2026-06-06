@@ -21,7 +21,7 @@
 .hero .container { position: relative; z-index: 2; }
 .hero .container { position: relative; }
 .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding-block: clamp(40px, 5vw, 72px) clamp(56px, 6vw, 96px); }
-.hero h1 { color: #fff; font-size: var(--fs-display); letter-spacing: -.03em; }
+.hero h1 { color: #fff; font-size: var(--fs-display); letter-spacing: 0; }
 .hero h1 .hl { color: var(--accent); }
 .hero .sub { font-size: var(--fs-lead); color: rgba(255,255,255,.8); margin-top: 22px; max-width: 36ch; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
@@ -30,7 +30,7 @@
 @media (max-width: 940px){ .hero-grid { grid-template-columns: 1fr; gap: 36px; } .hero-note { display:none; } }
 
 /* Quick quote card */
-.qcard { background: rgba(255,255,255,.97); color: var(--ink); border-radius: var(--r-xl); padding: 26px; box-shadow: var(--sh-lg); border: 1px solid rgba(255,255,255,.6); }
+.qcard { background: rgba(255,255,255,.97); color: var(--ink); border-radius: var(--r-lg); padding: 26px; box-shadow: var(--sh-lg); border: 1px solid rgba(255,255,255,.6); }
 .qcard h3 { font-size: 1.18rem; }
 .qcard .qsub { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 4px; margin-bottom: 18px; }
 .qcard .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
@@ -420,7 +420,7 @@
         </div>
       </div>
     </div>
-    <div class="note-admin reveal" style="margin-top:22px;max-width:720px">
+    <div class="service-note reveal" style="margin-top:22px;max-width:720px">
       <span data-ico="info"></span>
       <span>Imagens ilustrativas das categorias. O modelo, capacidade e comodidades finais são confirmados na proposta.</span>
     </div>
@@ -456,15 +456,11 @@
         <h2 style="font-size:var(--fs-h2);margin-top:14px">Confiança começa antes do embarque</h2>
         <p class="lead mt-s" style="color:rgba(255,255,255,.78)">Em transporte de passageiros, segurança não é detalhe. A GOOBUS trabalha com planejamento, clareza na contratação e atenção aos requisitos aplicáveis a cada tipo de viagem.</p>
         <ul class="sec-list">
-          <li><span class="si" data-ico="shield"></span><div><b>Documentação e registros aplicáveis</b><span>Registros ANTT e Cadastur exibidos somente após validação.</span></div></li>
+          <li><span class="si" data-ico="shield"></span><div><b>Documentação e requisitos aplicáveis</b><span>Informações operacionais conferidas conforme o tipo de viagem e a contratação.</span></div></li>
           <li><span class="si" data-ico="bus"></span><div><b>Frota revisada</b><span>Manutenção e revisão dos veículos conforme a operação.</span></div></li>
           <li><span class="si" data-ico="users"></span><div><b>Motoristas qualificados</b><span>Equipe preparada para o transporte de grupos.</span></div></li>
           <li><span class="si" data-ico="check"></span><div><b>Contratos e atendimento empresarial</b><span>Processo organizado para operações recorrentes e eventuais.</span></div></li>
         </ul>
-        <div class="note-admin reveal" style="margin-top:24px;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.78);max-width:560px">
-          <span data-ico="info"></span>
-          <span>Selos ANTT / Cadastur e certificados só devem ser exibidos após comprovação documental da GOOBUS.</span>
-        </div>
       </div>
       <div class="reveal">
         <img class="media-photo ratio-4x3 r-lg" src="assets/img/op-inspecao-seguranca.jpg" alt="Motorista realizando inspeção de segurança antes da viagem" loading="lazy">
