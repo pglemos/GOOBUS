@@ -1,5 +1,5 @@
 /* ============================================================
-   GOOBUS — site engine (vanilla)
+   GOOBUS | site engine (vanilla)
    Header/footer/mobile chrome · navegação · WhatsApp · formulários
    ============================================================ */
 (function () {
@@ -16,9 +16,9 @@
     phoneTel: "+5511984931178",
     whatsapp: "5511984931178",            // número informado (celular)
     email: "",
-    address: "Av. Hilário Pereira de Souza, 406 — Sala 1401, 14º andar, Centro",
+    address: "Av. Hilário Pereira de Souza, 406, Sala 1401, 14º andar, Centro",
     cep: "06010-170",
-    city: "Osasco — SP",
+    city: "Osasco, SP",
     serviceRegions: "Atendimento sob consulta conforme origem, destino e disponibilidade operacional.",
     hours: "Atendimento em horário comercial pelo WhatsApp.",
     antt: "",
@@ -87,7 +87,7 @@
     </svg>`;
   }
   function brand(onHero, forDark) {
-    return `<a class="brand ${onHero ? "on-hero" : ""}" href="${url("index.html")}" aria-label="GOOBUS — página inicial">
+    return `<a class="brand ${onHero ? "on-hero" : ""}" href="${url("index.html")}" aria-label="GOOBUS | página inicial">
       ${mark(forDark)}<span class="word">GOO<b>BUS</b></span></a>`;
   }
   window.GOOBUS_MARK = mark;
@@ -208,7 +208,7 @@
         <div class="f-top">
           <div>
             ${brand(false, true)}
-            <p style="margin-top:18px;max-width:34ch;font-size:var(--fs-sm);line-height:1.6">Transporte sob medida para empresas, grupos, igrejas, escolas e eventos — com planejamento, conforto e atenção à segurança em cada trajeto.</p>
+            <p style="margin-top:18px;max-width:34ch;font-size:var(--fs-sm);line-height:1.6">Transporte sob medida para empresas, grupos, igrejas, escolas e eventos, com planejamento, conforto e atenção à segurança em cada trajeto.</p>
             <div style="display:flex;gap:10px;margin-top:22px">
               <a class="icon-btn" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff" href="${waDefault()}" target="_blank" rel="noopener" aria-label="WhatsApp">${I.wa}</a>
               <a class="icon-btn" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff" href="tel:${COMPANY.phoneTel}" aria-label="Telefone">${I.phone}</a>
@@ -362,7 +362,7 @@
         telephone: COMPANY.phoneTel,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Av. Hilário Pereira de Souza, 406 — Sala 1401, 14º andar, Centro",
+          streetAddress: "Av. Hilário Pereira de Souza, 406, Sala 1401, 14º andar, Centro",
           addressLocality: "Osasco",
           addressRegion: "SP",
           postalCode: COMPANY.cep,

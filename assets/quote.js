@@ -1,5 +1,5 @@
 /* ============================================================
-   GOOBUS — Orçamento (formulário em etapas)
+   GOOBUS | Orçamento (formulário em etapas)
    Navegação · validação · campos dinâmicos · UTM · WhatsApp · sucesso
    ============================================================ */
 (function () {
@@ -241,14 +241,14 @@
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
   function buildReview() {
-    const svc = SERVICE_LABELS[selectedService()] || "—";
+    const svc = SERVICE_LABELS[selectedService()] || "Não informado";
     const ida = [fmtDate(val("departure_date")), val("departure_time")].filter(Boolean).join(" às ");
     const volta = [fmtDate(val("return_date")), val("return_time")].filter(Boolean).join(" às ");
     const acess = form.accessibility_needs && form.accessibility_needs.checked ? "Sim" : "";
     const rows = [
       ["Serviço", svc],
-      ["Origem", [val("origin_city"), val("origin_address")].filter(Boolean).join(" — ")],
-      ["Destino", [val("destination_city"), val("destination_address")].filter(Boolean).join(" — ")],
+      ["Origem", [val("origin_city"), val("origin_address")].filter(Boolean).join(", ")],
+      ["Destino", [val("destination_city"), val("destination_address")].filter(Boolean).join(", ")],
       ["Tipo de viagem", val("trip_type")],
       ["Ida", ida],
       ["Retorno", volta],
@@ -271,19 +271,19 @@
 
   /* ---------- Mensagem de WhatsApp ---------- */
   function buildWaMessage() {
-    const svc = SERVICE_LABELS[selectedService()] || "—";
+    const svc = SERVICE_LABELS[selectedService()] || "Não informado";
     const lines = [
       "Olá! Gostaria de solicitar um orçamento com a GOOBUS.",
       "",
       "*Serviço:* " + svc,
-      "*Origem:* " + (val("origin_city") || "—"),
-      "*Destino:* " + (val("destination_city") || "—"),
-      "*Ida:* " + (fmtDate(val("departure_date")) || "—") + (val("departure_time") ? " às " + val("departure_time") : "")
+      "*Origem:* " + (val("origin_city") || "Não informado"),
+      "*Destino:* " + (val("destination_city") || "Não informado"),
+      "*Ida:* " + (fmtDate(val("departure_date")) || "Não informado") + (val("departure_time") ? " às " + val("departure_time") : "")
     ];
     if (val("return_date")) lines.push("*Retorno:* " + fmtDate(val("return_date")) + (val("return_time") ? " às " + val("return_time") : ""));
-    lines.push("*Passageiros:* " + (val("passenger_count") || "—"));
+    lines.push("*Passageiros:* " + (val("passenger_count") || "Não informado"));
     if (val("vehicle_preference")) lines.push("*Veículo:* " + val("vehicle_preference"));
-    lines.push("*Nome:* " + (val("name") || "—"));
+    lines.push("*Nome:* " + (val("name") || "Não informado"));
     return lines.join("\n");
   }
 
