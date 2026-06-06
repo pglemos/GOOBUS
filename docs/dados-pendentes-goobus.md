@@ -1,8 +1,6 @@
-# GOOBUS — Dados pendentes de validação
+# GOOBUS — Dados e integrações pendentes
 
-> Este site foi construído como **protótipo de alta fidelidade**. Ele parece completo, mas **não publica nenhuma afirmação não confirmada**. Todos os itens abaixo precisam ser fornecidos/validados antes de publicar.
->
-> Os dados oficiais ficam centralizados em **`assets/site.js`** (objeto `COMPANY`) — edite só lá. Marcadores no formato `[INSERIR ...]` / `[VALIDAR]` aparecem na interface onde o dado real entra.
+> O site público foi limpo para não exibir marcadores editoriais, logos falsos ou dados operacionais sem confirmação. Os dados oficiais ficam centralizados em **`assets/site.js`** (objeto `COMPANY`).
 
 ## Tabela de pendências
 
@@ -13,31 +11,31 @@
 | Telefone | **Fornecido** — (11) 98493-1178 | Confirmar |
 | Endereço | **Fornecido** — Av. Hilário Pereira de Souza, 406, Sala 1401, 14º andar | Confirmar |
 | Cidade / UF | **Fornecida** — Osasco — SP (CEP 06010-170) | OK |
-| E-mail | Pendente | Sim |
+| E-mail | Não exibido | Adicionar quando houver canal oficial |
 | Razão social | **Fornecida** — GOOBUS Transportes e Turismo Ltda | OK |
 | CNPJ | **Fornecido** — 49.151.280/0001-28 | OK |
-| Registro ANTT | Pendente | Somente se for exibido (não publicar selo sem prova) |
+| Registro ANTT | Não exibido | Somente se for exibido com comprovação |
 | Cadastur | Pendente | Somente se for exibido |
-| Regiões atendidas | Pendente | Sim (para SEO local e FAQ) |
-| Horário de atendimento | Pendente | Recomendado |
-| Fotos reais da frota | Pendente — placeholders administrativos | Recomendado (não usar banco de imagens como frota real) |
-| Capacidade de cada veículo | Pendente — `[VALIDAR]` | Sim para a página Frota |
-| Comodidades reais (ar, Wi-Fi, banheiro, USB, acessibilidade) | Pendente — `[VALIDAR]` | Sim para a página Frota |
-| Fotos institucionais (equipe, fachada, operação) | Pendente | Recomendado |
-| Foto dedicada "Aluguel de ônibus" (home) | Reutilizada provisoriamente | Opcional (enviar 8ª foto para substituir) |
+| Regiões atendidas | Exibidas como "sob consulta" | Definir regiões para SEO local |
+| Horário de atendimento | Exibido como horário comercial pelo WhatsApp | Ajustar se houver horário oficial diferente |
+| Fotos reais da frota | Imagens ilustrativas por categoria | Substituir por fotos reais quando disponíveis |
+| Capacidade de cada veículo | Exibida como "sob consulta" | Preencher se houver dados oficiais por veículo |
+| Comodidades reais | Exibidas como "conforme veículo" | Preencher se houver dados oficiais por veículo |
+| Fotos institucionais | Imagens ilustrativas geradas | Substituir por fotos reais quando disponíveis |
+| Foto dedicada "Aluguel de ônibus" (home) | Reutilizada em segmento | Opcional |
 | Depoimentos aprovados | Nenhum — seção **desativada** no site | Opcional (só publicar reais e autorizados) |
 | Redes sociais (Instagram/Facebook) | Pendente | Opcional |
-| História da empresa | Pendente — estrutura pronta, sem texto inventado | Recomendado |
-| Encarregado de dados (DPO) | Pendente | Sim (Política de Privacidade) |
-| Prazo de retenção de dados | Pendente | Sim (Política de Privacidade) |
-| Operadores/subcontratados (mensageria, e-mail, analytics) | Pendente | Sim (Política de Privacidade) |
+| História da empresa | Texto institucional genérico e seguro | Substituir por histórico real quando disponível |
+| Encarregado de dados (DPO) | Canal oficial de atendimento | Revisar juridicamente |
+| Prazo de retenção de dados | Linguagem geral | Revisar juridicamente |
+| Operadores/subcontratados | Linguagem geral | Revisar juridicamente |
 
 ## SEO técnico (implementado)
 
 - **Schema.org** `LocalBusiness` (JSON-LD) com nome, razão social, **CNPJ real**, telefone e endereço de Osasco — injetado em todas as páginas.
 - **Open Graph + Twitter Card** (título, descrição, imagem de compartilhamento) por página.
 - **Canonical**, **favicon SVG** da marca, **theme-color**, `lang="pt-BR"` e **skip-link** de acessibilidade.
-- **`sitemap.xml`** (15 URLs) e **`robots.txt`** na raiz. ⚠️ Trocar o domínio `goobus.com.br` pelo domínio real antes de publicar.
+- **`sitemap.xml`** (15 URLs) e **`robots.txt`** na raiz com domínio `goobuss.com`.
 
 ## Integrações de produção (não incluídas no protótipo)
 
@@ -52,13 +50,14 @@ Para colocar no ar como o site completo descrito no briefing, restam etapas de e
 ## Checklist antes de publicar
 
 - [ ] Logo real aplicado (ou wordmark aprovado)
-- [ ] `COMPANY` em `assets/site.js` totalmente preenchido
-- [ ] Nenhum marcador `[INSERIR...]` / `[VALIDAR]` / `[INFORMAR...]` visível
-- [ ] Fotos reais substituindo todos os placeholders `.ph`
-- [ ] Capacidades e comodidades da frota confirmadas
+- [ ] `COMPANY` em `assets/site.js` revisado com canais oficiais
+- [x] Nenhum marcador editorial visível no site público
+- [x] Fotos ilustrativas substituindo os blocos vazios visíveis
+- [ ] Fotos reais da frota substituindo imagens ilustrativas quando disponíveis
+- [ ] Capacidades e comodidades da frota confirmadas, se forem exibidas como dados específicos
 - [ ] ANTT/Cadastur exibidos **somente** se comprovados
 - [ ] Política de Privacidade revisada juridicamente
-- [ ] Regiões atendidas definidas (e páginas de SEO local, se desejado)
-- [ ] Trocar domínio `goobus.com.br` em `sitemap.xml`, `robots.txt` e tags SEO
+- [ ] Regiões atendidas definidas para SEO local, se desejado
+- [x] Domínio `goobuss.com` aplicado em `sitemap.xml`, `robots.txt` e tags SEO
 - [ ] Depoimentos: só publicar se reais e autorizados
 - [ ] Revisão ortográfica final em pt-BR

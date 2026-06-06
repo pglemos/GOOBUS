@@ -21,7 +21,8 @@
 .cmethod .val { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-top: 2px; }
 .cmethod .pending { font-family: ui-monospace, monospace; font-size: var(--fs-sm); color: #b45309; }
 .form-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh); padding: clamp(24px, 3vw, 36px); }
-.map-ph { aspect-ratio: 21/8; margin-top: 14px; }
+.map-frame { width: 100%; aspect-ratio: 21/8; margin-top: 14px; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--bg-2); box-shadow: var(--sh-sm); }
+.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -54,21 +55,19 @@
             <span><span class="lbl">Telefone</span><span class="val">(11) 98493-1178</span></span>
           </a>
           <div class="cmethod">
-            <span class="ci" data-ico="mail"></span>
-            <span><span class="lbl">E-mail</span><span class="pending">[INSERIR E-MAIL]</span></span>
-          </div>
-          <div class="cmethod">
             <span class="ci" data-ico="pin"></span>
             <span><span class="lbl">Endereço</span><span class="val" style="font-size:1rem">Av. Hilário Pereira de Souza, 406<br>Sala 1401, 14º andar — Centro<br>Osasco — SP · CEP 06010-170</span></span>
           </div>
           <div class="cmethod">
             <span class="ci" data-ico="clock"></span>
-            <span><span class="lbl">Horário de atendimento</span><span class="pending">[INFORMAR HORÁRIO]</span></span>
+            <span><span class="lbl">Horário de atendimento</span><span class="val" style="font-size:1rem">Atendimento em horário comercial pelo WhatsApp</span></span>
           </div>
         </div>
 
         <h2 style="font-size:var(--fs-h3);margin-top:32px">Localização</h2>
-        <div class="ph map-ph" data-label="[MAPA: incluir somente com endereço/cidade confirmados]"></div>
+        <div class="map-frame">
+          <iframe title="Localização GOOBUS em Osasco" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Av.%20Hil%C3%A1rio%20Pereira%20de%20Souza%2C%20406%2C%20Osasco%2C%20SP&output=embed"></iframe>
+        </div>
       </div>
 
       <!-- Form -->

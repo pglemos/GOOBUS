@@ -16,6 +16,7 @@
 .quote-head p { color: var(--ink-2); font-size: var(--fs-lead); margin-top: 12px; }
 
 .quote-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+.quote-layout > * { min-width: 0; }
 @media (max-width: 940px){ .quote-layout { grid-template-columns: 1fr; } .quote-aside { order: 2; } }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
@@ -43,6 +44,7 @@
 .dyn-block .dyn-tag { display: inline-block; font-size: var(--fs-xs); font-family: var(--font-display); font-weight: 700; color: var(--accent-ink-strong); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
 
 .qnav { display: flex; justify-content: space-between; gap: 14px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+.qnav > div { display: flex; gap: 12px; justify-content: flex-end; min-width: 0; }
 
 /* consent */
 .consent { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1.5px solid var(--line-2); border-radius: var(--r-sm); margin-top: 14px; cursor: pointer; }
@@ -71,6 +73,15 @@
 .qsuccess h2 { font-size: var(--fs-h2); }
 .qsuccess p { color: var(--ink-2); font-size: var(--fs-lead); margin-top: 14px; }
 .qsuccess .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+@media (max-width: 520px){
+  .qcard-main { padding: 20px 16px; }
+  .qprog-track { margin-inline: 0; }
+  .qnav { flex-direction: column-reverse; }
+  .qnav > div { display: grid; width: 100%; }
+  .qnav .btn { width: 100%; }
+  .rev-row { flex-direction: column; gap: 4px; }
+  .rev-row b { text-align: left; }
+}
 </style>
 </head>
 <body>

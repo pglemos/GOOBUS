@@ -15,16 +15,16 @@
     phoneLabel: "(11) 98493-1178",
     phoneTel: "+5511984931178",
     whatsapp: "5511984931178",            // número informado (celular)
-    email: "[INSERIR E-MAIL]",
+    email: "",
     address: "Av. Hilário Pereira de Souza, 406 — Sala 1401, 14º andar, Centro",
     cep: "06010-170",
     city: "Osasco — SP",
-    serviceRegions: "[INFORMAR REGIÕES ATENDIDAS]",
-    hours: "[INFORMAR HORÁRIO DE ATENDIMENTO]",
-    antt: "[VALIDAR REGISTRO ANTT]",
-    cadastur: "[VALIDAR CADASTUR]",
-    instagram: "[INSERIR LINK]",
-    facebook: "[INSERIR LINK]"
+    serviceRegions: "Atendimento sob consulta conforme origem, destino e disponibilidade operacional.",
+    hours: "Atendimento em horário comercial pelo WhatsApp.",
+    antt: "",
+    cadastur: "",
+    instagram: "",
+    facebook: ""
   };
   window.GOOBUS = COMPANY;
 
@@ -43,7 +43,6 @@
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
-    palette: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2Z"/></svg>',
     shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>',
     building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg>',
     briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
@@ -237,7 +236,7 @@
         </div>
         <div class="f-bottom">
           <span>© ${new Date().getFullYear()} GOOBUS TRANSPORTES E TURISMO LTDA · CNPJ 49.151.280/0001-28</span>
-          <span style="opacity:.7">Registros ANTT/Cadastur a validar antes da publicação.</span>
+          <span style="opacity:.7">Transporte de passageiros, fretamento e turismo sob consulta.</span>
         </div>
       </div>`;
     document.body.appendChild(f);
@@ -268,84 +267,6 @@
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  /* ---------- Tema / paletas ---------- */
-  const PALETTES = {
-    ambar:     { label: "Âmbar",     accent: "#f59e0b", hover: "#e08c00", soft: "#fef3dd", ink: "#2a1c00", inkStrong: "#9a6500" },
-    esmeralda: { label: "Esmeralda", accent: "#0fb874", hover: "#0c9c61", soft: "#d6f5e7", ink: "#04271c", inkStrong: "#067a4f" },
-    azul:      { label: "Azul",      accent: "#3b73ff", hover: "#2a5be0", soft: "#e4ecff", ink: "#ffffff", inkStrong: "#2150cc" },
-    petroleo:  { label: "Petróleo",  accent: "#0fae9e", hover: "#0c958a", soft: "#d2f1ed", ink: "#03302c", inkStrong: "#0a766c" }
-  };
-  const FONTS = {
-    manrope: { label: "Manrope", stack: "'Manrope', system-ui, sans-serif" },
-    jakarta: { label: "Jakarta", stack: "'Plus Jakarta Sans', system-ui, sans-serif" }
-  };
-  function applyAccent(key) {
-    const p = PALETTES[key] || PALETTES.ambar;
-    const r = document.documentElement.style;
-    r.setProperty("--accent", p.accent);
-    r.setProperty("--accent-hover", p.hover);
-    r.setProperty("--accent-soft", p.soft);
-    r.setProperty("--accent-ink", p.ink);
-    r.setProperty("--accent-ink-strong", p.inkStrong);
-  }
-  function applyFont(key) {
-    const f = FONTS[key] || FONTS.manrope;
-    document.documentElement.style.setProperty("--font-display", f.stack);
-  }
-  // aplica cedo (antes do chrome) para evitar flash
-  const savedAccent = localStorage.getItem("goobus.accent") || "ambar";
-  const savedFont = localStorage.getItem("goobus.font") || "manrope";
-  applyAccent(savedAccent);
-  applyFont(savedFont);
-
-  function buildThemeSwitcher() {
-    const fab = document.createElement("button");
-    fab.className = "tw-fab";
-    fab.setAttribute("aria-label", "Personalizar cores do site");
-    fab.innerHTML = I.palette;
-    const panel = document.createElement("div");
-    panel.className = "tw-panel";
-    panel.innerHTML = `
-      <h5>Cor de destaque</h5>
-      <div class="tw-swatches">
-        ${Object.entries(PALETTES).map(([k, p]) =>
-          `<button class="tw-sw ${k === savedAccent ? "active" : ""}" data-accent="${k}" title="${p.label}" style="background:${p.accent}" aria-label="${p.label}"></button>`
-        ).join("")}
-      </div>
-      <h5>Tipografia dos títulos</h5>
-      <div class="tw-fonts">
-        ${Object.entries(FONTS).map(([k, f]) =>
-          `<button class="tw-font ${k === savedFont ? "active" : ""}" data-font="${k}" style="font-family:${f.stack}">${f.label}</button>`
-        ).join("")}
-      </div>`;
-    document.body.appendChild(fab);
-    document.body.appendChild(panel);
-
-    fab.addEventListener("click", (e) => {
-      e.stopPropagation();
-      panel.classList.toggle("open");
-    });
-    document.addEventListener("click", (e) => {
-      if (!panel.contains(e.target) && e.target !== fab) panel.classList.remove("open");
-    });
-    panel.querySelectorAll("[data-accent]").forEach((b) =>
-      b.addEventListener("click", () => {
-        const k = b.dataset.accent;
-        applyAccent(k);
-        localStorage.setItem("goobus.accent", k);
-        panel.querySelectorAll("[data-accent]").forEach((x) => x.classList.toggle("active", x === b));
-      })
-    );
-    panel.querySelectorAll("[data-font]").forEach((b) =>
-      b.addEventListener("click", () => {
-        const k = b.dataset.font;
-        applyFont(k);
-        localStorage.setItem("goobus.font", k);
-        panel.querySelectorAll("[data-font]").forEach((x) => x.classList.toggle("active", x === b));
-      })
-    );
   }
 
   /* ---------- Reveal on scroll ---------- */
@@ -389,7 +310,7 @@
     const title = document.title;
     const descEl = document.querySelector('meta[name="description"]');
     const desc = descEl ? descEl.getAttribute("content") : "";
-    const ogImg = (origin || "https://goobus.com.br") + "/assets/img/seg-aeroportos.jpg";
+    const ogImg = (origin || "https://goobuss.com") + "/assets/img/seg-aeroportos.jpg";
 
     const add = (tag, attrs) => {
       const el = document.createElement(tag);
@@ -427,12 +348,12 @@
       const ld = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "@id": (origin || "https://goobus.com.br") + "/#goobus",
+        "@id": (origin || "https://goobuss.com") + "/#goobus",
         name: "GOOBUS",
         legalName: COMPANY.legalName,
         taxID: COMPANY.cnpj,
         description: desc,
-        url: origin || "https://goobus.com.br",
+        url: origin || "https://goobuss.com",
         image: ogImg,
         telephone: COMPANY.phoneTel,
         address: {
@@ -472,7 +393,6 @@
     buildDrawer();
     buildFooter();
     buildFloaters();
-    buildThemeSwitcher();
     initReveal();
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
   }
