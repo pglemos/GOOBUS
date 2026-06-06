@@ -367,6 +367,15 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
 .center { text-align: center; }
 .mt-s { margin-top: 14px; } .mt-m { margin-top: 26px; } .mt-l { margin-top: 44px; }
 .maxw-prose { max-width: 68ch; }
+.hp-field {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(50%);
+}
 .service-note {
   display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r-sm);
   background: color-mix(in srgb, var(--accent-soft) 55%, #fff);
