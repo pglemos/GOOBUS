@@ -28,6 +28,15 @@
   };
   window.GOOBUS = COMPANY;
 
+  /* ---------- ANALYTICS / CONSENTIMENTO (LGPD) ----------
+     Troque os placeholders pelos IDs reais para ativar o tracking.
+     Nada é carregado antes do aceite explícito do usuário. */
+  const ANALYTICS = {
+    ga4: "G-XXXXXXXXXX",     // GA4 Measurement ID (Google Analytics)
+    clarity: "CLARITY_ID"    // Microsoft Clarity Project ID (heatmap)
+  };
+  const CONSENT_KEY = "goobus.consent";
+
   /* ---------- Rotas públicas limpas ---------- */
   const cleanPath = (pathname) => {
     let p = pathname || "/";
@@ -393,6 +402,59 @@
     }
   }
 
+  /* ---------- Analytics loader (só após consentimento) ---------- */
+  let analyticsLoaded = false;
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    // Google Analytics 4 — só dispara com ID real configurado
+    if (ANALYTICS.ga4 && !/X{4,}/.test(ANALYTICS.ga4)) {
+      const g = document.createElement("script");
+      g.async = true;
+      g.src = "https://www.googletagmanager.com/gtag/js?id=" + ANALYTICS.ga4;
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", ANALYTICS.ga4);
+    }
+    // Microsoft Clarity (heatmap) — só dispara com Project ID real
+    if (ANALYTICS.clarity && ANALYTICS.clarity !== "CLARITY_ID") {
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", ANALYTICS.clarity);
+    }
+  }
+
+  /* ---------- Banner de cookies (LGPD) ---------- */
+  function buildConsent() {
+    let choice = null;
+    try { choice = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+    if (choice === "accepted") { loadAnalytics(); return; }
+    if (choice === "declined") return;
+    const bar = document.createElement("div");
+    bar.className = "cookie-bar";
+    bar.setAttribute("role", "dialog");
+    bar.setAttribute("aria-label", "Aviso de cookies");
+    bar.innerHTML = `
+      <p>Usamos cookies para analisar a navegação e melhorar sua experiência. Saiba mais na <a href="${url("/politica-de-privacidade/")}">Política de Privacidade</a>.</p>
+      <div class="cookie-actions">
+        <button type="button" class="c-decline" data-consent="declined">Recusar</button>
+        <button type="button" class="c-accept" data-consent="accepted">Aceitar</button>
+      </div>`;
+    document.body.appendChild(bar);
+    bar.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-consent]");
+      if (!b) return;
+      const v = b.dataset.consent;
+      try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
+      bar.remove();
+      if (v === "accepted") loadAnalytics();
+    });
+  }
+
   /* ---------- Init ---------- */
   function init() {
     buildSeo();
@@ -402,6 +464,7 @@
     buildFooter();
     buildFloaters();
     initReveal();
+    buildConsent();
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

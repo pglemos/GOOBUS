@@ -470,3 +470,14 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
 .amen .ai svg { width: 22px; height: 22px; }
 .amen b { font-family: var(--font-display); font-size: var(--fs-body); display: block; }
 .amen span { font-size: var(--fs-xs); color: var(--ink-3); font-family: ui-monospace, monospace; }
+
+/* ---- Banner de cookies (LGPD) ---- */
+.cookie-bar { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 1000; max-width: 880px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 22px; background: #0b2545; color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 16px 20px; box-shadow: 0 14px 44px rgba(0,0,0,.30); }
+.cookie-bar p { margin: 0; flex: 1 1 320px; font-size: 14px; line-height: 1.5; }
+.cookie-bar a { color: #fff; text-decoration: underline; }
+.cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-bar button { font: inherit; font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: transform .15s var(--ease, ease), filter .15s; }
+.cookie-bar button:hover { transform: translateY(-1px); }
+.cookie-bar .c-accept { background: var(--accent, #f5a623); color: #0b2545; }
+.cookie-bar .c-decline { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
+@media (max-width: 520px) { .cookie-bar { flex-direction: column; align-items: stretch; } .cookie-actions { justify-content: flex-end; } }
