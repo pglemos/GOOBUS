@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOOBUS — Transporte sob medida para empresas, grupos e eventos</title>
+<meta name="description" content="Aluguel de ônibus, fretamento corporativo, turismo, romarias, traslados e soluções de transporte para grupos. Planejamento, conforto e atenção à segurança em cada trajeto. Solicite um orçamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+/* ---- Hero ---- */
+.hero { position: relative; overflow: hidden; color: #fff; padding-top: 116px; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(155deg, rgba(9,28,52,.88) 0%, rgba(8,26,48,.74) 42%, rgba(7,22,42,.90) 100%),
+    radial-gradient(1100px 520px at 78% -8%, rgba(255,255,255,.10), transparent 60%);
+}
+.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; z-index: 0; }
+.hero .container { position: relative; z-index: 2; }
+.hero .container { position: relative; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding-block: clamp(40px, 5vw, 72px) clamp(56px, 6vw, 96px); }
+.hero h1 { color: #fff; font-size: var(--fs-display); letter-spacing: -.03em; }
+.hero h1 .hl { color: var(--accent); }
+.hero .sub { font-size: var(--fs-lead); color: rgba(255,255,255,.8); margin-top: 22px; max-width: 36ch; }
+.hero .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.hero .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+.hero-note { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; font-family: ui-monospace, monospace; font-size: .72rem; color: rgba(255,255,255,.4); letter-spacing: .02em; }
+@media (max-width: 940px){ .hero-grid { grid-template-columns: 1fr; gap: 36px; } .hero-note { display:none; } }
+
+/* Quick quote card */
+.qcard { background: rgba(255,255,255,.97); color: var(--ink); border-radius: var(--r-xl); padding: 26px; box-shadow: var(--sh-lg); border: 1px solid rgba(255,255,255,.6); }
+.qcard h3 { font-size: 1.18rem; }
+.qcard .qsub { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 4px; margin-bottom: 18px; }
+.qcard .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.qcard .qgrid .qfull { grid-column: 1 / -1; }
+.qcard .field label { font-size: var(--fs-xs); }
+.qcard .input, .qcard .select { padding: 11px 13px; font-size: var(--fs-sm); }
+
+/* Trust strip */
+.trust { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.trust .row { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; justify-content: center; padding-block: 22px; }
+.trust .ti { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-sm); color: var(--ink-2); }
+.trust .ti svg { width: 20px; height: 20px; color: var(--accent-ink-strong); }
+.trust .sep { width: 1px; height: 22px; background: var(--line-2); }
+@media (max-width: 720px){ .trust .sep { display:none; } }
+
+/* Segment cards */
+.seg { display: block; overflow: hidden; }
+.seg .seg-img { aspect-ratio: 16/10; }
+.seg img.seg-img { width: 100%; object-fit: cover; }
+.seg .seg-body { padding: 22px 22px 24px; }
+.seg .seg-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-ink-strong); display: grid; place-items: center; margin-bottom: 14px; }
+.seg .seg-ico svg { width: 23px; height: 23px; }
+.seg h3 { font-size: 1.16rem; }
+.seg p { color: var(--ink-2); font-size: var(--fs-sm); margin-top: 8px; }
+.seg .seg-link { margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--navy); }
+.seg .seg-link svg { width: 15px; height: 15px; transition: transform .2s var(--ease); }
+.seg:hover .seg-link svg { transform: translateX(3px); }
+
+/* Solutions band */
+.sol-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+@media (max-width: 900px){ .sol-grid { grid-template-columns: 1fr; gap: 32px; } }
+.sol-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+@media (max-width: 520px){ .sol-list { grid-template-columns: 1fr; } }
+.sol-list li { display: flex; gap: 12px; align-items: flex-start; padding: 15px 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--r-sm); }
+.sol-list .ck { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px; background: var(--accent-soft); color: var(--accent-ink-strong); display: grid; place-items: center; }
+.sol-list .ck svg { width: 15px; height: 15px; }
+.sol-list b { font-family: var(--font-display); font-size: var(--fs-sm); }
+
+/* Fleet preview */
+.fleet-card { overflow: hidden; }
+.fleet-card .fc-img { aspect-ratio: 3/2; }
+.fleet-card .fc-body { padding: 20px 22px 22px; }
+.fleet-card h3 { font-size: 1.18rem; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.fleet-card .cap { font-family: ui-monospace, monospace; font-size: var(--fs-xs); color: var(--ink-3); }
+.fleet-card p { color: var(--ink-2); font-size: var(--fs-sm); margin-top: 8px; }
+
+/* Security */
+.sec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+@media (max-width: 900px){ .sec-grid { grid-template-columns: 1fr; gap: 34px; } }
+.sec-list { display: grid; gap: 14px; margin-top: 26px; }
+.sec-list li { display: flex; gap: 14px; align-items: flex-start; }
+.sec-list .si { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 11px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; color: var(--accent); }
+.sec-list .si svg { width: 20px; height: 20px; }
+.sec-list b { color: #fff; font-family: var(--font-display); display: block; }
+.sec-list span { color: rgba(255,255,255,.7); font-size: var(--fs-sm); }
+
+/* Final CTA */
+.fcta { position: relative; overflow: hidden; border-radius: var(--r-xl); padding: clamp(40px, 5vw, 72px); text-align: center; color: #fff;
+  background: radial-gradient(800px 400px at 50% -20%, rgba(255,255,255,.12), transparent 60%), linear-gradient(150deg, var(--navy), #07182f); }
+.fcta h2 { color: #fff; font-size: var(--fs-h1); }
+.fcta p { color: rgba(255,255,255,.78); font-size: var(--fs-lead); max-width: 56ch; margin: 18px auto 0; }
+.fcta .cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 34px; }
+</style>
+</head>
+<body data-hero="true">
+
+<!-- ============ HERO ============ -->
+<section class="hero" data-screen-label="Hero">
+  <img class="hero-photo" src="assets/img/seg-aeroportos.jpg" alt="Passageiros embarcando em ônibus executivo GOOBUS" fetchpriority="high">
+  <div class="container container-wide">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow on-dark">Transporte de passageiros · Fretamento · Turismo</span>
+        <h1>Transporte <span class="hl">sob medida</span> para empresas, grupos e eventos</h1>
+        <p class="sub">Aluguel de ônibus, fretamento corporativo, turismo, romarias e traslados — com planejamento de rota, veículo adequado e atenção rigorosa à segurança.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="orcamento.html">Solicitar orçamento</a>
+          <a class="btn btn-outline on-dark btn-lg" href="#" data-wa>Falar pelo WhatsApp</a>
+        </div>
+        <div class="hero-pills">
+          <span class="pill on-dark">Atendimento personalizado</span>
+          <span class="pill on-dark">Soluções para grupos</span>
+          <span class="pill on-dark">Orçamento sob medida</span>
+        </div>
+      </div>
+
+      <!-- Quick quote -->
+      <form class="qcard" id="quickQuote" novalidate>
+        <h3>Cote sua viagem em 30 segundos</h3>
+        <p class="qsub">Informe o essencial e continue o orçamento detalhado.</p>
+        <div class="qgrid">
+          <div class="field qfull">
+            <label for="q-service">Tipo de serviço</label>
+            <select class="select" id="q-service" name="service">
+              <option value="">Selecione…</option>
+              <option>Aluguel de ônibus</option>
+              <option>Fretamento corporativo</option>
+              <option>Turismo ou excursão</option>
+              <option>Romaria</option>
+              <option>Evento ou congresso</option>
+              <option>Escola ou formatura</option>
+              <option>Banda ou produção</option>
+              <option>Transfer / aeroporto</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-origin">Origem</label>
+            <input class="input" id="q-origin" name="origin" placeholder="Cidade de saída" autocomplete="address-level2">
+          </div>
+          <div class="field">
+            <label for="q-dest">Destino</label>
+            <input class="input" id="q-dest" name="dest" placeholder="Cidade de destino" autocomplete="address-level2">
+          </div>
+          <div class="field">
+            <label for="q-date">Data de ida</label>
+            <input class="input" id="q-date" name="date" type="date">
+          </div>
+          <div class="field">
+            <label for="q-pax">Passageiros</label>
+            <select class="select" id="q-pax" name="pax">
+              <option value="">Quantidade</option>
+              <option>Até 20</option>
+              <option>21 a 30</option>
+              <option>31 a 46</option>
+              <option>47 ou mais</option>
+              <option>Ainda não sei</option>
+            </select>
+          </div>
+          <div class="field qfull">
+            <button class="btn btn-primary btn-block btn-lg" type="submit">Cotar viagem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust">
+  <div class="container container-wide">
+    <div class="row">
+      <span class="ti" data-ico="shield">Atendimento personalizado</span>
+      <span class="sep"></span>
+      <span class="ti" data-ico="pin">Planejamento de rotas e embarques</span>
+      <span class="sep"></span>
+      <span class="ti" data-ico="check">Veículo adequado a cada grupo</span>
+      <span class="sep"></span>
+      <span class="ti" data-ico="check">Orçamento sob medida</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SEGMENTOS ============ -->
+<section class="section" data-screen-label="Segmentos">
+  <div class="container container-wide">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para quem atendemos</span>
+      <h2>Para onde a GOOBUS leva você?</h2>
+      <p>Soluções de transporte organizadas para cada tipo de grupo — do deslocamento diário de funcionários à viagem de fé, da excursão escolar ao grande evento.</p>
+    </div>
+    <div class="grid g-4">
+      <a class="card card-hover seg reveal" href="servicos/fretamento-corporativo.html">
+        <img class="seg-img" src="assets/img/seg-empresas.jpg" alt="Colaboradores embarcando em ônibus fretado em área industrial" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="building"></div>
+          <h3>Empresas e funcionários</h3>
+          <p>Transporte recorrente ou eventual de colaboradores, com pontualidade e rotas planejadas.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/turismo-excursoes.html">
+        <img class="seg-img" src="assets/img/seg-turismo.jpg" alt="Grupo de turistas com mapa ao lado de ônibus em estrada panorâmica" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="compass"></div>
+          <h3>Turismo e excursões</h3>
+          <p>Passeios e viagens em grupo com conforto, do planejamento da ida ao retorno.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/romarias.html">
+        <img class="seg-img" src="assets/img/seg-romarias.jpg" alt="Grupo religioso reunido em frente a igreja embarcando no ônibus" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="church"></div>
+          <h3>Igrejas e romarias</h3>
+          <p>Romarias, retiros e encontros com embarques organizados e atendimento acolhedor.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/escolas-formaturas.html">
+        <img class="seg-img" src="assets/img/seg-escolas.jpg" alt="Estudantes embarcando em ônibus de turismo para excursão" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="school"></div>
+          <h3>Escolas e formaturas</h3>
+          <p>Excursões pedagógicas, visitas técnicas e transporte para cerimônias e formaturas.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/eventos.html">
+        <img class="seg-img" src="assets/img/seg-eventos.jpg" alt="Profissionais embarcando em ônibus em centro de convenções" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="calendar"></div>
+          <h3>Eventos e congressos</h3>
+          <p>Logística para congressos, feiras e convenções com múltiplos pontos de embarque.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/transfers.html">
+        <img class="seg-img" src="assets/img/seg-aeroportos.jpg" alt="Passageiros com malas embarcando em ônibus executivo no aeroporto" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="plane"></div>
+          <h3>Aeroportos e hotéis</h3>
+          <p>Traslados e receptivo para aeroportos, hotéis e empresas, além de city tour.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/bandas-producoes.html">
+        <img class="seg-img" src="assets/img/seg-bandas.jpg" alt="Equipe de produção carregando equipamentos no bagageiro do ônibus" loading="lazy">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="music"></div>
+          <h3>Bandas e produções</h3>
+          <p>Transporte de artistas e equipes alinhado à agenda de shows e festivais.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+      <a class="card card-hover seg reveal" href="servicos/aluguel-de-onibus.html">
+        <img class="seg-img" src="assets/img/seg-escolas.jpg" alt="Ônibus de turismo disponível para locação" loading="lazy" style="object-position:center 60%">
+        <div class="seg-body">
+          <div class="seg-ico" data-ico="bus"></div>
+          <h3>Aluguel de ônibus</h3>
+          <p>Locação de ônibus, micro-ônibus e vans para qualquer ocasião e tamanho de grupo.</p>
+          <span class="seg-link">Conhecer <span data-ico="arrow"></span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="section surface-tint" data-screen-label="Diferenciais">
+  <div class="container container-wide">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Por que a GOOBUS</span>
+      <h2>Mais do que um veículo: uma operação organizada</h2>
+      <p>O que muda quando o transporte do seu grupo é tratado como um projeto, do primeiro contato ao retorno.</p>
+    </div>
+    <div class="grid g-3">
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="target"></div>
+        <h3>Solução sob medida</h3>
+        <p>Nada de pacote genérico: o veículo, a rota e o horário são definidos a partir do seu grupo e do seu trajeto.</p>
+      </article>
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="headset"></div>
+        <h3>Atendimento humano e direto</h3>
+        <p>Você fala com gente que entende de logística de transporte — por WhatsApp, telefone ou formulário.</p>
+      </article>
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="route"></div>
+        <h3>Planejamento de rota</h3>
+        <p>Pontos de embarque, paradas e horários definidos antes da viagem, para o grupo seguir sem improvisos.</p>
+      </article>
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="shield"></div>
+        <h3>Segurança em primeiro lugar</h3>
+        <p>Veículos revisados e equipe qualificada, com atenção aos requisitos aplicáveis a cada tipo de viagem.</p>
+      </article>
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="bus"></div>
+        <h3>Veículo certo para o grupo</h3>
+        <p>Do executivo à van, indicamos a categoria adequada ao número de passageiros e à ocasião.</p>
+      </article>
+      <article class="card svc-card reveal" style="padding:28px">
+        <div class="svc-icon" data-ico="handshake"></div>
+        <h3>Transparência na contratação</h3>
+        <p>Proposta clara e processo organizado, para viagens eventuais ou operações que se repetem.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUÇÕES SOB MEDIDA ============ -->
+<section class="section" data-screen-label="Soluções sob medida">
+  <div class="container container-wide">
+    <div class="sol-grid">
+      <div class="reveal">
+        <span class="eyebrow">Como o orçamento é montado</span>
+        <h2 style="font-size:var(--fs-h2);margin-top:14px">Soluções sob medida para cada trajeto</h2>
+        <p class="lead mt-s">Cada viagem é diferente — por isso o orçamento da GOOBUS considera o conjunto de fatores que realmente influenciam a melhor solução de transporte.</p>
+        <ul class="sol-list">
+          <li><span class="ck" data-ico="check"></span><div><b>Quantidade de passageiros</b></div></li>
+          <li><span class="ck" data-ico="check"></span><div><b>Origem e destino</b></div></li>
+          <li><span class="ck" data-ico="check"></span><div><b>Datas e duração</b></div></li>
+          <li><span class="ck" data-ico="check"></span><div><b>Tipo de veículo</b></div></li>
+          <li><span class="ck" data-ico="check"></span><div><b>Pontos de embarque</b></div></li>
+          <li><span class="ck" data-ico="check"></span><div><b>Necessidades especiais</b></div></li>
+        </ul>
+        <a class="btn btn-dark btn-lg mt-m" href="orcamento.html">Montar meu orçamento <span data-ico="arrow"></span></a>
+      </div>
+      <div class="reveal">
+        <div class="ph ph-4x3" data-label="[FOTO: equipe GOOBUS planejando rota / atendimento]"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESTINOS ============ -->
+<section class="section surface-tint" data-screen-label="Destinos">
+  <div class="container container-wide">
+    <div class="section-head reveal">
+      <span class="eyebrow">Romarias, excursões e lazer</span>
+      <h2>Destinos procurados por grupos</h2>
+      <p>Alguns dos destinos mais pedidos para romarias, passeios e excursões. Conte o seu — montamos o transporte de ida e volta.</p>
+    </div>
+    <div class="grid g-4">
+      <a class="dest reveal" href="orcamento.html?service=Romaria">
+        <div class="ph dark" data-label="[FOTO: Aparecida do Norte]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Romaria</span><h3>Aparecida do Norte</h3><span class="dmeta">Santuário Nacional · SP</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Caldas Novas]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Lazer</span><h3>Caldas Novas</h3><span class="dmeta">Águas termais · GO</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Campos do Jordão]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Serra</span><h3>Campos do Jordão</h3><span class="dmeta">Serra da Mantiqueira · SP</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Thermas dos Laranjais]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Parques</span><h3>Olímpia</h3><span class="dmeta">Thermas dos Laranjais · SP</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Holambra]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Bate-volta</span><h3>Holambra</h3><span class="dmeta">Cidade das Flores · SP</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Litoral / Guarujá]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Praia</span><h3>Litoral Paulista</h3><span class="dmeta">Santos · Guarujá · SP</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Turismo%20ou%20excursão">
+        <div class="ph dark" data-label="[FOTO: Gramado]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">Turismo</span><h3>Serra Gaúcha</h3><span class="dmeta">Gramado · Canela · RS</span></div>
+      </a>
+      <a class="dest reveal" href="orcamento.html?service=Transfer%20/%20aeroporto">
+        <div class="ph dark" data-label="[FOTO: São Paulo capital]"></div><div class="scrim"></div>
+        <div class="dlabel"><span class="dtag">City tour</span><h3>São Paulo</h3><span class="dmeta">Capital · SP</span></div>
+      </a>
+    </div>
+    <div class="note-admin reveal" style="margin-top:22px;max-width:760px">
+      <span data-ico="info"></span>
+      <span>Destinos ilustrativos dos pedidos mais comuns. A cobertura efetiva depende das regiões atendidas pela GOOBUS. [INFORMAR REGIÕES ATENDIDAS]</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="section-sm surface-dark" data-screen-label="Números">
+  <div class="container container-wide">
+    <div class="section-head center reveal" style="margin-bottom:36px">
+      <span class="eyebrow on-dark">A GOOBUS em números</span>
+      <h2 style="color:#fff">Números que constroem confiança</h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num pending">[VALIDAR]</div><div class="lbl">anos transportando grupos</div></div>
+      <div class="stat"><div class="num pending">[VALIDAR]</div><div class="lbl">veículos na frota</div></div>
+      <div class="stat"><div class="num pending">[INFORMAR]</div><div class="lbl">cidades / regiões atendidas</div></div>
+      <div class="stat"><div class="num pending">[VALIDAR]</div><div class="lbl">passageiros transportados</div></div>
+    </div>
+    <div class="note-admin reveal" style="margin-top:30px;max-width:680px;margin-inline:auto;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.78)">
+      <span data-ico="info"></span>
+      <span>Preencher com números reais e verificáveis. Não publicar dados de frota, tempo de atuação ou volume sem comprovação.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FROTA ============ -->
+<section class="section" data-screen-label="Frota">
+  <div class="container container-wide">
+    <div class="section-head reveal">
+      <span class="eyebrow">Categorias de veículos</span>
+      <h2>Frota para cada tamanho de grupo</h2>
+      <p>Categorias preparadas para diferentes ocasiões. Capacidades e comodidades serão confirmadas conforme os veículos reais da GOOBUS.</p>
+    </div>
+    <div class="grid g-4">
+      <div class="card card-hover fleet-card reveal">
+        <div class="ph fc-img" data-label="[FOTO REAL: ônibus convencional]"></div>
+        <div class="fc-body">
+          <h3>Ônibus convencional <span class="cap">[VALIDAR] lug.</span></h3>
+          <p>Ideal para grandes grupos em romarias, excursões e eventos.</p>
+        </div>
+      </div>
+      <div class="card card-hover fleet-card reveal">
+        <div class="ph fc-img" data-label="[FOTO REAL: ônibus executivo]"></div>
+        <div class="fc-body">
+          <h3>Ônibus executivo <span class="cap">[VALIDAR] lug.</span></h3>
+          <p>Mais conforto para viagens corporativas e de longa distância.</p>
+        </div>
+      </div>
+      <div class="card card-hover fleet-card reveal">
+        <div class="ph fc-img" data-label="[FOTO REAL: micro-ônibus]"></div>
+        <div class="fc-body">
+          <h3>Micro-ônibus <span class="cap">[VALIDAR] lug.</span></h3>
+          <p>Versátil para grupos médios, traslados e roteiros urbanos.</p>
+        </div>
+      </div>
+      <div class="card card-hover fleet-card reveal">
+        <div class="ph fc-img" data-label="[FOTO REAL: van executiva]"></div>
+        <div class="fc-body">
+          <h3>Van executiva <span class="cap">[VALIDAR] lug.</span></h3>
+          <p>Ágil para pequenos grupos, transfers e atendimento executivo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note-admin reveal" style="margin-top:22px;max-width:720px">
+      <span data-ico="info"></span>
+      <span>As imagens e capacidades acima são placeholders. Não publicar fotos genéricas como se fossem a frota real — substituir por fotos e dados verdadeiros da GOOBUS antes de publicar.</span>
+    </div>
+    <div class="center" style="margin-top:34px">
+      <a class="btn btn-outline btn-lg reveal" href="frota.html">Ver frota completa <span data-ico="arrow"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="section surface-tint" data-screen-label="Como funciona">
+  <div class="container container-wide">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Contratação simples</span>
+      <h2>Como funciona</h2>
+      <p>Da primeira mensagem ao embarque, um processo claro e organizado.</p>
+    </div>
+    <div class="steps g-4">
+      <div class="step reveal"><div class="num"></div><h3>Informe sua necessidade</h3><p>Serviço, destino, datas e quantidade de passageiros.</p></div>
+      <div class="step reveal"><div class="num"></div><h3>Receba a proposta adequada</h3><p>A equipe avalia rota, veículo e logística necessária.</p></div>
+      <div class="step reveal"><div class="num"></div><h3>Confirme sua viagem</h3><p>Contratação, informações finais e planejamento do embarque.</p></div>
+      <div class="step reveal"><div class="num"></div><h3>Viaje com tranquilidade</h3><p>Transporte realizado conforme o serviço contratado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEGURANÇA ============ -->
+<section class="section surface-dark" data-screen-label="Segurança">
+  <div class="container container-wide">
+    <div class="sec-grid">
+      <div class="reveal">
+        <span class="eyebrow on-dark">Segurança e responsabilidade</span>
+        <h2 style="font-size:var(--fs-h2);margin-top:14px">Confiança começa antes do embarque</h2>
+        <p class="lead mt-s" style="color:rgba(255,255,255,.78)">Em transporte de passageiros, segurança não é detalhe. A GOOBUS trabalha com planejamento, clareza na contratação e atenção aos requisitos aplicáveis a cada tipo de viagem.</p>
+        <ul class="sec-list">
+          <li><span class="si" data-ico="shield"></span><div><b>Documentação e registros aplicáveis</b><span>Registros ANTT e Cadastur exibidos somente após validação.</span></div></li>
+          <li><span class="si" data-ico="bus"></span><div><b>Frota revisada</b><span>Manutenção e revisão dos veículos conforme a operação.</span></div></li>
+          <li><span class="si" data-ico="users"></span><div><b>Motoristas qualificados</b><span>Equipe preparada para o transporte de grupos.</span></div></li>
+          <li><span class="si" data-ico="check"></span><div><b>Contratos e atendimento empresarial</b><span>Processo organizado para operações recorrentes e eventuais.</span></div></li>
+        </ul>
+        <div class="note-admin reveal" style="margin-top:24px;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.78);max-width:560px">
+          <span data-ico="info"></span>
+          <span>Selos ANTT / Cadastur e certificados só devem ser exibidos após comprovação documental da GOOBUS.</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="ph dark ph-4x3" data-label="[FOTO: motorista / vistoria do veículo]"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTES ============ -->
+<section class="section" data-screen-label="Clientes">
+  <div class="container container-wide">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Confiança</span>
+      <h2>Empresas e grupos que contam com a GOOBUS</h2>
+      <p>Exibir aqui apenas logotipos de clientes reais, com autorização de uso.</p>
+    </div>
+    <div class="logos reveal">
+      <div class="logo-ph">[LOGO CLIENTE 1]</div>
+      <div class="logo-ph">[LOGO CLIENTE 2]</div>
+      <div class="logo-ph">[LOGO CLIENTE 3]</div>
+      <div class="logo-ph">[LOGO CLIENTE 4]</div>
+      <div class="logo-ph">[LOGO CLIENTE 5]</div>
+      <div class="logo-ph">[LOGO CLIENTE 6]</div>
+      <div class="logo-ph">[LOGO CLIENTE 7]</div>
+      <div class="logo-ph">[LOGO CLIENTE 8]</div>
+      <div class="logo-ph">[LOGO CLIENTE 9]</div>
+      <div class="logo-ph">[LOGO CLIENTE 10]</div>
+    </div>
+    <div class="note-admin reveal" style="margin-top:22px;max-width:680px;margin-inline:auto">
+      <span data-ico="info"></span>
+      <span>Seção de prova social. Publicar somente clientes/depoimentos verdadeiros e autorizados — caso não existam, manter desativada.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section surface-tint" data-screen-label="FAQ">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details class="faq-item"><summary>Como solicitar um orçamento?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Você pode preencher o formulário da página de Orçamento, falar diretamente pelo WhatsApp ou ligar. Quanto mais detalhes do trajeto, mais precisa fica a proposta.</div></details>
+      <details class="faq-item"><summary>Quais informações são necessárias para calcular a viagem?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Tipo de serviço, cidade de origem e destino, datas e horários, quantidade de passageiros e necessidades especiais. Com esses dados a equipe avalia o veículo e a logística adequados.</div></details>
+      <details class="faq-item"><summary>Vocês atendem viagens corporativas?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Sim. Atendemos transporte de funcionários e eventos corporativos, em modalidade contínua ou eventual, com planejamento de rotas e pontos de embarque.</div></details>
+      <details class="faq-item"><summary>É possível contratar transporte para romarias e excursões?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Sim. Organizamos transporte para romarias, retiros, encontros, passeios e excursões, com atenção ao planejamento de embarques e ao conforto do grupo.</div></details>
+      <details class="faq-item"><summary>Vocês realizam transfers para aeroportos e hotéis?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Sim. Realizamos traslados e receptivo para aeroportos, hotéis, empresas e eventos, além de city tour, conforme o horário e a quantidade de passageiros.</div></details>
+      <details class="faq-item"><summary>Como escolher o veículo ideal para meu grupo?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">A escolha depende da quantidade de passageiros, do tipo de trajeto e das comodidades desejadas. Nossa equipe orienta a melhor categoria ao receber os detalhes da viagem.</div></details>
+      <details class="faq-item"><summary>É possível planejar vários pontos de embarque?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Sim. Para grupos, eventos e empresas é comum definir múltiplos pontos de embarque — basta informar no momento do orçamento.</div></details>
+      <details class="faq-item"><summary>A contratação serve para viagens eventuais e transporte recorrente?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Sim. Atendemos tanto viagens pontuais quanto demandas recorrentes, como o transporte regular de colaboradores.</div></details>
+      <details class="faq-item"><summary>Quais regiões a GOOBUS atende?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">A área de cobertura será confirmada conforme a operação da empresa. <span class="tag tag-pending">[INFORMAR REGIÕES ATENDIDAS]</span></div></details>
+      <details class="faq-item"><summary>Como falar rapidamente com a equipe?<span class="chev" data-ico="chevD"></span></summary><div class="faq-body">Pelo WhatsApp, no botão fixo da tela, ou pelo telefone (11) 98493-1178.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="section-sm" data-screen-label="CTA final">
+  <div class="container container-wide">
+    <div class="fcta reveal">
+      <h2>Planeje sua próxima viagem com a GOOBUS</h2>
+      <p>Informe seu roteiro, a quantidade de passageiros e as datas. Nossa equipe avaliará a melhor solução de transporte para a sua necessidade.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="orcamento.html">Solicitar orçamento</a>
+        <a class="btn btn-wa btn-lg" href="#" data-wa>Conversar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/site.js"></script>
+<script>
+/* Quick-quote -> página de orçamento com parâmetros */
+(function () {
+  var qq = document.getElementById("quickQuote");
+  if (!qq) return;
+  // data mínima = hoje
+  var qd = document.getElementById("q-date");
+  if (qd) { var d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); qd.min = d.toISOString().slice(0, 10); }
+  qq.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var p = new URLSearchParams();
+    var s = qq.service.value, o = qq.origin.value, d = qq.dest.value, dt = qq.date.value, px = qq.pax.value;
+    if (s) p.set("service", s);
+    if (o) p.set("origin", o);
+    if (d) p.set("dest", d);
+    if (dt) p.set("date", dt);
+    if (px) p.set("pax", px);
+    location.href = "orcamento.html" + (p.toString() ? "?" + p.toString() : "");
+  });
+})();
+</script>
+</body>
+</html>

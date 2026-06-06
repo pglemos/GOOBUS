@@ -1,0 +1,11 @@
+# Ferramentas / IDE
+.serena/
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs e temporários
+*.log
+node_modules/

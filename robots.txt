@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Atualizar o domínio real antes de publicar
+Sitemap: https://goobus.com.br/sitemap.xml

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contato — GOOBUS</title>
+<meta name="description" content="Fale com a GOOBUS por WhatsApp, telefone ou e-mail. Atendimento para orçamentos de transporte, fretamento e turismo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 56px); align-items: start; }
+@media (max-width: 880px){ .contact-grid { grid-template-columns: 1fr; } }
+.cmethods { display: grid; gap: 14px; }
+.cmethod { display: flex; gap: 16px; align-items: center; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--sh-sm); transition: transform .2s var(--ease), box-shadow .2s; }
+.cmethod:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+.cmethod .ci { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-ink-strong); display: grid; place-items: center; }
+.cmethod.wa .ci { background: color-mix(in srgb, var(--whatsapp) 16%, #fff); color: var(--whatsapp-d); }
+.cmethod .ci svg { width: 24px; height: 24px; }
+.cmethod .lbl { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--ink-2); }
+.cmethod .val { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-top: 2px; }
+.cmethod .pending { font-family: ui-monospace, monospace; font-size: var(--fs-sm); color: #b45309; }
+.form-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh); padding: clamp(24px, 3vw, 36px); }
+.map-ph { aspect-ratio: 21/8; margin-top: 14px; }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container container-wide">
+    <div class="inner">
+      <nav class="breadcrumb"><a href="index.html">Início</a><span class="sep">/</span><span>Contato</span></nav>
+      <span class="eyebrow" style="margin-top:14px">Fale com a equipe</span>
+      <h1>Estamos prontos para planejar sua viagem</h1>
+      <p>Escolha o canal mais prático. Para um orçamento detalhado, use o formulário de orçamento — assim conseguimos avaliar tudo de uma vez.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-screen-label="Contato">
+  <div class="container container-wide">
+    <div class="contact-grid">
+
+      <!-- Métodos -->
+      <div class="reveal">
+        <h2 style="font-size:var(--fs-h3)">Canais de atendimento</h2>
+        <div class="cmethods mt-s">
+          <a class="cmethod wa" data-wa href="#">
+            <span class="ci" data-ico="wa"></span>
+            <span><span class="lbl">WhatsApp</span><span class="val">(11) 98493-1178</span></span>
+          </a>
+          <a class="cmethod" href="tel:+5511984931178">
+            <span class="ci" data-ico="phone"></span>
+            <span><span class="lbl">Telefone</span><span class="val">(11) 98493-1178</span></span>
+          </a>
+          <div class="cmethod">
+            <span class="ci" data-ico="mail"></span>
+            <span><span class="lbl">E-mail</span><span class="pending">[INSERIR E-MAIL]</span></span>
+          </div>
+          <div class="cmethod">
+            <span class="ci" data-ico="pin"></span>
+            <span><span class="lbl">Endereço</span><span class="val" style="font-size:1rem">Av. Hilário Pereira de Souza, 406<br>Sala 1401, 14º andar — Centro<br>Osasco — SP · CEP 06010-170</span></span>
+          </div>
+          <div class="cmethod">
+            <span class="ci" data-ico="clock"></span>
+            <span><span class="lbl">Horário de atendimento</span><span class="pending">[INFORMAR HORÁRIO]</span></span>
+          </div>
+        </div>
+
+        <h2 style="font-size:var(--fs-h3);margin-top:32px">Localização</h2>
+        <div class="ph map-ph" data-label="[MAPA: incluir somente com endereço/cidade confirmados]"></div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal">
+        <div class="form-card">
+          <h2 style="font-size:var(--fs-h3)">Envie uma mensagem</h2>
+          <p class="muted" style="font-size:var(--fs-sm);margin-top:6px;margin-bottom:22px">Resposta pelos canais informados. Para orçamento completo, use a <a href="orcamento.html" style="color:var(--accent-ink-strong);font-weight:600">página de orçamento</a>.</p>
+          <form id="contactForm" novalidate>
+            <input type="text" name="company_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+            <div class="form-grid">
+              <div class="field full"><label for="c-name">Nome <span class="req">*</span></label><input class="input" id="c-name" name="name" required><span class="err-msg">Informe seu nome.</span></div>
+              <div class="field"><label for="c-wa">WhatsApp <span class="req">*</span></label><input class="input" id="c-wa" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" required><span class="err-msg">Informe um WhatsApp válido.</span></div>
+              <div class="field"><label for="c-em">E-mail</label><input class="input" id="c-em" name="email" type="email" placeholder="voce@email.com"><span class="err-msg">Verifique o e-mail.</span></div>
+              <div class="field full"><label for="c-msg">Mensagem <span class="req">*</span></label><textarea class="textarea" id="c-msg" name="message" required placeholder="Conte rapidamente sua necessidade de transporte."></textarea><span class="err-msg">Escreva sua mensagem.</span></div>
+            </div>
+            <label class="consent" style="margin-top:16px"><input type="checkbox" name="privacy_consent" required><span>Estou ciente da <a href="politica-de-privacidade.html" style="color:var(--accent-ink-strong);font-weight:600">Política de Privacidade</a>. <span class="req">*</span></span></label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" style="margin-top:18px">Enviar mensagem</button>
+          </form>
+          <div id="contactOk" hidden style="text-align:center;padding:20px 0">
+            <div style="width:60px;height:60px;border-radius:50%;background:color-mix(in srgb,var(--success) 14%,#fff);color:var(--success);display:grid;place-items:center;margin:0 auto 16px" data-ico="check"></div>
+            <h3>Mensagem registrada!</h3>
+            <p class="muted" style="margin-top:8px">Para agilizar, continue pelo WhatsApp.</p>
+            <a class="btn btn-wa btn-lg" id="contactWa" data-ico-pre="wa" href="#" style="margin-top:18px">Continuar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container container-wide">
+    <div class="cta-band reveal">
+      <h2>Prefere um orçamento detalhado?</h2>
+      <p>Informe trajeto, datas e passageiros e receba uma proposta sob medida.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="orcamento.html">Solicitar orçamento</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var f = document.getElementById("contactForm");
+  if (!f) return;
+  function mask(v){v=v.replace(/\D/g,"").slice(0,11);if(!v)return "";if(v.length<=2)return "("+v;if(v.length<=6)return v.replace(/(\d{2})(\d{0,4})/,"($1) $2");if(v.length<=10)return v.replace(/(\d{2})(\d{4})(\d{0,4})/,"($1) $2-$3");return v.replace(/(\d{2})(\d{5})(\d{0,4})/,"($1) $2-$3");}
+  f.whatsapp.addEventListener("input",function(){f.whatsapp.value=mask(f.whatsapp.value);});
+  f.querySelectorAll("input,textarea").forEach(function(el){el.addEventListener("input",function(){var w=el.closest(".field")||el.closest(".consent");if(w)w.classList.remove("invalid");});});
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (f.company_website.value) return;
+    var ok = true, firstBad=null;
+    f.querySelectorAll("[required]").forEach(function(el){
+      var bad=false;
+      if(el.type==="checkbox") bad=!el.checked;
+      else if(el.inputMode==="tel") bad=el.value.replace(/\D/g,"").length<10;
+      else bad=!el.value.trim();
+      if(bad){var w=el.closest(".field")||el.closest(".consent");if(w){w.classList.add("invalid");if(!firstBad)firstBad=el;}ok=false;}
+    });
+    if(f.email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)){f.email.closest(".field").classList.add("invalid");if(!firstBad)firstBad=f.email;ok=false;}
+    if(!ok){ if(firstBad){ try{firstBad.focus({preventScroll:true});}catch(e){firstBad.focus();} window.scrollTo({top:Math.max(0,f.getBoundingClientRect().top+window.scrollY-90),behavior:"smooth"}); } return; }
+    var msg = "Olá! Meu nome é " + f.name.value + ". " + f.message.value;
+    var wa = document.getElementById("contactWa");
+    wa.href = waLink(msg); wa.target="_blank"; wa.rel="noopener";
+    console.log("[GOOBUS] Contato:", {name:f.name.value, whatsapp:f.whatsapp.value, email:f.email.value, message:f.message.value});
+    f.hidden = true;
+    document.getElementById("contactOk").hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

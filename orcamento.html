@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar orçamento — GOOBUS</title>
+<meta name="description" content="Conte seu roteiro, quantidade de passageiros e datas. A GOOBUS avalia a melhor solução de transporte e responde com uma proposta sob medida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+.quote-hero { background: var(--bg-2); border-bottom: 1px solid var(--line); }
+.quote-hero .container { padding-block: clamp(28px, 4vw, 48px); }
+.quote-head { max-width: 640px; }
+.quote-head h1 { font-size: var(--fs-h1); }
+.quote-head p { color: var(--ink-2); font-size: var(--fs-lead); margin-top: 12px; }
+
+.quote-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+@media (max-width: 940px){ .quote-layout { grid-template-columns: 1fr; } .quote-aside { order: 2; } }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* progress */
+.quote-progress { margin-bottom: 30px; }
+.qprog-track { position: relative; height: 4px; background: var(--line); border-radius: 4px; margin: 0 8px 18px; }
+.qprog-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); border-radius: 4px; transition: width .4s var(--ease); }
+.qprog-steps { display: flex; justify-content: space-between; }
+.qprog-step { display: flex; flex-direction: column; align-items: center; gap: 7px; flex: 1; font-size: var(--fs-xs); color: var(--ink-3); font-family: var(--font-display); font-weight: 600; text-align: center; }
+.qprog-step .dot { width: 30px; height: 30px; border-radius: 50%; background: #fff; border: 2px solid var(--line-2); display: grid; place-items: center; color: var(--ink-3); font-size: .8rem; transition: all .25s; }
+.qprog-step.active .dot { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.qprog-step.active { color: var(--ink); }
+.qprog-step.done .dot { background: var(--navy); border-color: var(--navy); color: #fff; }
+.qprog-step .lbl { display: none; }
+@media (min-width: 620px){ .qprog-step .lbl { display: block; } }
+
+.qcard-main { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh-sm); padding: clamp(22px, 3vw, 38px); }
+.qstep { animation: fade .35s var(--ease); }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.qstep > .step-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink-strong); }
+.qstep > h2 { font-size: var(--fs-h3); margin-top: 8px; margin-bottom: 6px; }
+.qstep > .step-desc { color: var(--ink-2); font-size: var(--fs-sm); margin-bottom: 24px; }
+.subhead { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--navy); margin: 26px 0 12px; padding-top: 22px; border-top: 1px solid var(--line); }
+.dyn-block { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; margin-top: 8px; }
+.dyn-block .dyn-tag { display: inline-block; font-size: var(--fs-xs); font-family: var(--font-display); font-weight: 700; color: var(--accent-ink-strong); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+
+.qnav { display: flex; justify-content: space-between; gap: 14px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+/* consent */
+.consent { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1.5px solid var(--line-2); border-radius: var(--r-sm); margin-top: 14px; cursor: pointer; }
+.consent input { margin-top: 3px; width: 20px; height: 20px; accent-color: var(--accent); flex: 0 0 auto; }
+.consent span { font-size: var(--fs-sm); color: var(--ink-2); }
+.consent.invalid { border-color: var(--error); background: #fff5f5; }
+
+/* review */
+.rev-row { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-sm); }
+.rev-row span { color: var(--ink-2); }
+.rev-row b { font-family: var(--font-display); text-align: right; }
+
+/* aside */
+.quote-aside .acard { background: var(--navy); color: #fff; border-radius: var(--r-lg); padding: 26px; position: sticky; top: 96px; }
+.quote-aside h3 { color: #fff; font-size: 1.15rem; }
+.quote-aside p { color: rgba(255,255,255,.72); font-size: var(--fs-sm); margin-top: 8px; }
+.quote-aside .achk { display: grid; gap: 12px; margin-top: 20px; }
+.quote-aside .achk li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); color: rgba(255,255,255,.85); }
+.quote-aside .achk svg { width: 18px; height: 18px; color: var(--accent); flex: 0 0 auto; margin-top: 2px; }
+.quote-aside .awa { margin-top: 22px; }
+
+/* success */
+.qsuccess { max-width: 620px; margin: 0 auto; text-align: center; background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); box-shadow: var(--sh); padding: clamp(30px, 5vw, 56px); }
+.qsuccess .ok-ico { width: 76px; height: 76px; border-radius: 50%; background: color-mix(in srgb, var(--success) 14%, #fff); color: var(--success); display: grid; place-items: center; margin: 0 auto 22px; }
+.qsuccess .ok-ico svg { width: 38px; height: 38px; }
+.qsuccess h2 { font-size: var(--fs-h2); }
+.qsuccess p { color: var(--ink-2); font-size: var(--fs-lead); margin-top: 14px; }
+.qsuccess .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<section class="quote-hero">
+  <div class="container">
+    <div class="quote-head">
+      <span class="eyebrow">Orçamento sob medida</span>
+      <h1>Conte sua rota. A GOOBUS cuida da solução de transporte.</h1>
+      <p>Preencha as etapas abaixo. Quanto mais detalhes, mais precisa fica a proposta — e você pode continuar o atendimento pelo WhatsApp a qualquer momento.</p>
+    </div>
+  </div>
+</section>
+
+<main class="section-sm">
+  <div class="container">
+    <div class="quote-layout">
+      <div>
+        <!-- PROGRESS -->
+        <div class="quote-progress">
+          <div class="qprog-track"><div class="qprog-fill"></div></div>
+          <div class="qprog-steps">
+            <div class="qprog-step active"><span class="dot">1</span><span class="lbl">Serviço</span></div>
+            <div class="qprog-step"><span class="dot">2</span><span class="lbl">Trajeto</span></div>
+            <div class="qprog-step"><span class="dot">3</span><span class="lbl">Grupo</span></div>
+            <div class="qprog-step"><span class="dot">4</span><span class="lbl">Contato</span></div>
+            <div class="qprog-step"><span class="dot">5</span><span class="lbl">Revisão</span></div>
+          </div>
+        </div>
+
+        <form id="quoteForm" class="qcard-main" novalidate>
+          <p id="qLive" class="sr-only" role="status" aria-live="polite"></p>
+          <!-- honeypot -->
+          <input type="text" name="company_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+
+          <!-- STEP 1 -->
+          <div class="qstep" data-step="1">
+            <span class="step-eyebrow">Etapa 1 de 5</span>
+            <h2>Qual serviço você precisa?</h2>
+            <p class="step-desc">Selecione a opção mais próxima. Vamos ajustar os detalhes nas próximas etapas.</p>
+            <div class="opt-grid g-2" data-required-radio="service_type">
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="aluguel"><span class="box"></span><span><span class="o-title">Aluguel de ônibus</span><span class="o-desc">Locação para qualquer ocasião</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="corporativo"><span class="box"></span><span><span class="o-title">Fretamento corporativo</span><span class="o-desc">Funcionários e eventos da empresa</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="turismo"><span class="box"></span><span><span class="o-title">Turismo ou excursão</span><span class="o-desc">Passeios e viagens em grupo</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="romaria"><span class="box"></span><span><span class="o-title">Romaria</span><span class="o-desc">Grupos religiosos e retiros</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="evento"><span class="box"></span><span><span class="o-title">Evento ou congresso</span><span class="o-desc">Feiras, convenções e associações</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="escola"><span class="box"></span><span><span class="o-title">Escola ou formatura</span><span class="o-desc">Excursões e cerimônias</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="banda"><span class="box"></span><span><span class="o-title">Banda ou produção</span><span class="o-desc">Artistas, equipes e shows</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="transfer"><span class="box"></span><span><span class="o-title">Transfer / aeroporto</span><span class="o-desc">Traslados, hotéis e city tour</span></span></label>
+              <label class="opt" data-type="radio"><input type="radio" name="service_type" value="outro"><span class="box"></span><span><span class="o-title">Outro</span><span class="o-desc">Conte sua necessidade</span></span></label>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="qstep" data-step="2" hidden>
+            <span class="step-eyebrow">Etapa 2 de 5</span>
+            <h2>Dados do trajeto</h2>
+            <p class="step-desc">Origem, destino e datas da viagem.</p>
+            <div class="form-grid">
+              <div class="field"><label for="f-oc">Cidade de origem <span class="req">*</span></label><input class="input" id="f-oc" name="origin_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de origem.</span></div>
+              <div class="field"><label for="f-oa">Local de embarque</label><input class="input" id="f-oa" name="origin_address" placeholder="Endereço, terminal, ponto…"></div>
+              <div class="field"><label for="f-dc">Cidade de destino <span class="req">*</span></label><input class="input" id="f-dc" name="destination_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de destino.</span></div>
+              <div class="field"><label for="f-da">Local de destino</label><input class="input" id="f-da" name="destination_address" placeholder="Endereço, hotel, local…"></div>
+              <div class="field"><label for="f-dd">Data de ida <span class="req">*</span></label><input class="input" id="f-dd" name="departure_date" type="date" required><span class="err-msg">Informe a data de ida.</span></div>
+              <div class="field"><label for="f-dt">Horário de saída</label><input class="input" id="f-dt" name="departure_time" type="time"></div>
+              <div class="field"><label for="f-rd">Data de retorno</label><input class="input" id="f-rd" name="return_date" type="date"></div>
+              <div class="field"><label for="f-rt">Horário de retorno</label><input class="input" id="f-rt" name="return_time" type="time"></div>
+              <div class="field full"><label for="f-tt">Tipo de viagem</label>
+                <select class="select" id="f-tt" name="trip_type">
+                  <option>Ida e volta</option><option>Somente ida</option><option>Vários trechos / roteiro</option>
+                </select>
+              </div>
+              <div class="field full"><label for="f-extra">Pontos adicionais de embarque</label><textarea class="textarea" id="f-extra" name="additional_pickups" placeholder="Liste outros pontos onde o grupo embarcará, se houver."></textarea></div>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="qstep" data-step="3" hidden>
+            <span class="step-eyebrow">Etapa 3 de 5</span>
+            <h2>Grupo e veículo</h2>
+            <p class="step-desc">Ajuda a definir a categoria ideal de veículo.</p>
+            <div class="form-grid">
+              <div class="field"><label for="f-pax">Quantidade de passageiros <span class="req">*</span></label>
+                <select class="select" id="f-pax" name="passenger_count" required>
+                  <option value="">Selecione…</option>
+                  <option>Até 15</option><option>16 a 20</option><option>21 a 30</option><option>31 a 46</option><option>47 a 60</option><option>Mais de 60</option><option>Ainda não sei</option>
+                </select><span class="err-msg">Informe a quantidade estimada.</span>
+              </div>
+              <div class="field"><label for="f-veh">Tipo de veículo desejado</label>
+                <select class="select" id="f-veh" name="vehicle_preference">
+                  <option value="">Sem preferência / orientem</option>
+                  <option>Ônibus convencional</option><option>Ônibus executivo</option><option>Micro-ônibus</option><option>Van executiva</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Campos dinâmicos por serviço -->
+            <div class="dyn-block" data-svc="corporativo" hidden>
+              <span class="dyn-tag">Detalhes corporativos</span>
+              <div class="form-grid">
+                <div class="field"><label>Nome da empresa</label><input class="input" name="org_company"></div>
+                <div class="field"><label>Nº aproximado de colaboradores</label><input class="input" name="org_headcount" inputmode="numeric"></div>
+                <div class="field"><label>Frequência</label><select class="select" name="org_frequency"><option value="">Selecione…</option><option>Eventual</option><option>Recorrente</option><option>Contrato contínuo</option></select></div>
+                <div class="field"><label>Turnos / horários</label><input class="input" name="org_shifts" placeholder="Ex.: 06h e 18h"></div>
+              </div>
+            </div>
+            <div class="dyn-block" data-svc="romaria" hidden>
+              <span class="dyn-tag">Detalhes da romaria</span>
+              <div class="form-grid">
+                <div class="field"><label>Igreja ou grupo</label><input class="input" name="rom_group"></div>
+                <div class="field"><label>Destino religioso</label><input class="input" name="rom_destination" placeholder="Santuário, paróquia…"></div>
+                <div class="field full"><label class="consent" style="margin-top:0"><input type="checkbox" name="rom_multi"><span>Precisaremos de vários pontos de embarque.</span></label></div>
+              </div>
+            </div>
+            <div class="dyn-block" data-svc="transfer" hidden>
+              <span class="dyn-tag">Detalhes do transfer</span>
+              <div class="form-grid">
+                <div class="field"><label>Aeroporto</label><input class="input" name="tr_airport"></div>
+                <div class="field"><label>Número do voo</label><input class="input" name="tr_flight"></div>
+                <div class="field"><label>Hotel / destino</label><input class="input" name="tr_hotel"></div>
+                <div class="field"><label>Quantidade de bagagens</label><input class="input" name="tr_baggage" inputmode="numeric"></div>
+              </div>
+            </div>
+            <div class="dyn-block" data-svc="banda" hidden>
+              <span class="dyn-tag">Detalhes da produção</span>
+              <div class="form-grid">
+                <div class="field"><label>Evento / show</label><input class="input" name="bd_event"></div>
+                <div class="field"><label>Data da apresentação</label><input class="input" name="bd_date" type="date"></div>
+                <div class="field full"><label>Instrumentos, equipamentos e bagagens</label><textarea class="textarea" name="bd_gear" placeholder="Descreva o que será transportado além das pessoas."></textarea></div>
+              </div>
+            </div>
+            <div class="dyn-block" data-svc="escola" hidden>
+              <span class="dyn-tag">Detalhes da instituição</span>
+              <div class="form-grid">
+                <div class="field"><label>Instituição</label><input class="input" name="ed_school"></div>
+                <div class="field"><label>Faixa etária dos alunos</label><input class="input" name="ed_age" placeholder="Ex.: ensino médio"></div>
+                <div class="field"><label>Tipo de passeio</label><input class="input" name="ed_trip" placeholder="Pedagógico, formatura…"></div>
+                <div class="field"><label>Responsável pelo contato</label><input class="input" name="ed_responsible"></div>
+              </div>
+            </div>
+
+            <div class="subhead">Necessidades adicionais</div>
+            <label class="consent" style="margin-top:0"><input type="checkbox" name="accessibility_needs"><span>Precisamos de acessibilidade (embarque facilitado, espaço para cadeira de rodas etc.).</span></label>
+            <div class="field" style="margin-top:16px"><label for="f-notes">Observações especiais</label><textarea class="textarea" id="f-notes" name="additional_notes" placeholder="Bagagem, alimentação, paradas, horários sensíveis…"></textarea></div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="qstep" data-step="4" hidden>
+            <span class="step-eyebrow">Etapa 4 de 5</span>
+            <h2>Seus dados</h2>
+            <p class="step-desc">Para enviarmos a proposta e combinar os detalhes.</p>
+            <div class="form-grid">
+              <div class="field"><label for="f-name">Nome <span class="req">*</span></label><input class="input" id="f-name" name="name" required autocomplete="name"><span class="err-msg">Informe seu nome.</span></div>
+              <div class="field"><label for="f-org">Empresa, igreja, escola ou entidade</label><input class="input" id="f-org" name="organization" autocomplete="organization"></div>
+              <div class="field"><label for="f-wa">WhatsApp <span class="req">*</span></label><input class="input" id="f-wa" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" autocomplete="tel"><span class="err-msg">Informe um WhatsApp válido.</span></div>
+              <div class="field"><label for="f-ph">Telefone alternativo</label><input class="input" id="f-ph" name="phone" inputmode="tel" placeholder="(11) 3333-3333"></div>
+              <div class="field"><label for="f-em">E-mail</label><input class="input" id="f-em" name="email" type="email" placeholder="voce@email.com" autocomplete="email"><span class="err-msg">Verifique o e-mail informado.</span></div>
+              <div class="field"><label for="f-city">Cidade</label><input class="input" id="f-city" name="city" autocomplete="address-level2"></div>
+              <div class="field full"><label for="f-cp">Melhor horário para contato</label>
+                <select class="select" id="f-cp" name="contact_preference"><option value="">Sem preferência</option><option>Manhã</option><option>Tarde</option><option>Noite</option></select>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="qstep" data-step="5" hidden>
+            <span class="step-eyebrow">Etapa 5 de 5</span>
+            <h2>Revise e envie</h2>
+            <p class="step-desc">Confira os dados antes de enviar.</p>
+            <div id="qReview"></div>
+            <div class="subhead">Consentimento</div>
+            <label class="consent"><input type="checkbox" name="privacy_consent" required><span>Li e estou ciente da <a href="politica-de-privacidade.html" target="_blank" style="color:var(--accent-ink-strong);font-weight:600">Política de Privacidade</a> e autorizo o uso dos meus dados para retorno deste orçamento. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="marketing_consent"><span>Aceito receber contato comercial da GOOBUS sobre serviços e condições.</span></label>
+          </div>
+
+          <!-- NAV -->
+          <div class="qnav">
+            <button type="button" class="btn btn-outline" id="qBack">Voltar</button>
+            <div style="display:flex;gap:12px">
+              <button type="button" class="btn btn-primary btn-lg" id="qNext">Avançar</button>
+              <button type="submit" class="btn btn-primary btn-lg" id="qSubmit" hidden>Enviar solicitação</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- SUCESSO -->
+        <div id="quoteSuccess" hidden>
+          <div class="qsuccess">
+            <div class="ok-ico" data-ico="check"></div>
+            <h2>Solicitação recebida!</h2>
+            <p>Obrigado. Recebemos os dados da sua viagem e nossa equipe vai avaliar a melhor solução de transporte para sua necessidade.</p>
+            <div class="cta-row">
+              <a class="btn btn-wa btn-lg" id="qSuccessWa" data-ico-pre="wa">Continuar no WhatsApp</a>
+              <a class="btn btn-outline btn-lg" href="index.html">Voltar ao início</a>
+            </div>
+            <p style="font-size:var(--fs-xs);color:var(--ink-3);margin-top:24px">[ Em produção: este envio grava o lead no banco (Supabase) e dispara a notificação à equipe responsável. ]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="quote-aside">
+        <div class="acard">
+          <h3>Prefere falar agora?</h3>
+          <p>Atendimento direto pelo WhatsApp para tirar dúvidas e adiantar seu orçamento.</p>
+          <ul class="achk">
+            <li data-ico-pre="check"><span>Atendimento personalizado</span></li>
+            <li data-ico-pre="check"><span>Veículo adequado ao seu grupo</span></li>
+            <li data-ico-pre="check"><span>Proposta sob medida</span></li>
+          </ul>
+          <a class="btn btn-wa btn-block btn-lg awa" href="#" data-wa>Falar no WhatsApp</a>
+          <p style="margin-top:14px;font-size:var(--fs-xs)">Tel.: (11) 98493-1178</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<script src="assets/site.js"></script>
+<script src="assets/quote.js"></script>
+</body>
+</html>
