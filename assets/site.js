@@ -244,14 +244,17 @@
 
   /* ---------- WhatsApp flutuante + barra mobile ---------- */
   function buildFloaters() {
-    const wa = document.createElement("a");
-    wa.className = "wa-float";
-    wa.href = waDefault();
-    wa.target = "_blank";
-    wa.rel = "noopener";
-    wa.setAttribute("aria-label", "Falar no WhatsApp");
-    wa.innerHTML = `<span class="ping"></span>${I.wa}`;
-    document.body.appendChild(wa);
+    const hasPrimaryForm = document.getElementById("quoteForm") || document.getElementById("contactForm");
+    if (!hasPrimaryForm) {
+      const wa = document.createElement("a");
+      wa.className = "wa-float";
+      wa.href = waDefault();
+      wa.target = "_blank";
+      wa.rel = "noopener";
+      wa.setAttribute("aria-label", "Falar no WhatsApp");
+      wa.innerHTML = `<span class="ping"></span>${I.wa}`;
+      document.body.appendChild(wa);
+    }
 
     const mbar = document.createElement("nav");
     mbar.className = "mbar";
