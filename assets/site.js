@@ -6,7 +6,7 @@
   "use strict";
 
   /* ---------- CONFIG CENTRAL DA EMPRESA ----------
-     Edite SOMENTE aqui os dados oficiais. Nada de telefone/endereço
+     Edite SOMENTE aqui os dados oficiais. Nada de contato/endereço
      espalhado pelos componentes. */
   const COMPANY = {
     name: "GOOBUS",
@@ -217,7 +217,6 @@
             <p style="margin-top:18px;max-width:34ch;font-size:var(--fs-sm);line-height:1.6">Transporte sob medida para empresas, grupos, igrejas, escolas e eventos, com planejamento, conforto e atenção à segurança em cada trajeto.</p>
             <div style="display:flex;gap:10px;margin-top:22px">
               <a class="icon-btn" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff" href="${waDefault()}" target="_blank" rel="noopener" aria-label="WhatsApp">${I.wa}</a>
-              <a class="icon-btn" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff" href="tel:${COMPANY.phoneTel}" aria-label="Telefone">${I.phone}</a>
             </div>
           </div>
           <div>
@@ -234,7 +233,6 @@
             <h4>Contato</h4>
             <ul>
               <li><a href="${waDefault()}" target="_blank" rel="noopener">WhatsApp ${COMPANY.phoneLabel}</a></li>
-              <li><a href="tel:${COMPANY.phoneTel}">${COMPANY.phoneLabel}</a></li>
               <li style="opacity:.85">${COMPANY.address}</li>
               <li style="opacity:.85">${COMPANY.city} · CEP ${COMPANY.cep}</li>
             </ul>

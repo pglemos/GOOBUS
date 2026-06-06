@@ -113,7 +113,7 @@
     })
   );
 
-  /* ---------- Máscara de telefone (BR) ---------- */
+  /* ---------- Máscara de WhatsApp (BR) ---------- */
   function maskPhone(v) {
     v = v.replace(/\D/g, "").slice(0, 11);
     if (!v) return "";
@@ -260,7 +260,6 @@
       ["Solicitante", val("name")],
       ["Organização", val("organization")],
       ["WhatsApp", fmtPhone(val("whatsapp"))],
-      ["Telefone", fmtPhone(val("phone"))],
       ["E-mail", val("email")],
       ["Cidade", val("city")],
       ["Melhor horário", val("contact_preference")]
@@ -309,7 +308,7 @@
       accessibility_needs: form.accessibility_needs && form.accessibility_needs.checked ? "sim" : "",
       additional_notes: val("additional_notes"),
       name: val("name"), organization: val("organization"),
-      whatsapp: val("whatsapp"), phone: val("phone"), email: val("email"),
+      whatsapp: val("whatsapp"), email: val("email"),
       city: val("city"), contact_preference: val("contact_preference"),
       privacy_consent: form.privacy_consent.checked,
       marketing_consent: form.marketing_consent ? form.marketing_consent.checked : false,
