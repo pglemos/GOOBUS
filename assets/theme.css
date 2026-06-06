@@ -237,6 +237,7 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
 
 @media (max-width: 980px){
   .nav, .header-actions .btn-primary { display: none; }
+  .header-actions .wa-icon { display: none; }
   .menu-toggle { display: inline-flex; }
   .header-actions { margin-left: auto; }
 }
