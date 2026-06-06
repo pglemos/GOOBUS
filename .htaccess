@@ -1,0 +1,7 @@
+Options -MultiViews
+RewriteEngine On
+
+# Serve extensionless URLs such as /frota from the matching .html file.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
