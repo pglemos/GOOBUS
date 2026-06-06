@@ -12,13 +12,13 @@
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 56px); align-items: start; }
 @media (max-width: 880px){ .contact-grid { grid-template-columns: 1fr; } }
 .cmethods { display: grid; gap: 14px; }
-.cmethod { display: flex; gap: 16px; align-items: center; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--sh-sm); transition: transform .2s var(--ease), box-shadow .2s; }
+.cmethod { display: flex; gap: 16px; align-items: flex-start; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--sh-sm); transition: transform .2s var(--ease), box-shadow .2s; }
 .cmethod:hover { transform: translateY(-3px); box-shadow: var(--sh); }
 .cmethod .ci { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-ink-strong); display: grid; place-items: center; }
 .cmethod.wa .ci { background: color-mix(in srgb, var(--whatsapp) 16%, #fff); color: var(--whatsapp-d); }
 .cmethod .ci svg { width: 24px; height: 24px; }
-.cmethod .lbl { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--ink-2); }
-.cmethod .val { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-top: 2px; }
+.cmethod .lbl { display: block; font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); color: var(--ink-2); }
+.cmethod .val { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-top: 2px; }
 .cmethod .pending { font-family: ui-monospace, monospace; font-size: var(--fs-sm); color: #b45309; }
 .form-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh); padding: clamp(24px, 3vw, 36px); }
 .map-frame { width: 100%; aspect-ratio: 21/8; margin-top: 14px; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--bg-2); box-shadow: var(--sh-sm); }
