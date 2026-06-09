@@ -41,6 +41,17 @@
     if (d.length <= 10) return d.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3").replace(/-$/, "");
     return d.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
   }
+  function nextProtocol() {
+    const day = todayStr().replace(/\D/g, "");
+    const key = "goobus.protocol";
+    let seq = 1;
+    try {
+      const saved = JSON.parse(localStorage.getItem(key) || "{}");
+      seq = saved.day === day ? Number(saved.seq || 0) + 1 : 1;
+      localStorage.setItem(key, JSON.stringify({ day, seq }));
+    } catch (e) {}
+    return day + String(seq).padStart(4, "0");
+  }
 
   /* ---------- UTM / rastreamento ---------- */
   function captureTracking() {
@@ -299,8 +310,8 @@
     if (form.company_website && form.company_website.value) return;
     if (!validateStep(total)) return;
 
-    const lead = {
-      id: "lead_" + Date.now().toString(36),
+	    const lead = {
+	      id: nextProtocol(),
       created_at: new Date().toISOString(),
       service_type: selectedService(),
       origin_city: val("origin_city"), origin_address: val("origin_address"),
