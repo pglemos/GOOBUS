@@ -301,6 +301,77 @@
     els.forEach((e) => io.observe(e));
   }
 
+  function ensureRevealCoverage() {
+    const selectors = [
+      ".page-hero .inner",
+      ".quote-head",
+      ".quote-progress",
+      "#quoteForm",
+      ".quote-aside",
+      ".legal > *"
+    ];
+    document.querySelectorAll(selectors.join(",")).forEach((el) => {
+      if (el.classList.contains("reveal")) return;
+      if (el.closest(".drawer, .site-footer, .site-header, [hidden]")) return;
+      el.classList.add("reveal");
+    });
+  }
+
+  /* ---------- Microinterações globais ---------- */
+  function initMicroInteractions() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    document.querySelectorAll(".reveal").forEach((el, index) => {
+      el.style.setProperty("--reveal-delay", Math.min((index % 8) * 55, 385) + "ms");
+      if (el.matches(".section-head, .cta-band, .fcta, .data-card")) el.classList.add("reveal-pop");
+      if (el.matches(".media") || el.querySelector("img.media-photo")) {
+        el.classList.add(index % 2 ? "reveal-right" : "reveal-left");
+      }
+    });
+
+    if (!reduceMotion) {
+      const progress = document.createElement("div");
+      progress.className = "scroll-progress";
+      progress.setAttribute("aria-hidden", "true");
+      document.body.appendChild(progress);
+
+      const updateProgress = () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? Math.min(100, Math.max(0, (window.scrollY / maxScroll) * 100)) : 0;
+        progress.style.setProperty("--scroll-progress", pct.toFixed(2) + "%");
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
+    }
+
+    const pressSelector = ".btn,.icon-btn,.card-hover,.opt,.chip,.pill,.faq-item summary,.svc-link,.d-link,.mbar a,.amen";
+    document.querySelectorAll(pressSelector).forEach((el) => {
+      el.addEventListener("pointerdown", () => el.classList.add("is-pressed"));
+      ["pointerup", "pointercancel", "pointerleave", "blur"].forEach((eventName) => {
+        el.addEventListener(eventName, () => el.classList.remove("is-pressed"));
+      });
+    });
+
+    if (reduceMotion) return;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target.closest(".btn,.icon-btn,.mbar a,.d-link");
+      if (!target || target.classList.contains("no-ripple")) return;
+
+      const rect = target.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const ripple = document.createElement("span");
+      ripple.className = "gb-ripple";
+      ripple.style.width = size + "px";
+      ripple.style.height = size + "px";
+      ripple.style.left = (event.clientX - rect.left - size / 2) + "px";
+      ripple.style.top = (event.clientY - rect.top - size / 2) + "px";
+      target.appendChild(ripple);
+      window.setTimeout(() => ripple.remove(), 650);
+    });
+  }
+
   /* ---------- Injeção de ícones / links ---------- */
   function injectIcons() {
     document.querySelectorAll("[data-ico]").forEach((el) => {
@@ -407,7 +478,7 @@
   function loadAnalytics() {
     if (analyticsLoaded) return;
     analyticsLoaded = true;
-    // Google Analytics 4 — só dispara com ID real configurado
+    // Google Analytics 4: só dispara com ID real configurado
     if (ANALYTICS.ga4 && !/X{4,}/.test(ANALYTICS.ga4)) {
       const g = document.createElement("script");
       g.async = true;
@@ -418,7 +489,7 @@
       window.gtag("js", new Date());
       window.gtag("config", ANALYTICS.ga4);
     }
-    // Microsoft Clarity (heatmap) — só dispara com Project ID real
+    // Microsoft Clarity (heatmap): só dispara com Project ID real
     if (ANALYTICS.clarity && ANALYTICS.clarity !== "CLARITY_ID") {
       (function (c, l, a, r, i, t, y) {
         c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
@@ -463,6 +534,8 @@
     buildDrawer();
     buildFooter();
     buildFloaters();
+    ensureRevealCoverage();
+    initMicroInteractions();
     initReveal();
     buildConsent();
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
