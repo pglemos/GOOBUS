@@ -222,6 +222,7 @@
     } else if (svc === "romaria") {
       if (val("rom_group")) rows.push(["Igreja/grupo", val("rom_group")]);
       if (val("rom_destination")) rows.push(["Destino religioso", val("rom_destination")]);
+      if (form.rom_multi && form.rom_multi.checked) rows.push(["Vários pontos de embarque", "Sim"]);
     } else if (svc === "transfer") {
       if (val("tr_airport")) rows.push(["Aeroporto", val("tr_airport")]);
       if (val("tr_flight")) rows.push(["Voo", val("tr_flight")]);
@@ -239,19 +240,19 @@
     }
     return rows;
   }
-  function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
-  function buildReview() {
+  function quoteRows() {
     const svc = SERVICE_LABELS[selectedService()] || "Não informado";
     const ida = [fmtDate(val("departure_date")), val("departure_time")].filter(Boolean).join(" às ");
     const volta = [fmtDate(val("return_date")), val("return_time")].filter(Boolean).join(" às ");
     const acess = form.accessibility_needs && form.accessibility_needs.checked ? "Sim" : "";
-    const rows = [
+    return [
       ["Serviço", svc],
       ["Origem", [val("origin_city"), val("origin_address")].filter(Boolean).join(", ")],
       ["Destino", [val("destination_city"), val("destination_address")].filter(Boolean).join(", ")],
       ["Tipo de viagem", val("trip_type")],
       ["Ida", ida],
       ["Retorno", volta],
+      ["Pontos adicionais de embarque", val("additional_pickups")],
       ["Passageiros", val("passenger_count")],
       ["Veículo", val("vehicle_preference")],
       ...dynRows(),
@@ -262,27 +263,30 @@
       ["WhatsApp", fmtPhone(val("whatsapp"))],
       ["E-mail", val("email")],
       ["Cidade", val("city")],
-      ["Melhor horário", val("contact_preference")]
+      ["Melhor horário", val("contact_preference")],
+      ["Aceita receber contato comercial", form.marketing_consent && form.marketing_consent.checked ? "Sim" : ""]
     ].filter((x) => x[1]);
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function buildReview() {
+    const rows = quoteRows();
     const box = $("#qReview");
     if (box) box.innerHTML = rows.map((x) => `<div class="rev-row"><span>${esc(x[0])}</span><b>${esc(x[1])}</b></div>`).join("");
   }
 
   /* ---------- Mensagem de WhatsApp ---------- */
-  function buildWaMessage() {
-    const svc = SERVICE_LABELS[selectedService()] || "Não informado";
+  function buildWaMessage(lead) {
+    const rows = quoteRows();
+    const protocol = lead && lead.id ? lead.id : "novo";
     const lines = [
-      "Olá! Gostaria de solicitar um orçamento com a GOOBUS.",
+      "*SOLICITAÇÃO DE ORÇAMENTO GOOBUS*",
+      "*Protocolo:* " + protocol,
       "",
-      "*Serviço:* " + svc,
-      "*Origem:* " + (val("origin_city") || "Não informado"),
-      "*Destino:* " + (val("destination_city") || "Não informado"),
-      "*Ida:* " + (fmtDate(val("departure_date")) || "Não informado") + (val("departure_time") ? " às " + val("departure_time") : "")
+      "*Dados preenchidos no formulário:*",
+      ...rows.map(([label, value]) => `• *${label}:* ${value}`),
+      "",
+      "Podem avaliar e me retornar com a proposta?"
     ];
-    if (val("return_date")) lines.push("*Retorno:* " + fmtDate(val("return_date")) + (val("return_time") ? " às " + val("return_time") : ""));
-    lines.push("*Passageiros:* " + (val("passenger_count") || "Não informado"));
-    if (val("vehicle_preference")) lines.push("*Veículo:* " + val("vehicle_preference"));
-    lines.push("*Nome:* " + (val("name") || "Não informado"));
     return lines.join("\n");
   }
 
@@ -321,15 +325,20 @@
     } catch (e) {}
     if (window.dataLayer) window.dataLayer.push({ event: "submit_lead", service_type: lead.service_type });
 
+    const waUrl = typeof waLink === "function" ? waLink(buildWaMessage(lead)) : "";
     const waBtn = $("#qSuccessWa");
-    if (waBtn && typeof waLink === "function") { waBtn.href = waLink(buildWaMessage()); waBtn.target = "_blank"; waBtn.rel = "noopener"; }
+    if (waBtn && waUrl) { waBtn.href = waUrl; waBtn.target = "_blank"; waBtn.rel = "noopener"; }
     form.hidden = true;
     const prog = document.querySelector(".quote-progress");
     if (prog) prog.hidden = true;
     const aside = document.querySelector(".quote-aside");
     if (aside) aside.hidden = true;
     $("#quoteSuccess").hidden = false;
-    if (live) live.textContent = "Solicitação enviada com sucesso.";
+    if (waUrl) {
+      const opened = window.open(waUrl, "_blank", "noopener");
+      if (!opened) window.location.href = waUrl;
+    }
+    if (live) live.textContent = "Solicitação enviada pelo WhatsApp.";
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
