@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GOOBUS | Transporte sob medida para empresas, grupos e eventos</title>
+<title>GOOBUS | Viagens em grupo, transfers e fretamento sob medida</title>
 <meta name="description" content="Aluguel de ônibus, fretamento corporativo, turismo, romarias, traslados e soluções de transporte para grupos. Planejamento, conforto e atenção à segurança em cada trajeto. Solicite um orçamento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/theme.css?v=20260609-3">
+<link rel="stylesheet" href="assets/theme.css?v=20260618-2">
 <style>
 /* ---- Hero ---- */
 .hero { position: relative; overflow: hidden; color: #fff; padding-top: 116px; }
@@ -93,20 +93,177 @@
 .fcta h2 { color: #fff; font-size: var(--fs-h1); }
 .fcta p { color: rgba(255,255,255,.78); font-size: var(--fs-lead); max-width: 56ch; margin: 18px auto 0; }
 .fcta .cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 34px; }
+
+/* Airline-inspired refresh */
+.hero { color: var(--ink); padding-top: 76px; background: var(--accent); }
+.hero::before {
+  background:
+    linear-gradient(98deg, color-mix(in srgb, var(--surface) 96%, transparent) 0%, color-mix(in srgb, var(--surface) 91%, transparent) 44%, color-mix(in srgb, var(--accent) 78%, transparent) 100%),
+    linear-gradient(180deg, rgba(255,250,243,.18), rgba(255,250,243,.04));
+}
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; z-index: 2; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 70%, var(--navy))); }
+.hero-photo { opacity: .54; object-position: center 34%; filter: saturate(1.06) contrast(1.03); }
+.hero-grid { min-height: min(760px, calc(100vh - 76px)); padding-block: clamp(46px, 6vw, 86px) clamp(52px, 7vw, 98px); }
+.hero h1 { color: var(--navy); max-width: 10.8ch; }
+.hero h1 .hl { color: var(--accent-ink-strong); }
+.hero .sub { color: var(--ink-2); max-width: 39ch; }
+.hero .eyebrow.on-dark { color: var(--accent-ink-strong); }
+.hero .eyebrow.on-dark::before { background: var(--accent); }
+.hero .btn-outline.on-dark { color: var(--navy); border-color: color-mix(in srgb, var(--navy) 28%, var(--line)); background: color-mix(in srgb, var(--surface) 72%, transparent); }
+.hero .btn-outline.on-dark:hover { background: var(--surface); border-color: var(--accent); }
+.hero .pill.on-dark { background: color-mix(in srgb, var(--surface) 82%, transparent); border-color: color-mix(in srgb, var(--accent) 28%, var(--line)); color: var(--ink); }
+.qcard { background: color-mix(in srgb, var(--surface) 96%, transparent); border-radius: var(--r-sm); border-color: color-mix(in srgb, var(--accent) 18%, var(--line)); box-shadow: var(--sh-lg); }
+.q-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 18px; padding: 5px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--bg-2); }
+.q-tabs span { display: grid; place-items: center; min-height: 34px; border-radius: 6px; font-family: var(--font-display); font-size: var(--fs-xs); font-weight: 800; color: var(--ink-2); }
+.q-tabs .active { background: var(--accent); color: var(--accent-ink); box-shadow: var(--sh-sm); }
+.trust { background: var(--surface); }
+.trust .row { justify-content: space-between; gap: 10px; }
+.trust .ti { padding: 10px 12px; border-radius: var(--r-sm); background: var(--bg); color: var(--ink); }
+.trust .sep { display: none; }
+.seg .seg-ico, .sol-list .ck { border-radius: var(--r-sm); }
+.seg .seg-link { color: var(--accent-ink-strong); }
+.sol-list li { background: var(--surface); }
+.sec-list .si { border-radius: var(--r-sm); color: var(--accent); }
+.fcta { background: linear-gradient(135deg, var(--accent), oklch(78% .16 62)); color: var(--accent-ink); box-shadow: var(--sh-lg); }
+.fcta h2 { color: var(--accent-ink); }
+.fcta p { color: color-mix(in srgb, var(--accent-ink) 78%, transparent); }
+@media (max-width: 940px){
+  .hero { padding-top: 76px; }
+  .hero-grid { min-height: auto; }
+  .hero h1 { max-width: 12ch; }
+  .qcard { margin-top: 4px; }
+}
+@media (max-width: 560px){
+  .hero h1 { max-width: 9.4ch; }
+  .qcard .qgrid { grid-template-columns: 1fr; }
+  .q-tabs { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Aviation-grade pass */
+.hero {
+  color: var(--ink);
+  padding-top: 76px;
+  background: #fff4ea;
+}
+.hero::before {
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--surface) 98%, transparent) 0%, color-mix(in srgb, var(--surface) 92%, transparent) 42%, rgba(255,112,32,.66) 72%, rgba(255,112,32,.96) 100%),
+    linear-gradient(180deg, rgba(255,250,243,.18), rgba(255,250,243,.02));
+}
+.hero::after {
+  height: 10px;
+  background: var(--accent);
+}
+.hero-photo {
+  opacity: .68;
+  object-position: center 34%;
+  filter: saturate(1.16) contrast(1.05);
+}
+.hero-grid {
+  grid-template-columns: .92fr 1fr;
+  gap: clamp(34px, 5vw, 76px);
+  min-height: min(740px, calc(100vh - 76px));
+}
+.hero-copy { max-width: 620px; }
+.hero h1 {
+  color: var(--navy);
+  max-width: 11ch;
+  font-size: clamp(3.2rem, 6vw, 6.35rem);
+  line-height: .98;
+  font-weight: 900;
+}
+.hero h1 .hl { color: #b53a07; }
+.hero .sub {
+  color: var(--ink-2);
+  max-width: 38ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.34rem);
+}
+.hero .eyebrow.on-dark {
+  color: #b53a07;
+  letter-spacing: .18em;
+}
+.hero .pill.on-dark {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+  color: var(--ink);
+  box-shadow: var(--sh-sm);
+}
+.qcard {
+  background: color-mix(in srgb, var(--surface) 98%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+  border-radius: var(--r-sm);
+  padding: clamp(22px, 2.5vw, 30px);
+  box-shadow: 0 28px 70px -36px rgba(91,45,10,.55), 0 2px 0 rgba(255,112,32,.16);
+}
+.qcard h3 {
+  font-size: 1.42rem;
+  font-weight: 900;
+}
+.q-tabs {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--line));
+  background: #f5eadb;
+}
+.q-tabs span {
+  min-height: 38px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.q-tabs .active {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+.trust {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.trust .row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding-block: 18px;
+}
+.trust .ti {
+  justify-content: center;
+  min-height: 46px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+@media (max-width: 940px){
+  .hero::before {
+    background: linear-gradient(105deg, color-mix(in srgb, var(--surface) 95%, transparent) 0%, rgba(255,112,32,.34) 100%);
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    min-height: auto;
+  }
+  .hero h1 {
+    max-width: 10.4ch;
+    font-size: clamp(2.55rem, 11vw, 4.7rem);
+  }
+  .qcard { max-width: 640px; }
+  .trust .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px){
+  .hero h1 { max-width: 9.2ch; }
+  .hero .cta-row .btn { width: min(100%, 220px); }
+  .hero-pills { flex-direction: column; align-items: flex-start; }
+  .trust .row { grid-template-columns: 1fr; }
+}
 </style>
 <!-- seo-meta:start -->
 <link rel="canonical" href="https://goobuss.com/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<meta name="theme-color" content="#0a1f3a">
+<meta name="theme-color" content="#ff7020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GOOBUS">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://goobuss.com/">
-<meta property="og:title" content="GOOBUS | Transporte sob medida para empresas, grupos e eventos">
+<meta property="og:title" content="GOOBUS | Viagens em grupo, transfers e fretamento sob medida">
 <meta property="og:description" content="Aluguel de ônibus, fretamento corporativo, turismo, romarias, traslados e soluções de transporte para grupos. Planejamento, conforto e atenção à segurança em cada trajeto. Solicite um orçamento.">
 <meta property="og:image" content="https://goobuss.com/assets/img/seg-aeroportos.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GOOBUS | Transporte sob medida para empresas, grupos e eventos">
+<meta name="twitter:title" content="GOOBUS | Viagens em grupo, transfers e fretamento sob medida">
 <meta name="twitter:description" content="Aluguel de ônibus, fretamento corporativo, turismo, romarias, traslados e soluções de transporte para grupos. Planejamento, conforto e atenção à segurança em cada trajeto. Solicite um orçamento.">
 <meta name="twitter:image" content="https://goobuss.com/assets/img/seg-aeroportos.jpg">
 <script type="application/ld+json" id="ld-org">
@@ -143,24 +300,29 @@
   <div class="container container-wide">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow on-dark">Transporte de passageiros · Fretamento · Turismo</span>
-        <h1>Transporte <span class="hl">sob medida</span> para empresas, grupos e eventos</h1>
-        <p class="sub">Aluguel de ônibus, fretamento corporativo, turismo, romarias e traslados, com planejamento de rota, veículo adequado e atenção rigorosa à segurança.</p>
+<span class="eyebrow on-dark">Viagens em grupo · Transfers · Fretamento</span>
+<h1>Sua viagem em grupo com <span class="hl">padrão de embarque</span></h1>
+<p class="sub">Planejamento de rota, pontos de embarque, frota adequada e atendimento direto para empresas, eventos, turismo, romarias e transfers.</p>
         <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="/orcamento/">Solicitar orçamento</a>
-          <a class="btn btn-outline on-dark btn-lg" href="#" data-wa>Falar pelo WhatsApp</a>
+<a class="btn btn-primary btn-lg" href="/orcamento/">Cotar viagem</a>
+<a class="btn btn-outline on-dark btn-lg" href="#" data-wa>Falar com consultor</a>
         </div>
         <div class="hero-pills">
-          <span class="pill on-dark">Atendimento personalizado</span>
-          <span class="pill on-dark">Soluções para grupos</span>
-          <span class="pill on-dark">Orçamento sob medida</span>
+<span class="pill on-dark">Embarque organizado</span>
+<span class="pill on-dark">Roteiro sob medida</span>
+<span class="pill on-dark">Atendimento direto</span>
         </div>
       </div>
 
       <!-- Quick quote -->
       <form class="qcard" id="quickQuote" novalidate>
-        <h3>Cote sua viagem em 30 segundos</h3>
-        <p class="qsub">Informe o essencial e continue o orçamento detalhado.</p>
+<div class="q-tabs" aria-label="Tipo de cotação">
+<span class="active">Orçamento</span>
+<span>Grupo</span>
+<span>Transfer</span>
+</div>
+<h3>Monte sua viagem</h3>
+<p class="qsub">Preencha os dados principais para cotar seu trajeto.</p>
         <div class="qgrid">
           <div class="field qfull">
             <label for="q-service">Tipo de serviço</label>
@@ -213,13 +375,13 @@
 <div class="trust">
   <div class="container container-wide">
     <div class="row">
-      <span class="ti" data-ico="shield">Atendimento personalizado</span>
+      <span class="ti" data-ico="shield">Cotar viagem</span>
       <span class="sep"></span>
-      <span class="ti" data-ico="pin">Planejamento de rotas e embarques</span>
+      <span class="ti" data-ico="pin">Planejar embarques</span>
       <span class="sep"></span>
-      <span class="ti" data-ico="check">Veículo adequado a cada grupo</span>
+      <span class="ti" data-ico="check">Escolher frota</span>
       <span class="sep"></span>
-      <span class="ti" data-ico="check">Orçamento sob medida</span>
+      <span class="ti" data-ico="check">Confirmar roteiro</span>
     </div>
   </div>
 </div>
@@ -228,9 +390,9 @@
 <section class="section" data-screen-label="Segmentos">
   <div class="container container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">Para quem atendemos</span>
-      <h2>Para onde a GOOBUS leva você?</h2>
-      <p>Soluções de transporte organizadas para cada tipo de grupo, do deslocamento diário de funcionários à viagem de fé, da excursão escolar ao grande evento.</p>
+      <span class="eyebrow">Serviços de viagem</span>
+      <h2>Escolha o melhor formato para o seu grupo</h2>
+      <p>Soluções organizadas para deslocamentos corporativos, turismo, romarias, eventos, aeroportos e produções, com roteiro e frota definidos antes do embarque.</p>
     </div>
     <div class="grid g-4">
       <a class="card card-hover seg reveal" href="/servicos/fretamento-corporativo/">
@@ -534,14 +696,14 @@
       <h2>Planeje sua próxima viagem com a GOOBUS</h2>
       <p>Informe seu roteiro, a quantidade de passageiros e as datas. Nossa equipe avaliará a melhor solução de transporte para a sua necessidade.</p>
       <div class="cta-row">
-        <a class="btn btn-primary btn-lg" href="/orcamento/">Solicitar orçamento</a>
+        <a class="btn btn-primary btn-lg" href="/orcamento/">Cotar viagem</a>
         <a class="btn btn-wa btn-lg" href="#" data-wa>Conversar no WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
 
-<script src="assets/site.js?v=20260609-3"></script>
+<script src="assets/site.js?v=20260618-2"></script>
 <script>
 /* Quick-quote -> página de orçamento com parâmetros */
 (function () {

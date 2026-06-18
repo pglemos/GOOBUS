@@ -89,21 +89,20 @@
   window.GOOBUS_ICONS = I;
 
   /* ---------- Logo ---------- */
-  function mark(forDark) {
-    const bg = forDark ? "var(--accent)" : "var(--navy)";
-    const l1 = forDark ? "var(--navy)" : "var(--accent)";
-    const l2 = forDark ? "rgba(11,37,69,.85)" : "#fff";
-    const l3 = forDark ? "rgba(11,37,69,.55)" : "rgba(255,255,255,.65)";
-    return `<svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-      <rect width="40" height="40" rx="11" fill="${bg}"/>
-      <rect x="9" y="13" width="22" height="3.6" rx="1.8" fill="${l1}"/>
-      <rect x="9" y="19.4" width="16" height="3.6" rx="1.8" fill="${l2}"/>
-      <rect x="9" y="25.8" width="11" height="3.6" rx="1.8" fill="${l3}"/>
+  function mark() {
+    return `<svg class="mark mark-go" viewBox="0 0 96 50" aria-hidden="true">
+      <path d="M72.49 0c-1.58 0-3.12.15-4.62.43 11.6 2.17 20.38 11.46 20.38 23.69 0 8.71-7.06 16.65-15.76 16.65-1.61 0-3.16-.24-4.62-.69-6.45-1.97-11.14-7.98-11.14-15.08 0-7.1 4.69-13.1 11.14-15.08-1.46-.45-3.01-.69-4.62-.69-8.71 0-15.76 7.94-15.76 16.65 0 12.23 8.78 21.52 20.38 23.69 1.5.28 3.04.43 4.62.43 10.71 0 19.84-6.73 23.4-16.19V16.19C92.33 6.73 83.2 0 72.49 0Z" fill="#c1bfbc"/>
+      <path d="M67.87.43C66.37.15 64.83 0 63.25 0 51.26 0 41.24 8.45 38.81 19.72c-.08.38-.42.65-.81.65H25.83c-.46 0-.83.37-.83.83v7.56c0 .46.37.83.83.83h10.69c.46 0 .83.37.83.83v3.75c0 .4-.14.79-.4 1.09-2.89 3.36-7.17 5.49-11.95 5.49-8.71 0-15.76-7.06-15.76-15.76S16.29 9.24 25 9.24c2.45 0 4.76.56 6.83 1.55.39.19.86.05 1.08-.32l3.88-6.53c.24-.41.1-.95-.33-1.17C33.03 1 29.13 0 25 0 11.19 0 0 11.19 0 25s11.19 25 25 25c7.34 0 13.94-3.16 18.51-8.2.33-.37.9-.37 1.24 0C49.32 46.84 55.92 50 63.25 50c1.58 0 3.12-.15 4.62-.43-11.6-2.17-20.38-11.46-20.38-23.69 0-8.71 7.06-16.65 15.76-16.65 1.61 0 3.16.24 4.62.69 6.45 1.97 11.14 7.98 11.14 15.08 0 7.1-4.69 13.1-11.14 15.08 1.46.45 3.01.69 4.62.69 8.71 0 15.76-7.94 15.76-16.65C88.25 11.89 79.47 2.59 67.87.43Z" fill="var(--accent)"/>
     </svg>`;
   }
   function brand(onHero, forDark) {
     return `<a class="brand ${onHero ? "on-hero" : ""}" href="${url("/")}" aria-label="GOOBUS | página inicial">
-      ${mark(forDark)}<span class="word">GOO<b>BUS</b></span></a>`;
+      <svg class="goobus-logo" viewBox="0 0 250 50" role="img" aria-label="GOOBUS">
+        <path class="logo-go-grey" d="M72.49 0c-1.58 0-3.12.15-4.62.43 11.6 2.17 20.38 11.46 20.38 23.69 0 8.71-7.06 16.65-15.76 16.65-1.61 0-3.16-.24-4.62-.69-6.45-1.97-11.14-7.98-11.14-15.08 0-7.1 4.69-13.1 11.14-15.08-1.46-.45-3.01-.69-4.62-.69-8.71 0-15.76 7.94-15.76 16.65 0 12.23 8.78 21.52 20.38 23.69 1.5.28 3.04.43 4.62.43 10.71 0 19.84-6.73 23.4-16.19V16.19C92.33 6.73 83.2 0 72.49 0Z" fill="#c1bfbc"/>
+        <path class="logo-go-orange" d="M67.87.43C66.37.15 64.83 0 63.25 0 51.26 0 41.24 8.45 38.81 19.72c-.08.38-.42.65-.81.65H25.83c-.46 0-.83.37-.83.83v7.56c0 .46.37.83.83.83h10.69c.46 0 .83.37.83.83v3.75c0 .4-.14.79-.4 1.09-2.89 3.36-7.17 5.49-11.95 5.49-8.71 0-15.76-7.06-15.76-15.76S16.29 9.24 25 9.24c2.45 0 4.76.56 6.83 1.55.39.19.86.05 1.08-.32l3.88-6.53c.24-.41.1-.95-.33-1.17C33.03 1 29.13 0 25 0 11.19 0 0 11.19 0 25s11.19 25 25 25c7.34 0 13.94-3.16 18.51-8.2.33-.37.9-.37 1.24 0C49.32 46.84 55.92 50 63.25 50c1.58 0 3.12-.15 4.62-.43-11.6-2.17-20.38-11.46-20.38-23.69 0-8.71 7.06-16.65 15.76-16.65 1.61 0 3.16.24 4.62.69 6.45 1.97 11.14 7.98 11.14 15.08 0 7.1-4.69 13.1-11.14 15.08 1.46.45 3.01.69 4.62.69 8.71 0 15.76-7.94 15.76-16.65C88.25 11.89 79.47 2.59 67.87.43Z" fill="var(--accent)"/>
+        <text class="logo-tail" x="90" y="40.6">OBUS</text>
+      </svg>
+    </a>`;
   }
   window.GOOBUS_MARK = mark;
 
@@ -143,7 +142,7 @@
         </nav>
         <div class="header-actions">
           <a class="icon-btn wa-icon" href="${waLink("Olá! Gostaria de falar com a equipe GOOBUS.")}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">${I.wa}</a>
-          <a class="btn btn-primary" href="${url("/orcamento/")}">Solicitar orçamento</a>
+      <a class="btn btn-primary" href="${url("/orcamento/")}">Cotar viagem</a>
           <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">${I.menu}</button>
         </div>
       </div>`;
@@ -180,7 +179,7 @@
           ${NAV.map((n) => `<a class="d-link ${isActive(n.match) ? "active" : ""}" href="${url(n.href)}">${n.label}</a>`).join("")}
         </nav>
         <div class="d-cta">
-          <a class="btn btn-primary btn-lg btn-block" href="${url("/orcamento/")}">Solicitar orçamento</a>
+        <a class="btn btn-primary btn-lg btn-block" href="${url("/orcamento/")}">Cotar viagem</a>
           <a class="btn btn-wa btn-lg btn-block" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} Falar no WhatsApp</a>
         </div>
       </div>`;
@@ -274,7 +273,7 @@
     mbar.setAttribute("aria-label", "Ações rápidas");
     mbar.innerHTML = `
       <a class="m-wa" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} WhatsApp</a>
-      <a class="m-quote" href="${url("/orcamento/")}">${I.arrow} Orçamento</a>`;
+      <a class="m-quote" href="${url("/orcamento/")}">${I.arrow} Cotar</a>`;
     document.body.appendChild(mbar);
     document.body.classList.add("has-mbar");
     const onScroll = () => {
@@ -376,7 +375,11 @@
   function injectIcons() {
     document.querySelectorAll("[data-ico]").forEach((el) => {
       const k = el.getAttribute("data-ico");
-      if (I[k] && !el.dataset.icoDone) { el.innerHTML = I[k]; el.dataset.icoDone = "1"; }
+      if (I[k] && !el.dataset.icoDone) {
+        if (el.textContent.trim()) el.insertAdjacentHTML("afterbegin", I[k]);
+        else el.innerHTML = I[k];
+        el.dataset.icoDone = "1";
+      }
     });
     document.querySelectorAll("[data-ico-pre]").forEach((el) => {
       const k = el.getAttribute("data-ico-pre");
@@ -410,7 +413,7 @@
 
     // favicon + theme-color + lang
     if (!document.querySelector('link[rel="icon"]')) add("link", { rel: "icon", type: "image/svg+xml", href: "/assets/favicon.svg" });
-    ensureMeta('meta[name="theme-color"]', () => add("meta", { name: "theme-color", content: "#0b2545" }));
+    ensureMeta('meta[name="theme-color"]', () => add("meta", { name: "theme-color", content: "#f97316" }));
     if (!document.documentElement.lang) document.documentElement.lang = "pt-BR";
 
     // canonical
