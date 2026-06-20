@@ -7,7 +7,7 @@
 <meta name="description" content="Aluguel de ônibus, fretamento corporativo, turismo, romarias, traslados e soluções de transporte para grupos. Planejamento, conforto e atenção à segurança em cada trajeto. Solicite um orçamento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/theme.css?v=20260618-2">
+<link rel="stylesheet" href="assets/theme.css?v=20260620-1">
 <style>
 /* ---- Hero ---- */
 .hero { position: relative; overflow: hidden; color: #fff; padding-top: 116px; }
@@ -250,6 +250,270 @@
   .hero-pills { flex-direction: column; align-items: flex-start; }
   .trust .row { grid-template-columns: 1fr; }
 }
+
+/* GOL-grade visual system pass */
+.hero {
+  min-height: calc(100svh - 76px);
+  color: #fff8ef;
+  background: var(--accent);
+  isolation: isolate;
+}
+.hero::before {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 76% 23%, transparent 0 8.2rem, rgba(193,191,188,.78) 8.25rem 10.8rem, transparent 10.85rem),
+    radial-gradient(circle at 82% 33%, transparent 0 5.5rem, rgba(255,248,239,.7) 5.55rem 7.5rem, transparent 7.55rem),
+    linear-gradient(90deg, rgba(255,112,32,.98) 0 58%, rgba(255,112,32,.86) 58% 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 38px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 38px);
+}
+.hero::after {
+  z-index: 1;
+  height: 12px;
+  background: #fff8ef;
+}
+.hero-photo {
+  opacity: 0;
+  visibility: hidden;
+}
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  grid-template-columns: minmax(0, .86fr) minmax(430px, 1fr);
+  min-height: calc(100svh - 170px);
+  gap: clamp(34px, 5vw, 78px);
+  padding-block: clamp(54px, 7vw, 104px) clamp(62px, 8vw, 112px);
+}
+.hero-copy {
+  max-width: 670px;
+}
+.hero h1 {
+  color: #fff8ef;
+  max-width: none;
+  font-size: clamp(4.8rem, 11vw, 10.5rem);
+  line-height: .82;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.hero-kicker {
+  margin-top: 20px;
+  max-width: 11.5ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4.3vw, 4.9rem);
+  line-height: .96;
+  font-weight: 900;
+  color: #2f2b28;
+  text-wrap: balance;
+}
+.hero .sub {
+  max-width: 41ch;
+  color: rgba(255,248,239,.86);
+  font-weight: 500;
+}
+.hero .eyebrow.on-dark {
+  color: #2f2b28;
+  letter-spacing: .18em;
+}
+.hero .eyebrow.on-dark::before {
+  background: #2f2b28;
+}
+.hero .btn-primary {
+  background: #2f2b28;
+  color: #fff8ef;
+}
+.hero .btn-primary:hover {
+  background: #1d1917;
+}
+.hero .btn-outline.on-dark {
+  color: #2f2b28;
+  border-color: rgba(47,43,40,.45);
+  background: rgba(255,248,239,.82);
+}
+.hero .btn-outline.on-dark:hover {
+  background: #fff8ef;
+  border-color: #2f2b28;
+}
+.hero .pill.on-dark {
+  color: #2f2b28;
+  background: rgba(255,248,239,.9);
+  border-color: rgba(47,43,40,.14);
+}
+.hero-stage {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  align-self: center;
+}
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: -38px -34px auto auto;
+  width: min(48vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: clamp(42px, 6vw, 76px) solid rgba(193,191,188,.82);
+  border-left-color: rgba(255,248,239,.86);
+  transform: rotate(-18deg);
+  z-index: -1;
+}
+.hero-livery {
+  position: relative;
+  min-height: clamp(235px, 24vw, 315px);
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff8ef;
+  border: 1px solid rgba(47,43,40,.12);
+  box-shadow: 0 38px 80px -42px rgba(47,27,8,.48);
+}
+.hero-livery::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 4%;
+  bottom: 52px;
+  height: clamp(112px, 10vw, 150px);
+  border-radius: 54px 70px 18px 18px;
+  background:
+    radial-gradient(circle at 11% 51%, transparent 0 35px, var(--gol-grey) 36px 57px, var(--accent) 58px 79px, transparent 80px),
+    linear-gradient(90deg, transparent 0 18%, rgba(255,248,239,.88) 18% 25%, transparent 25% 100%),
+    var(--accent);
+  border: 1px solid rgba(47,43,40,.18);
+}
+.hero-livery::after {
+  content: "";
+  position: absolute;
+  left: 19%;
+  right: 14%;
+  bottom: clamp(132px, 12vw, 172px);
+  height: 34px;
+  border-radius: 16px 28px 6px 6px;
+  background: #2f2b28;
+  box-shadow: 0 0 0 1px rgba(255,248,239,.24), 58px 0 0 #2f2b28, 116px 0 0 #2f2b28, 174px 0 0 #2f2b28;
+}
+.livery-word {
+  position: absolute;
+  left: 42%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(2.45rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff8ef;
+}
+.livery-copy {
+  position: absolute;
+  left: 54%;
+  bottom: 82px;
+  font-family: var(--font-display);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,248,239,.82);
+}
+.hero-route {
+  position: absolute;
+  left: clamp(18px, 3vw, 34px);
+  right: clamp(18px, 3vw, 34px);
+  top: clamp(18px, 3vw, 32px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  color: #2f2b28;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.hero-route i {
+  height: 1px;
+  background: repeating-linear-gradient(90deg, #2f2b28 0 10px, transparent 10px 18px);
+}
+.wheel {
+  position: absolute;
+  bottom: 33px;
+  width: 34px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff8ef 0 20%, #2f2b28 22% 58%, #fff8ef 60% 68%, #2f2b28 70%);
+  box-shadow: 0 0 0 2px rgba(47,43,40,.24);
+}
+.wheel-a { left: 22%; }
+.wheel-b { right: 18%; }
+.qcard {
+  border-radius: 8px;
+  border-color: rgba(47,43,40,.12);
+  background: #fff8ef;
+  box-shadow: 0 26px 60px -36px rgba(47,27,8,.52);
+}
+.q-tabs {
+  background: #efe3d4;
+  border-color: rgba(47,43,40,.12);
+}
+.q-tabs .active {
+  background: var(--accent);
+  color: #2f2b28;
+}
+.trust {
+  background: #fff8ef;
+}
+.seg img.seg-img,
+.dest img {
+  filter: saturate(1.15) sepia(.08) hue-rotate(344deg);
+}
+.seg:hover img.seg-img,
+.dest:hover img {
+  filter: saturate(1.25) sepia(.1) hue-rotate(344deg);
+}
+.fcta {
+  background:
+    radial-gradient(circle at 82% 28%, transparent 0 4.7rem, rgba(193,191,188,.6) 4.75rem 6.4rem, transparent 6.45rem),
+    var(--accent);
+}
+@media (max-width: 1040px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-stage {
+    max-width: 760px;
+  }
+}
+@media (max-width: 620px) {
+  .hero {
+    min-height: auto;
+  }
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(255,112,32,.99), rgba(255,112,32,.99)),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 38px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 38px);
+  }
+  .hero h1 {
+    font-size: clamp(3.45rem, 19vw, 5.4rem);
+  }
+  .hero-kicker {
+    max-width: 10.5ch;
+    font-size: clamp(2rem, 10vw, 3.4rem);
+  }
+  .hero-stage::before {
+    inset: -18px -18px auto auto;
+    width: 72vw;
+    border-width: 38px;
+  }
+  .hero-livery {
+    min-height: 220px;
+  }
+  .livery-word {
+    left: 46%;
+    font-size: clamp(2.05rem, 12vw, 3.6rem);
+  }
+  .livery-copy {
+    display: none;
+  }
+}
 </style>
 <!-- seo-meta:start -->
 <link rel="canonical" href="https://goobuss.com/">
@@ -298,12 +562,13 @@
 <section class="hero" data-screen-label="Hero">
   <img class="hero-photo" src="assets/img/seg-aeroportos.jpg" alt="Passageiros embarcando em ônibus executivo GOOBUS" fetchpriority="high">
   <div class="container container-wide">
-    <div class="hero-grid">
-      <div class="hero-copy">
+<div class="hero-grid">
+<div class="hero-copy">
 <span class="eyebrow on-dark">Viagens em grupo · Transfers · Fretamento</span>
-<h1>Sua viagem em grupo com <span class="hl">padrão de embarque</span></h1>
+<h1>GOOBUS</h1>
+<p class="hero-kicker">Sua viagem em grupo com padrão de embarque</p>
 <p class="sub">Planejamento de rota, pontos de embarque, frota adequada e atendimento direto para empresas, eventos, turismo, romarias e transfers.</p>
-        <div class="cta-row">
+<div class="cta-row">
 <a class="btn btn-primary btn-lg" href="/orcamento/">Cotar viagem</a>
 <a class="btn btn-outline on-dark btn-lg" href="#" data-wa>Falar com consultor</a>
         </div>
@@ -311,11 +576,20 @@
 <span class="pill on-dark">Embarque organizado</span>
 <span class="pill on-dark">Roteiro sob medida</span>
 <span class="pill on-dark">Atendimento direto</span>
-        </div>
-      </div>
+</div>
+</div>
 
-      <!-- Quick quote -->
-      <form class="qcard" id="quickQuote" novalidate>
+<div class="hero-stage" aria-label="GOOBUS em linguagem visual de companhia aérea">
+<div class="hero-livery" aria-hidden="true">
+<div class="hero-route"><span>CGH</span><i></i><span>GRU</span></div>
+<div class="livery-word">GOOBUS</div>
+<div class="livery-copy">transfers · grupos · fretamento</div>
+<span class="wheel wheel-a"></span>
+<span class="wheel wheel-b"></span>
+</div>
+
+<!-- Quick quote -->
+<form class="qcard" id="quickQuote" novalidate>
 <div class="q-tabs" aria-label="Tipo de cotação">
 <span class="active">Orçamento</span>
 <span>Grupo</span>
@@ -364,11 +638,12 @@
           </div>
           <div class="field qfull">
             <button class="btn btn-primary btn-block btn-lg" type="submit">Cotar viagem</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ============ TRUST STRIP ============ -->
