@@ -20,7 +20,7 @@
     cep: "06010-170",
     city: "Osasco, SP",
     serviceRegions: "Atendimento sob consulta conforme origem, destino e disponibilidade operacional.",
-    hours: "Atendimento em horário comercial pelo WhatsApp.",
+    hours: "Segunda a sexta, das 9h às 18h, pelo WhatsApp.",
     antt: "",
     cadastur: "",
     instagram: "",
@@ -112,12 +112,10 @@
 
   /* ---------- Navegação ---------- */
 const NAV = [
-  { label: "Início", href: "/", match: ["/"] },
-  { label: "Empresa", href: "/empresa/", match: ["/empresa/"] },
   { label: "Serviços", href: "/servicos/", match: ["/servicos/"] },
   { label: "Frota", href: "/frota/", match: ["/frota/"] },
-  { label: "Orçamento", href: "/orcamento/", match: ["/orcamento/"] },
-  { label: "Contato", href: "/contato/", match: ["/contato/"] }
+  { label: "Empresa", href: "/empresa/", match: ["/empresa/"] },
+  { label: "Orçamento", href: "/orcamento/", match: ["/orcamento/"] }
 ];
   const path = cleanPath(location.pathname);
   const isActive = (m) =>
@@ -129,6 +127,13 @@ const NAV = [
     const header = document.createElement("header");
     header.className = "site-header" + (heroMode ? " on-hero-mode" : " solid");
     header.innerHTML = `
+      <div class="site-topline">
+        <div class="container container-wide topbar-inner">
+          <span>${I.wa}<b>Atendimento rápido pelo WhatsApp</b></span>
+          <span>${I.phone}${COMPANY.phoneLabel}</span>
+          <span>${I.clock}${COMPANY.hours}</span>
+        </div>
+      </div>
       <div class="container container-wide bar">
         ${brand(heroMode, false)}
         <nav class="nav" aria-label="Principal">
@@ -136,7 +141,7 @@ const NAV = [
         </nav>
         <div class="header-actions">
           <a class="icon-btn wa-icon" href="${waLink("Olá! Gostaria de falar com a equipe GOOBUS.")}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">${I.wa}</a>
-      <a class="btn btn-primary" href="${url("/orcamento/")}">Cotar viagem</a>
+          <a class="btn btn-primary" href="${url("/orcamento/")}">Solicitar orçamento</a>
           <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">${I.menu}</button>
         </div>
       </div>`;
