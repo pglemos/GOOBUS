@@ -24,7 +24,7 @@
   /* Brand accent */
   --accent:      #ff7020;
   --accent-hover:#e65f14;
-  --gol-grey:    #c1bfbc;
+  --route-grey:  #c1bfbc;
   --accent-soft: oklch(93% .075 66);
   --accent-ink:  oklch(20% .035 55);   /* text/icon ON accent surfaces */
   --accent-ink-strong: oklch(50% .17 42); /* accent-derived text ON light surfaces */
@@ -77,7 +77,7 @@
 
 /* ---------- Reset / base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -85,6 +85,7 @@ body {
   line-height: 1.6;
   color: var(--ink);
   background: var(--bg);
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   animation: page-in .45s var(--ease-out) both;
@@ -248,20 +249,8 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
 .nav-spacer { height: 76px; }
 
 .brand { display: inline-flex; align-items: center; font-family: var(--font-display); font-weight: 900; }
-.brand .goobus-logo { width: 218px; height: auto; flex: 0 0 auto; overflow: visible; }
-.brand .mark-go { width: 76px; height: auto; }
-.brand .logo-tail {
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 900;
-  fill: var(--accent);
-  letter-spacing: 0;
-}
-.brand .logo-go-grey { fill: var(--gol-grey); }
-.brand .logo-go-orange { fill: var(--accent); }
-.brand .logo-go-grey,
-.brand .logo-go-orange,
-.brand .logo-tail { transition: fill .2s var(--ease); }
+.brand .goobus-logo { width: clamp(178px, 17vw, 218px); height: auto; flex: 0 0 auto; object-fit: contain; }
+.brand .mark-go { width: 76px; height: auto; object-fit: contain; }
 .site-footer .brand .goobus-logo { width: 206px; }
 
 .nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
@@ -420,7 +409,7 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
   box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
   transition: width 80ms linear;
 }
-.reveal { opacity: 0; transform: translateY(26px) scale(.985); transition: opacity .68s var(--ease-out), transform .68s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform; }
+.reveal { opacity: 1; transform: none; transition: opacity .68s var(--ease-out), transform .68s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform; }
 .reveal.reveal-left { transform: translateX(-28px) scale(.985); }
 .reveal.reveal-right { transform: translateX(28px) scale(.985); }
 .reveal.reveal-pop { transform: translateY(18px) scale(.96); }
@@ -569,7 +558,7 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
 .cookie-bar .c-decline { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
 @media (max-width: 520px) { .cookie-bar { flex-direction: column; align-items: stretch; } .cookie-actions { justify-content: flex-end; } }
 
-/* ---------- GOL-inspired brand system pass ---------- */
+/* ---------- Airline-inspired GOOBUS brand system pass ---------- */
 :root {
   --navy: oklch(24% .025 62);
   --navy-2: oklch(30% .03 62);
@@ -584,7 +573,7 @@ img.media-photo.r-lg { border-radius: var(--r-lg); }
   --line-2: rgba(47,43,40,.22);
   --accent: #ff7020;
   --accent-hover: #e65f14;
-  --gol-grey: #c1bfbc;
+  --route-grey: #c1bfbc;
 }
 
 body {
@@ -600,19 +589,8 @@ body {
   box-shadow: 0 1px 0 rgba(47,43,40,.08);
 }
 
-.brand .goobus-logo {
-  width: 232px;
-}
-.brand .mark-go {
-  width: 82px;
-}
-.brand .logo-tail {
-  font-weight: 900;
-  fill: var(--accent);
-}
-.brand:hover .logo-go-grey {
-  fill: #aaa7a2;
-}
+.brand .goobus-logo { width: clamp(184px, 18vw, 226px); }
+.brand .mark-go { width: 82px; }
 
 .nav a.active,
 .nav a:hover {
@@ -745,7 +723,7 @@ body {
   color: #fff8ef;
   text-transform: uppercase;
   background:
-    radial-gradient(circle at 19% 60%, transparent 0 8.5%, var(--gol-grey) 9% 14.5%, var(--accent) 15% 20.5%, transparent 21%),
+    radial-gradient(circle at 19% 60%, transparent 0 8.5%, var(--route-grey) 9% 14.5%, var(--accent) 15% 20.5%, transparent 21%),
     linear-gradient(90deg, transparent 0 25%, rgba(255,248,239,.88) 25% 31%, transparent 31% 100%),
     linear-gradient(#2f2b28, #2f2b28) center 38% / 68% 14% no-repeat,
     linear-gradient(var(--accent), var(--accent)) center 60% / 86% 42% no-repeat,
@@ -774,4 +752,1663 @@ body {
   .brand .goobus-logo {
     width: min(205px, 58vw);
   }
+}
+
+/* ============================================================
+   GOOBUS 2026 Rebrand
+   Orange command, graphite trust, cream boarding surfaces.
+   ============================================================ */
+:root {
+  --navy: oklch(24% .025 62);
+  --navy-2: oklch(30% .032 62);
+  --navy-3: oklch(38% .04 62);
+  --ink: oklch(25% .025 58);
+  --ink-2: oklch(42% .03 58);
+  --ink-3: oklch(59% .028 68);
+  --bg: #fff8ef;
+  --bg-2: #fff0df;
+  --surface: #fffdf8;
+  --surface-2: #fff7ed;
+  --line: rgba(47,43,40,.13);
+  --line-2: rgba(47,43,40,.23);
+  --accent: #ff7020;
+  --accent-hover: #ec6418;
+  --accent-soft: #ffe0c7;
+  --accent-ink: #2f2b28;
+  --accent-ink-strong: #a94405;
+  --route-grey: #c1bfbc;
+  --sh-sm: 0 1px 2px rgba(47,43,40,.08), 0 10px 28px -26px rgba(47,43,40,.55);
+  --sh: 0 18px 54px -42px rgba(47,43,40,.55);
+  --sh-lg: 0 30px 90px -58px rgba(47,43,40,.7);
+  --sh-accent: 0 18px 42px -30px rgba(255,112,32,.9);
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-spring: cubic-bezier(.2,.8,.2,1);
+}
+
+body {
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(47,43,40,.035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(180deg, #fff8ef 0%, #fff4ea 58%, #fff8ef 100%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+p,
+li {
+  max-width: 75ch;
+}
+
+.container-wide {
+  max-width: min(1440px, calc(100vw - 32px));
+}
+
+.eyebrow {
+  color: var(--accent-ink-strong);
+  letter-spacing: .08em;
+}
+
+.eyebrow::before {
+  background: var(--accent);
+}
+
+.eyebrow.on-dark,
+.surface-dark .eyebrow,
+.page-hero.dark .eyebrow {
+  color: #ffd8bd;
+}
+
+.card,
+.faq-item,
+.qcard-main,
+.quote-aside .acard,
+.bb-module,
+.bb-logo-panel,
+.bb-vehicle,
+.fleet-spec,
+.seg {
+  border-radius: 8px;
+  border-color: var(--line);
+  background: var(--surface);
+  box-shadow: var(--sh-sm);
+}
+
+.card-hover:hover,
+.seg:hover,
+.fleet-spec:hover,
+.faq-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh);
+  border-color: rgba(255,112,32,.38);
+}
+
+.btn {
+  min-height: 46px;
+  border-radius: 8px;
+  letter-spacing: 0;
+}
+
+.btn-primary {
+  color: var(--accent-ink);
+  background: var(--accent);
+  box-shadow: var(--sh-accent);
+}
+
+.btn-primary:hover {
+  color: var(--accent-ink);
+  background: var(--accent-hover);
+}
+
+.btn-dark {
+  color: #fff8ef;
+  background: var(--ink);
+}
+
+.btn-wa {
+  color: #fff;
+  background: var(--whatsapp);
+}
+
+.btn-outline {
+  color: var(--ink);
+  border-color: rgba(47,43,40,.28);
+  background: rgba(255,253,248,.62);
+}
+
+.btn-outline:hover {
+  background: var(--surface);
+  border-color: rgba(255,112,32,.54);
+}
+
+.site-header.on-hero-mode:not(.scrolled):not(.solid),
+.site-header.scrolled,
+.site-header.solid {
+  background: rgba(255,248,239,.91);
+  border-bottom: 1px solid rgba(47,43,40,.12);
+  box-shadow: 0 1px 0 rgba(47,43,40,.07);
+  backdrop-filter: saturate(150%) blur(16px);
+}
+
+.bar {
+  min-height: 76px;
+}
+
+.brand .goobus-logo {
+  width: clamp(184px, 17vw, 232px);
+}
+
+.nav {
+  gap: 2px;
+}
+
+.nav a {
+  border-radius: 8px;
+  color: var(--ink);
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.header-actions .btn-primary {
+  min-height: 42px;
+}
+
+.menu-toggle,
+.icon-btn {
+  border-radius: 8px;
+}
+
+.drawer .panel {
+  background: var(--bg);
+}
+
+.drawer .d-link {
+  border-radius: 8px;
+}
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  color: rgba(255,248,239,.76);
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.18) 0 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(180deg, #2f2b28, #1f1c19);
+  border-top: 6px solid var(--accent);
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  right: clamp(18px, 8vw, 120px);
+  bottom: -54px;
+  width: clamp(180px, 28vw, 420px);
+  aspect-ratio: 261 / 155;
+  background: url("/assets/brand/approved/goobus-go-symbol-approved-light.png") center / contain no-repeat;
+  opacity: .08;
+  pointer-events: none;
+}
+
+.site-footer .f-top,
+.site-footer .f-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer a:hover {
+  color: #ffd7bd;
+}
+
+.hero {
+  min-height: min(880px, 100svh);
+  padding-top: 84px;
+  color: #fff8ef;
+  background: var(--ink);
+}
+
+.hero::before {
+  background:
+    linear-gradient(90deg, rgba(47,43,40,.96) 0%, rgba(47,43,40,.88) 38%, rgba(47,43,40,.42) 66%, rgba(47,43,40,.1) 100%),
+    linear-gradient(180deg, rgba(47,43,40,.08), rgba(47,43,40,.58));
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 12px;
+  background: linear-gradient(90deg, var(--accent) 0 42%, var(--route-grey) 42% 52%, #fff8ef 52% 58%, var(--accent) 58% 100%);
+  z-index: 3;
+}
+
+.hero-photo {
+  object-position: 58% center;
+  filter: saturate(1.04) contrast(1.03);
+}
+
+.hero-grid {
+  min-height: calc(min(880px, 100svh) - 84px);
+  grid-template-columns: minmax(0, .96fr) minmax(360px, .64fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: center;
+  padding-block: clamp(42px, 7vw, 104px);
+}
+
+.hero-copy {
+  max-width: 720px;
+}
+
+.hero h1 {
+  color: #fff8ef;
+  font-size: clamp(4.5rem, 11vw, 10.2rem);
+  line-height: .84;
+  font-weight: 900;
+  max-width: 8ch;
+}
+
+.hero-kicker {
+  margin-top: 14px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.1vw, 2.3rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.hero .sub {
+  margin-top: 18px;
+  color: rgba(255,248,239,.82);
+  font-size: clamp(1.02rem, .9rem + .38vw, 1.22rem);
+}
+
+.hero .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.qcard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255,248,239,.4);
+  background: rgba(255,248,239,.94);
+  box-shadow: 0 34px 100px -58px rgba(0,0,0,.72);
+}
+
+.qcard::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: linear-gradient(90deg, var(--accent), var(--route-grey), var(--accent));
+}
+
+.qcard h3 {
+  color: var(--ink);
+}
+
+.q-tabs {
+  background: #fff0df;
+  border-color: rgba(47,43,40,.13);
+  border-radius: 8px;
+}
+
+.q-tabs span {
+  border-radius: 6px;
+  color: var(--ink-2);
+}
+
+.q-tabs .active {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.trust {
+  background: #fffdf8;
+  border-bottom: 1px solid var(--line);
+}
+
+.trust .row {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.trust .ti {
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff8ef;
+}
+
+.trust .sep {
+  display: none;
+}
+
+.page-hero,
+.quote-hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff8ef;
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.18) 1px, transparent 1px) 0 0 / 68px 68px,
+    linear-gradient(135deg, var(--accent) 0%, #ff7d2c 56%, #f05f16 100%);
+  border-bottom: 1px solid rgba(47,43,40,.12);
+}
+
+.page-hero::before,
+.quote-hero::before {
+  content: "";
+  position: absolute;
+  right: clamp(-90px, -5vw, -28px);
+  top: 50%;
+  width: clamp(240px, 36vw, 620px);
+  aspect-ratio: 261 / 155;
+  background: url("/assets/brand/approved/goobus-go-symbol-approved-light.png") center / contain no-repeat;
+  opacity: .18;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.page-hero::after,
+.quote-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 9px;
+  background: linear-gradient(90deg, #2f2b28 0 32%, #fff8ef 32% 38%, #c1bfbc 38% 48%, #2f2b28 48% 100%);
+}
+
+.page-hero .inner,
+.quote-head {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+}
+
+.page-hero h1,
+.quote-head h1 {
+  color: #2f2b28;
+  max-width: 11ch;
+  font-size: clamp(3.2rem, 7vw, 7.5rem);
+  line-height: .88;
+  font-weight: 900;
+}
+
+.page-hero p,
+.quote-head p {
+  color: rgba(47,43,40,.78);
+  font-size: clamp(1.05rem, .95rem + .4vw, 1.28rem);
+}
+
+.page-hero.dark {
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.18) 1px, transparent 1px) 0 0 / 68px 68px,
+    linear-gradient(135deg, #2f2b28, #1f1c19);
+}
+
+.page-hero.dark h1,
+.page-hero.dark p {
+  color: #fff8ef;
+}
+
+.page-hero.dark p {
+  color: rgba(255,248,239,.78);
+}
+
+.breadcrumb {
+  color: rgba(47,43,40,.7);
+}
+
+.page-hero.dark .breadcrumb {
+  color: rgba(255,248,239,.66);
+}
+
+.section-head {
+  max-width: 850px;
+}
+
+.section-head.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head.center .eyebrow {
+  margin-inline: auto;
+}
+
+.surface-tint {
+  background:
+    linear-gradient(90deg, rgba(47,43,40,.035) 1px, transparent 1px) 0 0 / 72px 72px,
+    var(--bg-2);
+}
+
+.surface-dark {
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.12) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(155deg, #2f2b28, #1f1c19);
+}
+
+.seg {
+  overflow: hidden;
+}
+
+.seg-img,
+.fleet-spec .fs-img,
+img.media-photo {
+  background: #f4eadf;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.seg .seg-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.seg .seg-body,
+.fleet-spec .fs-body {
+  background: var(--surface);
+}
+
+.seg .seg-ico,
+.svc-card .svc-icon,
+.amen .ai,
+.sol-list .ck {
+  border-radius: 8px;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.seg h3,
+.svc-card h3,
+.fleet-spec h3 {
+  font-weight: 900;
+}
+
+.seg p,
+.svc-card p,
+.fleet-spec p,
+.fleet-spec .ideal,
+.contact-card p {
+  color: var(--ink-2);
+}
+
+.seg .seg-link,
+.svc-link {
+  color: var(--accent-ink-strong);
+}
+
+.tag-accent,
+.chip.tint {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.chip,
+.pill {
+  border-radius: 999px;
+  background: #fffdf8;
+}
+
+.fleet-card::before,
+.fleet-spec::before {
+  content: none !important;
+  display: none !important;
+}
+
+.fleet-card,
+.fleet-spec {
+  position: relative;
+  overflow: hidden;
+}
+
+.fleet-spec::after {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--fleet-img, url("/assets/img/frota-real-onibus-convencional-20260606.jpg")) center / cover no-repeat;
+}
+
+.fleet-spec:nth-child(2)::after {
+  --fleet-img: url("/assets/img/frota-real-onibus-executivo-20260606.jpg");
+}
+
+.fleet-spec:nth-child(3)::after {
+  --fleet-img: url("/assets/img/frota-real-micro-onibus-20260606.jpg");
+}
+
+.fleet-spec:nth-child(4)::after {
+  --fleet-img: url("/assets/img/frota-real-van-executiva-20260606.jpg");
+}
+
+.fleet-spec > img.fs-img {
+  display: none;
+}
+
+.fleet-spec .fs-body {
+  order: 2;
+}
+
+.fleet-card .fc-body,
+.fleet-spec .fs-body {
+  background: var(--surface);
+}
+
+.amen {
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.cta-band,
+.fcta {
+  border-radius: 8px;
+  color: var(--accent-ink);
+  background:
+    linear-gradient(90deg, rgba(47,43,40,.12) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(135deg, var(--accent), #ff812f);
+}
+
+.cta-band h2,
+.fcta h2,
+.cta-band p,
+.fcta p {
+  color: var(--accent-ink);
+}
+
+.cta-band .btn-outline,
+.fcta .btn-outline {
+  border-color: rgba(47,43,40,.42);
+}
+
+.quote-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.quote-layout {
+  align-items: start;
+}
+
+.qcard-main {
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.qprog-track {
+  background: rgba(47,43,40,.16);
+}
+
+.qprog-fill {
+  background: var(--accent);
+}
+
+.qprog-step .dot {
+  border-color: rgba(47,43,40,.28);
+  background: #fffdf8;
+}
+
+.qprog-step.active .dot {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.qprog-step.done .dot {
+  color: #fff8ef;
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.opt {
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.opt:has(input:checked) {
+  color: var(--accent-ink);
+  background: #ffe0c7;
+  border-color: var(--accent);
+}
+
+.input,
+.select,
+.textarea {
+  border-radius: 8px;
+  background-color: #fffdf8;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255,112,32,.18);
+}
+
+.consent {
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.qsuccess,
+#quoteSuccess {
+  border-radius: 8px;
+}
+
+.rev-row {
+  border-bottom-color: var(--line);
+}
+
+.brandbook-hero {
+  background:
+    linear-gradient(90deg, rgba(47,43,40,.09) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(135deg, var(--accent) 0 57%, #fff8ef 57.2% 100%) !important;
+}
+
+.bb-module {
+  border-radius: 8px;
+}
+
+.bb-rule {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+  color: var(--accent-ink-strong);
+}
+
+.bb-post {
+  border-radius: 8px;
+}
+
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .qcard {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 760px) {
+  .container-wide {
+    max-width: 100%;
+  }
+
+  .section {
+    padding-block: 56px;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(47,43,40,.86) 0%, rgba(47,43,40,.86) 100%),
+      linear-gradient(180deg, rgba(47,43,40,.2), rgba(47,43,40,.6));
+  }
+
+  .hero-grid {
+    padding-block: 42px 58px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.8rem, 19vw, 6.4rem);
+  }
+
+  .page-hero h1,
+  .quote-head h1 {
+    font-size: clamp(3rem, 17vw, 5.6rem);
+  }
+
+  .page-hero::before,
+  .quote-hero::before {
+    width: 300px;
+    opacity: .12;
+  }
+
+  .trust .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trust .ti {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .trust .row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero .cta-row,
+  .cta-band .cta-row,
+  .fcta .cta-row {
+    display: grid;
+  }
+
+  .hero .btn,
+  .cta-band .btn,
+  .fcta .btn {
+    width: 100%;
+  }
+}
+
+/* Final internal-page sizing pass */
+.page-hero .container,
+.quote-hero .container {
+  padding-block: clamp(56px, 7vw, 96px);
+}
+
+.page-hero h1,
+.quote-head h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 5.7vw, 5.85rem);
+}
+
+.page-hero p,
+.quote-head p {
+  max-width: 62ch;
+}
+
+@media (max-width: 760px) {
+  .page-hero .container,
+  .quote-hero .container {
+    padding-block: 44px 56px;
+  }
+
+  .page-hero h1,
+  .quote-head h1 {
+    max-width: 10.8ch;
+    font-size: clamp(2.7rem, 13vw, 4.2rem);
+  }
+}
+
+/* ============================================================
+   Golffox reference adaptation for GOOBUS
+   Full-bleed transport hero, navy control bands, dotted route.
+   ============================================================ */
+:root {
+  --gf-navy: #082744;
+  --gf-navy-2: #0d3558;
+  --gf-muted: #8092a4;
+  --gf-white: #f8fbfd;
+}
+
+body {
+  background: #f8fbfd;
+}
+
+.site-header.on-hero-mode:not(.scrolled):not(.solid),
+.site-header.scrolled,
+.site-header.solid {
+  background: rgba(248,251,253,.94);
+  border-bottom: 1px solid rgba(8,39,68,.08);
+  box-shadow: 0 1px 0 rgba(8,39,68,.06);
+}
+
+.nav a {
+  color: var(--gf-navy);
+}
+
+.nav a:hover,
+.nav a.active {
+  color: #fff;
+  background: var(--accent);
+}
+
+.page-hero,
+.quote-hero {
+  isolation: isolate;
+  min-height: clamp(390px, 52vh, 560px);
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(8,39,68,.94), rgba(8,39,68,.82) 46%, rgba(8,39,68,.52)),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center 44% / cover no-repeat;
+}
+
+.page-hero .container,
+.quote-hero .container {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(58px, 7vw, 108px) clamp(86px, 8vw, 124px);
+}
+
+.page-hero::before,
+.quote-hero::before {
+  content: "";
+  position: absolute;
+  left: -6vw;
+  right: -6vw;
+  top: 48%;
+  width: auto;
+  height: 170px;
+  aspect-ratio: auto;
+  background:
+    radial-gradient(circle, rgba(255,112,32,.78) 0 3px, transparent 4px) 0 0 / 34px 34px;
+  mask-image: radial-gradient(ellipse at 30% 60%, #000 0 18%, transparent 19%),
+    radial-gradient(ellipse at 58% 52%, #000 0 20%, transparent 21%),
+    radial-gradient(ellipse at 86% 56%, #000 0 18%, transparent 19%);
+  opacity: .75;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+.page-hero::after,
+.quote-hero::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -76px;
+  height: 142px;
+  background: #f8fbfd;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 1;
+}
+
+.page-hero .inner,
+.quote-head {
+  max-width: 760px;
+}
+
+.page-hero h1,
+.quote-head h1 {
+  max-width: 12.5ch;
+  color: rgba(248,251,253,.82);
+  font-size: clamp(3.15rem, 5.8vw, 6.2rem);
+  line-height: .9;
+  letter-spacing: 0;
+}
+
+.page-hero p,
+.quote-head p {
+  color: rgba(248,251,253,.74);
+  max-width: 58ch;
+}
+
+.page-hero .eyebrow,
+.quote-hero .eyebrow,
+.page-hero .breadcrumb,
+.page-hero .breadcrumb a {
+  color: rgba(248,251,253,.82);
+}
+
+.page-hero .eyebrow::before,
+.quote-hero .eyebrow::before {
+  background: var(--accent);
+}
+
+.section {
+  background: #f8fbfd;
+}
+
+.surface-tint {
+  background: #fff;
+}
+
+.section-head {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head .eyebrow {
+  margin-inline: auto;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  color: var(--gf-navy);
+}
+
+.section-head p {
+  margin-inline: auto;
+  color: #506579;
+}
+
+.card,
+.svc-card,
+.seg,
+.fleet-spec,
+.amen,
+.faq-item,
+.opt,
+.qcard-main,
+.quote-aside .acard {
+  border: 1px solid rgba(8,39,68,.09);
+  background: #fff;
+  box-shadow: 0 24px 68px -56px rgba(8,39,68,.5);
+}
+
+.card-hover:hover,
+.seg:hover,
+.fleet-spec:hover,
+.amen:hover,
+.faq-item:hover {
+  border-color: rgba(255,112,32,.28);
+  box-shadow: 0 28px 76px -54px rgba(8,39,68,.58);
+}
+
+.surface-dark {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 50%, rgba(255,112,32,.12), transparent 26%),
+    linear-gradient(180deg, var(--gf-navy), #061f37);
+}
+
+.surface-dark::before,
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 28% -6vw auto;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,112,32,.55) 0 2.5px, transparent 3.5px) 0 0 / 32px 32px;
+  mask-image: radial-gradient(ellipse at 42% 50%, #000 0 24%, transparent 25%),
+    radial-gradient(ellipse at 75% 48%, #000 0 20%, transparent 21%);
+  transform: rotate(-4deg);
+  opacity: .55;
+  pointer-events: none;
+}
+
+.surface-dark > *,
+.site-footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-band,
+.fcta {
+  background:
+    radial-gradient(circle at 72% 45%, rgba(255,255,255,.13), transparent 22%),
+    linear-gradient(180deg, #f25f05, #cf4500);
+  color: #fff;
+}
+
+.cta-band h2,
+.fcta h2,
+.cta-band p,
+.fcta p {
+  color: #fff;
+}
+
+.site-footer {
+  background: #06101d;
+}
+
+.btn-primary {
+  color: #fff;
+  background: var(--accent);
+}
+
+.btn-primary:hover {
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .page-hero,
+  .quote-hero {
+    min-height: 470px;
+  }
+
+  .page-hero .container,
+  .quote-hero .container {
+    padding-block: 46px 96px;
+  }
+
+  .page-hero h1,
+  .quote-head h1 {
+    max-width: 10.5ch;
+    font-size: clamp(2.75rem, 13vw, 4.45rem);
+  }
+
+  .page-hero::before,
+  .quote-hero::before {
+    top: 54%;
+    height: 120px;
+  }
+}
+
+/* Home sections modeled after the Golffox reference structure. */
+.gfox-trust {
+  position: relative;
+  z-index: 4;
+  margin-top: -22px;
+}
+
+.gfox-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.gfox-trust-grid span {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(8,39,68,.1);
+  border-radius: 10px;
+  background: rgba(255,255,255,.94);
+  color: var(--gf-navy);
+  box-shadow: 0 18px 44px -38px rgba(8,39,68,.45);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-sm);
+}
+
+.gfox-trust-grid svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.gfox-intro {
+  text-align: center;
+  padding-block: clamp(86px, 10vw, 140px);
+}
+
+.gfox-intro .container {
+  max-width: 760px;
+}
+
+.gfox-intro h2,
+.gfox-compare h2,
+.gfox-process h2,
+.gfox-profiles h2,
+.gfox-resources h2,
+.gfox-sector h2,
+.gfox-faq h2 {
+  color: var(--gf-navy);
+  font-size: clamp(2.1rem, 4vw, 4.2rem);
+  line-height: .96;
+  margin-top: 10px;
+}
+
+.gfox-intro p,
+.gfox-split p,
+.gfox-compare p,
+.gfox-process p,
+.gfox-profiles p,
+.gfox-resources p,
+.gfox-sector p,
+.gfox-faq p {
+  color: #5c7184;
+}
+
+.gfox-split .container-wide {
+  display: grid;
+  grid-template-columns: minmax(360px, .95fr) minmax(0, .9fr);
+  gap: clamp(34px, 7vw, 110px);
+  align-items: center;
+}
+
+.gfox-dashboard,
+.compare-grid article,
+.process-grid article,
+.profile-grid article,
+.resource-grid article,
+.sector-panel,
+.faq-item {
+  border: 1px solid rgba(8,39,68,.09);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 28px 74px -58px rgba(8,39,68,.55);
+}
+
+.gfox-dashboard {
+  overflow: hidden;
+}
+
+.dash-top {
+  min-height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  color: #fff;
+  background: var(--gf-navy);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.dash-top span {
+  color: #72e4a2;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.dash-map {
+  position: relative;
+  min-height: 230px;
+  background:
+    linear-gradient(90deg, rgba(8,39,68,.05) 1px, transparent 1px) 0 0 / 54px 54px,
+    linear-gradient(180deg, #f7fbfd, #fff);
+}
+
+.dash-map svg {
+  position: absolute;
+  inset: 24px 28px;
+  width: calc(100% - 56px);
+  height: calc(100% - 48px);
+}
+
+.dash-map path {
+  fill: none;
+  stroke: rgba(255,112,32,.72);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 1 18;
+}
+
+.dash-map .pin {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 7px rgba(255,112,32,.14);
+}
+
+.pin-a { left: 18%; top: 58%; }
+.pin-b { left: 49%; top: 38%; }
+.pin-c { right: 12%; top: 28%; background: #42c77b !important; }
+
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(8,39,68,.08);
+  border-bottom: 1px solid rgba(8,39,68,.08);
+}
+
+.dash-stats strong {
+  padding: 18px;
+  color: var(--gf-navy);
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.gfox-dashboard ul {
+  display: grid;
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.gfox-dashboard li,
+.gfox-checks li,
+.profile-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #40566a;
+  font-size: var(--fs-sm);
+}
+
+.gfox-dashboard li span,
+.gfox-checks li::before,
+.profile-grid li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-top: .45em;
+  border-radius: 50%;
+  background: #41c77b;
+}
+
+.gfox-copy h2 {
+  color: var(--gf-navy);
+  font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+  line-height: .94;
+  margin-top: 12px;
+}
+
+.gfox-checks {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.gfox-compare,
+.gfox-process,
+.gfox-profiles,
+.gfox-resources,
+.gfox-sector {
+  text-align: center;
+}
+
+.compare-grid,
+.process-grid,
+.profile-grid,
+.resource-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.compare-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.process-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.profile-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.compare-grid article,
+.process-grid article,
+.profile-grid article,
+.resource-grid article {
+  padding: clamp(22px, 3vw, 34px);
+  text-align: left;
+}
+
+.process-grid article span {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.compare-grid h3,
+.process-grid h3,
+.profile-grid h3,
+.resource-grid h3 {
+  color: var(--gf-navy);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.gfox-dark-band,
+.gfox-route-band,
+.gfox-photo-band {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: var(--gf-navy);
+}
+
+.gfox-dark-band::before,
+.gfox-route-band::before,
+.gfox-photo-band::before {
+  content: "";
+  position: absolute;
+  inset: 18% -8vw auto;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,112,32,.62) 0 2.6px, transparent 3.8px) 0 0 / 34px 34px;
+  mask-image: radial-gradient(ellipse at 35% 55%, #000 0 23%, transparent 24%),
+    radial-gradient(ellipse at 78% 50%, #000 0 22%, transparent 23%);
+  transform: rotate(-4deg);
+  opacity: .6;
+}
+
+.gfox-dark-band .container-wide,
+.gfox-route-band .container,
+.gfox-photo-band .container-wide {
+  position: relative;
+  z-index: 1;
+}
+
+.gfox-dark-band {
+  padding-block: clamp(64px, 8vw, 100px);
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.metric-row div {
+  text-align: center;
+}
+
+.metric-row strong {
+  display: block;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1;
+}
+
+.metric-row span {
+  color: rgba(255,255,255,.72);
+  font-size: var(--fs-sm);
+}
+
+.gfox-route-band {
+  padding-block: clamp(78px, 10vw, 130px);
+  text-align: center;
+}
+
+.gfox-route-band h2,
+.gfox-photo-band h2 {
+  color: #fff;
+  font-size: clamp(2.3rem, 5vw, 5rem);
+  line-height: .95;
+}
+
+.gfox-route-band h2 span,
+.gfox-photo-band strong {
+  color: var(--accent);
+}
+
+.gfox-route-band p,
+.gfox-photo-band p {
+  margin: 16px auto 0;
+  color: rgba(255,255,255,.7);
+}
+
+.profile-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.profile-tabs span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #eef4f8;
+  color: var(--gf-navy);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.profile-tabs span:first-child {
+  color: #fff;
+  background: var(--accent);
+}
+
+.resource-grid article span {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  color: var(--accent);
+  background: #fff1e8;
+}
+
+.gfox-resources .btn {
+  margin-top: 28px;
+}
+
+.gfox-photo-band {
+  padding-block: clamp(64px, 9vw, 112px);
+  background:
+    linear-gradient(90deg, rgba(8,39,68,.92), rgba(8,39,68,.78)),
+    url("/assets/img/brand-mockups/goobus-bus-side-approved-logo.png") center / cover no-repeat;
+}
+
+.gfox-photo-band .container-wide {
+  display: grid;
+  grid-template-columns: auto minmax(0, 620px);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: center;
+}
+
+.gfox-photo-band strong {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 10vw, 11rem);
+  line-height: .8;
+}
+
+.sector-panel {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(360px, .8fr);
+  gap: 28px;
+  align-items: center;
+  max-width: 980px;
+  margin: 34px auto 0;
+  padding: 24px;
+  text-align: left;
+}
+
+.sector-panel > div {
+  padding: clamp(8px, 2vw, 18px);
+}
+
+.sector-panel > div > span {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sector-panel h3 {
+  margin-top: 10px;
+  color: var(--gf-navy);
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  line-height: 1;
+}
+
+.sector-panel .btn {
+  margin-top: 22px;
+}
+
+.sector-panel img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.gfox-faq .container-wide {
+  display: grid;
+  grid-template-columns: minmax(280px, .72fr) minmax(0, .9fr);
+  gap: clamp(30px, 7vw, 92px);
+  align-items: start;
+}
+
+.gfox-faq .faq {
+  gap: 12px;
+}
+
+.gfox-final-cta {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(78px, 10vw, 128px);
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255,255,255,.16), transparent 28%),
+    linear-gradient(180deg, #f25f05, #c94600);
+}
+
+.gfox-final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 16% -8vw auto;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255,255,255,.3) 0 2.5px, transparent 3.6px) 0 0 / 32px 32px;
+  mask-image: radial-gradient(ellipse at 45% 50%, #000 0 26%, transparent 27%),
+    radial-gradient(ellipse at 84% 45%, #000 0 18%, transparent 19%);
+  opacity: .6;
+}
+
+.gfox-final-cta .container {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.gfox-final-cta h2 {
+  color: #fff;
+  font-size: clamp(2.5rem, 5.4vw, 5.2rem);
+  line-height: .92;
+}
+
+.gfox-final-cta p {
+  margin: 18px auto 0;
+  color: rgba(255,255,255,.82);
+}
+
+.gfox-final-cta .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@keyframes goobus-route-drift {
+  from { background-position: 0 0; }
+  to { background-position: 68px 0; }
+}
+
+@keyframes goobus-panel-rise {
+  from { opacity: .86; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero .container::after,
+.page-hero::before,
+.quote-hero::before,
+.gfox-dark-band::before,
+.gfox-route-band::before,
+.gfox-photo-band::before,
+.gfox-final-cta::before {
+  animation: goobus-route-drift 14s linear infinite;
+}
+
+.qcard,
+.hero-panel::before,
+.gfox-dashboard,
+.compare-grid article,
+.process-grid article,
+.profile-grid article,
+.resource-grid article,
+.sector-panel {
+  animation: goobus-panel-rise .7s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .container::after,
+  .page-hero::before,
+  .quote-hero::before,
+  .gfox-dark-band::before,
+  .gfox-route-band::before,
+  .gfox-photo-band::before,
+  .gfox-final-cta::before,
+  .qcard,
+  .hero-panel::before,
+  .gfox-dashboard,
+  .compare-grid article,
+  .process-grid article,
+  .profile-grid article,
+  .resource-grid article,
+  .sector-panel {
+    animation: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .gfox-trust-grid,
+  .metric-row,
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gfox-split .container-wide,
+  .sector-panel,
+  .gfox-faq .container-wide,
+  .gfox-photo-band .container-wide {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid,
+  .compare-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .gfox-trust {
+    margin-top: -10px;
+  }
+
+  .gfox-trust-grid,
+  .metric-row,
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gfox-trust-grid span {
+    justify-content: flex-start;
+    padding-inline: 18px;
+  }
+
+  .gfox-dashboard {
+    display: none;
+  }
+
+  .gfox-photo-band strong {
+    font-size: 4.6rem;
+  }
+}
+
+/* Override page-local quote styles loaded after the global sheet. */
+.quote-hero {
+  min-height: clamp(390px, 52vh, 560px) !important;
+  color: #fff !important;
+  background:
+    linear-gradient(90deg, rgba(8,39,68,.94), rgba(8,39,68,.82) 46%, rgba(8,39,68,.52)),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center 44% / cover no-repeat !important;
+  border-bottom: 0 !important;
+}
+
+.quote-hero .container {
+  position: relative !important;
+  z-index: 2 !important;
+  padding-block: clamp(58px, 7vw, 108px) clamp(86px, 8vw, 124px) !important;
+}
+
+.quote-head h1 {
+  max-width: 12.5ch !important;
+  color: rgba(248,251,253,.9) !important;
+  font-size: clamp(3.15rem, 5.8vw, 6.2rem) !important;
+  line-height: .9 !important;
+}
+
+.quote-head p {
+  color: rgba(248,251,253,.78) !important;
 }

@@ -198,7 +198,7 @@
   }
 
   /* ---------- Navegação ---------- */
-  function show(n) {
+  function show(n, shouldScroll = true) {
     current = Math.max(1, Math.min(total, n));
     steps.forEach((s, i) => { s.hidden = i + 1 !== current; });
     progressDots.forEach((d, i) => {
@@ -213,8 +213,10 @@
     btnSubmit.hidden = current !== total;
     if (current === total) buildReview();
     if (live) live.textContent = "Etapa " + current + " de " + total;
-    const top = document.querySelector(".quote-progress");
-    if (top) window.scrollTo({ top: Math.max(0, top.getBoundingClientRect().top + window.scrollY - 90), behavior: "smooth" });
+    if (shouldScroll) {
+      const top = document.querySelector(".quote-progress");
+      if (top) window.scrollTo({ top: Math.max(0, top.getBoundingClientRect().top + window.scrollY - 90), behavior: "smooth" });
+    }
   }
   function goNext() { if (validateStep(current)) show(current + 1); }
   btnNext.addEventListener("click", goNext);
@@ -354,5 +356,5 @@
   });
 
   /* ---------- init ---------- */
-  show(1);
+  show(1, false);
 })();

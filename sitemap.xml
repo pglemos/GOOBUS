@@ -13,6 +13,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://goobuss.com/brandbook/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://goobuss.com/servicos/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
