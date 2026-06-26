@@ -1,0 +1,196 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e6]
+        - generic [ref=e8]: Atendimento rápido pelo WhatsApp
+      - generic [ref=e9]:
+        - img [ref=e10]
+        - text: (11) 98493-1178
+      - generic [ref=e12]:
+        - img [ref=e13]
+        - text: Segunda a sexta, das 9h às 18h, pelo WhatsApp.
+    - generic [ref=e16]:
+      - link "GOOBUS | página inicial" [ref=e17] [cursor=pointer]:
+        - /url: /
+        - img "GOOBUS" [ref=e18]
+      - navigation "Principal" [ref=e19]:
+        - link "Serviços" [ref=e20] [cursor=pointer]:
+          - /url: /servicos/
+        - link "Frota" [ref=e21] [cursor=pointer]:
+          - /url: /frota/
+        - link "Empresa" [ref=e22] [cursor=pointer]:
+          - /url: /empresa/
+        - link "Orçamento" [ref=e23] [cursor=pointer]:
+          - /url: /orcamento/
+      - generic [ref=e24]:
+        - link "Falar no WhatsApp" [ref=e25] [cursor=pointer]:
+          - /url: https://wa.me/5511984931178?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20equipe%20GOOBUS.
+          - img [ref=e26]
+        - link "Solicitar orçamento" [ref=e28] [cursor=pointer]:
+          - /url: /orcamento/
+  - link "Pular para o conteúdo" [ref=e30] [cursor=pointer]:
+    - /url: "#conteudo"
+  - generic [ref=e33]:
+    - navigation [ref=e34]:
+      - link "Início" [ref=e35] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e36]: /
+      - generic [ref=e37]: A empresa
+    - generic [ref=e38]: Quem é a GOOBUS
+    - heading "Transporte de pessoas com planejamento e responsabilidade" [level=1] [ref=e39]
+    - paragraph [ref=e40]: A GOOBUS organiza o transporte de grupos para empresas, igrejas, escolas, agências e eventos, tratando cada viagem como um projeto, do primeiro contato ao retorno.
+  - generic [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]: Nossa história
+      - heading "Uma operação construída sobre confiança" [level=2] [ref=e46]
+      - paragraph [ref=e47]: "A GOOBUS nasceu para resolver um problema real de quem viaja em grupo: organizar transporte sem improvisos, com o veículo adequado, rota planejada e atendimento próximo."
+      - paragraph [ref=e48]: Com sede em Osasco, a empresa atende demandas de fretamento, turismo, romarias, eventos, transfers e transporte corporativo com propostas montadas conforme cada operação.
+    - img "Mockup lateral de ônibus GOOBUS com nova identidade visual" [ref=e50]
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - generic [ref=e54]: O que nos guia
+      - heading "Missão, visão e valores" [level=2] [ref=e55]
+    - generic [ref=e56]:
+      - generic [ref=e57]:
+        - img [ref=e59]
+        - heading "Missão" [level=3] [ref=e63]
+        - paragraph [ref=e64]: Oferecer transporte seguro e planejado para grupos, empresas e eventos, com clareza na contratação e conforto em cada trajeto.
+      - generic [ref=e65]:
+        - img [ref=e67]
+        - heading "Visão" [level=3] [ref=e69]
+        - paragraph [ref=e70]: Ser referência em transporte de passageiros sob medida na região atendida, reconhecida pela organização e pela confiança.
+      - generic [ref=e71]:
+        - img [ref=e73]
+        - heading "Valores" [level=3] [ref=e77]
+        - paragraph [ref=e78]: Segurança em primeiro lugar, pontualidade, atendimento humano, transparência e responsabilidade com cada passageiro.
+  - generic [ref=e81]:
+    - img "Mockup de ônibus GOOBUS com pintura da nova marca" [ref=e83]
+    - generic [ref=e84]:
+      - generic [ref=e85]: Compromisso com a segurança
+      - heading "Segurança não é diferencial, é o ponto de partida" [level=2] [ref=e86]
+      - paragraph [ref=e87]: Trabalhamos com atenção aos requisitos aplicáveis a cada tipo de viagem, manutenção dos veículos e qualificação da equipe.
+      - list [ref=e88]:
+        - listitem [ref=e89]:
+          - img [ref=e91]
+          - generic [ref=e93]:
+            - generic [ref=e94]: Documentação e requisitos aplicáveis
+            - text: Informações operacionais apresentadas conforme a contratação e o tipo de roteiro.
+        - listitem [ref=e95]:
+          - img [ref=e97]
+          - generic [ref=e99]:
+            - generic [ref=e100]: Frota revisada e mantida
+            - text: Manutenção conforme a operação de cada viagem.
+        - listitem [ref=e101]:
+          - img [ref=e103]
+          - generic [ref=e105]:
+            - generic [ref=e106]: Motoristas qualificados
+            - text: Equipe preparada para o transporte de grupos.
+  - generic [ref=e109]:
+    - generic [ref=e110]:
+      - generic [ref=e111]: Transparência
+      - heading "Dados cadastrais e área de atuação" [level=2] [ref=e112]
+      - paragraph [ref=e113]: Informações comerciais e cadastrais para contratação. Documentos e registros específicos são apresentados conforme a necessidade da proposta.
+      - link "Solicitar orçamento" [ref=e114] [cursor=pointer]:
+        - /url: /orcamento/
+        - text: Solicitar orçamento
+        - img [ref=e116]
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - generic [ref=e120]: Razão social
+        - generic [ref=e121]: GOOBUS Transportes e Turismo Ltda
+      - generic [ref=e122]:
+        - generic [ref=e123]: CNPJ
+        - generic [ref=e124]: 49.151.280/0001-28
+      - generic [ref=e125]:
+        - generic [ref=e126]: Endereço
+        - generic [ref=e127]: Av. Hilário Pereira de Souza, 406, Sala 1401, 14º andar, Centro
+      - generic [ref=e128]:
+        - generic [ref=e129]: Cidade / UF
+        - generic [ref=e130]: Osasco, SP · CEP 06010-170
+      - generic [ref=e131]:
+        - generic [ref=e132]: Documentação operacional
+        - generic [ref=e133]: Informada na proposta quando aplicável
+      - generic [ref=e134]:
+        - generic [ref=e135]: Área de atendimento
+        - generic [ref=e136]: Sob consulta por origem e destino
+  - generic [ref=e139]:
+    - heading "Vamos planejar sua viagem?" [level=2] [ref=e140]
+    - paragraph [ref=e141]: Conte sua necessidade de transporte e receba uma proposta sob medida da GOOBUS.
+    - generic [ref=e142]:
+      - link "Solicitar orçamento" [ref=e143] [cursor=pointer]:
+        - /url: /orcamento/
+      - link "Conversar no WhatsApp" [ref=e144] [cursor=pointer]:
+        - /url: https://wa.me/5511984931178?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20transporte%20com%20a%20GOOBUS.
+        - img [ref=e145]
+        - text: Conversar no WhatsApp
+  - contentinfo [ref=e147]:
+    - generic [ref=e148]:
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - link "GOOBUS | página inicial" [ref=e151] [cursor=pointer]:
+            - /url: /
+            - img "GOOBUS" [ref=e152]
+          - paragraph [ref=e153]: Transporte sob medida para empresas, grupos, igrejas, escolas e eventos, com planejamento, conforto e atenção à segurança em cada trajeto.
+          - link "WhatsApp" [ref=e155] [cursor=pointer]:
+            - /url: https://wa.me/5511984931178?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20transporte%20com%20a%20GOOBUS.
+            - img [ref=e156]
+        - generic [ref=e158]:
+          - heading "Navegação" [level=4] [ref=e159]
+          - list [ref=e160]:
+            - listitem [ref=e161]:
+              - link "Serviços" [ref=e162] [cursor=pointer]:
+                - /url: /servicos/
+            - listitem [ref=e163]:
+              - link "Frota" [ref=e164] [cursor=pointer]:
+                - /url: /frota/
+            - listitem [ref=e165]:
+              - link "Empresa" [ref=e166] [cursor=pointer]:
+                - /url: /empresa/
+            - listitem [ref=e167]:
+              - link "Orçamento" [ref=e168] [cursor=pointer]:
+                - /url: /orcamento/
+            - listitem [ref=e169]:
+              - link "Política de Privacidade" [ref=e170] [cursor=pointer]:
+                - /url: /politica-de-privacidade/
+        - generic [ref=e171]:
+          - heading "Serviços" [level=4] [ref=e172]
+          - list [ref=e173]:
+            - listitem [ref=e174]:
+              - link "Aluguel de ônibus" [ref=e175] [cursor=pointer]:
+                - /url: /servicos/aluguel-de-onibus/
+            - listitem [ref=e176]:
+              - link "Fretamento corporativo" [ref=e177] [cursor=pointer]:
+                - /url: /servicos/fretamento-corporativo/
+            - listitem [ref=e178]:
+              - link "Turismo e excursões" [ref=e179] [cursor=pointer]:
+                - /url: /servicos/turismo-excursoes/
+            - listitem [ref=e180]:
+              - link "Romarias" [ref=e181] [cursor=pointer]:
+                - /url: /servicos/romarias/
+            - listitem [ref=e182]:
+              - link "Eventos e congressos" [ref=e183] [cursor=pointer]:
+                - /url: /servicos/eventos/
+            - listitem [ref=e184]:
+              - link "Escolas e formaturas" [ref=e185] [cursor=pointer]:
+                - /url: /servicos/escolas-formaturas/
+            - listitem [ref=e186]:
+              - link "Bandas e produções" [ref=e187] [cursor=pointer]:
+                - /url: /servicos/bandas-producoes/
+            - listitem [ref=e188]:
+              - link "Transfers e city tour" [ref=e189] [cursor=pointer]:
+                - /url: /servicos/transfers/
+        - generic [ref=e190]:
+          - heading "Contato" [level=4] [ref=e191]
+          - list [ref=e192]:
+            - listitem [ref=e193]:
+              - link "WhatsApp (11) 98493-1178" [ref=e194] [cursor=pointer]:
+                - /url: https://wa.me/5511984931178?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20transporte%20com%20a%20GOOBUS.
+            - listitem [ref=e195]: Av. Hilário Pereira de Souza, 406, Sala 1401, 14º andar, Centro
+            - listitem [ref=e196]: Osasco, SP · CEP 06010-170
+      - generic [ref=e197]:
+        - generic [ref=e198]: © 2026 GOOBUS TRANSPORTES E TURISMO LTDA · CNPJ 49.151.280/0001-28
+        - generic [ref=e199]: Transporte de passageiros, fretamento e turismo sob consulta.
+  - link "Falar no WhatsApp" [ref=e200] [cursor=pointer]:
+    - /url: https://wa.me/5511984931178?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20transporte%20com%20a%20GOOBUS.
+    - img [ref=e202]

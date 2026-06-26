@@ -93,7 +93,7 @@
     return `<img class="mark mark-go" src="${url("/assets/brand/approved/goobus-go-symbol-approved.png")}" width="261" height="155" alt="" aria-hidden="true">`;
   }
   function brand(onHero, forDark) {
-    const logoSrc = forDark ? "/assets/brand/approved/goobus-logo-approved-light.png" : "/assets/brand/approved/goobus-logo-approved.png";
+    const logoSrc = forDark ? "/assets/brand/approved/goobus-logo-approved-dark-header.png" : "/assets/brand/approved/goobus-logo-approved.png";
     return `<a class="brand ${onHero ? "on-hero" : ""} ${forDark ? "on-dark" : ""}" href="${url("/")}" aria-label="GOOBUS | página inicial">
       <img class="goobus-logo" src="${url(logoSrc)}" width="715" height="156" alt="GOOBUS">
     </a>`;
@@ -135,7 +135,7 @@ const NAV = [
         </div>
       </div>
       <div class="container container-wide bar">
-        ${brand(heroMode, false)}
+        ${brand(heroMode, true)}
         <nav class="nav" aria-label="Principal">
           ${NAV.map((n) => `<a href="${url(n.href)}" class="${isActive(n.match) ? "active" : ""}">${n.label}</a>`).join("")}
         </nav>

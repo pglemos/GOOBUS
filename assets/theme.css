@@ -2482,3 +2482,696 @@ body {
 .quote-head p {
   color: rgba(248,251,253,.78) !important;
 }
+
+/* ---------- Internal pages reference alignment ---------- */
+.site-header,
+.site-header.solid,
+.site-header.scrolled,
+.site-header.on-hero-mode:not(.scrolled):not(.solid) {
+  background: #07090b;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.site-header .bar { height: 64px; }
+.brand .goobus-logo {
+  width: 176px;
+  height: auto;
+}
+.nav { margin-left: auto; }
+.nav a {
+  color: rgba(255,255,255,.9);
+  font-size: .88rem;
+  font-weight: 800;
+}
+.nav a.active,
+.nav a:hover {
+  color: var(--accent);
+}
+.header-actions .btn-primary {
+  min-height: 44px;
+  padding-inline: 24px;
+}
+.header-actions .wa-icon {
+  background: color-mix(in srgb, var(--whatsapp) 15%, #fff);
+  border-color: transparent;
+  color: var(--whatsapp-d);
+}
+.nav-spacer { height: 94px; }
+
+.page-hero,
+.quote-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff !important;
+  background:
+    linear-gradient(90deg, rgba(3,5,8,.91) 0%, rgba(3,5,8,.74) 38%, rgba(3,5,8,.44) 66%, rgba(3,5,8,.72) 100%),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 62% 52% / cover no-repeat !important;
+  border: 0 !important;
+}
+.page-hero::after,
+.quote-hero::after {
+  content: "";
+  position: absolute;
+  left: -8vw;
+  right: -8vw;
+  bottom: -42px;
+  height: 118px;
+  background: #fff;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: -1;
+}
+.page-hero .container,
+.quote-hero .container {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(92px, 11vw, 150px) clamp(88px, 10vw, 138px) !important;
+}
+.page-hero .inner,
+.quote-head {
+  max-width: 740px;
+}
+.page-hero .breadcrumb,
+.page-hero .breadcrumb a,
+.page-hero .breadcrumb .sep {
+  color: rgba(255,255,255,.76);
+}
+.page-hero .eyebrow,
+.page-hero .eyebrow.on-dark,
+.quote-hero .eyebrow {
+  color: var(--accent) !important;
+  letter-spacing: .08em;
+}
+.page-hero h1,
+.quote-hero h1,
+.quote-head h1 {
+  color: #fff !important;
+  max-width: 12ch !important;
+  font-size: clamp(3rem, 5.2vw, 5.35rem) !important;
+  line-height: 1.02 !important;
+  margin-top: 16px;
+}
+.page-hero p,
+.quote-head p {
+  max-width: 54ch;
+  color: rgba(255,255,255,.86) !important;
+  font-size: 1.08rem;
+  line-height: 1.72;
+  margin-top: 18px;
+}
+.page-hero + .section,
+.quote-hero + main {
+  padding-top: clamp(52px, 6vw, 76px);
+}
+
+.section-head.center {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.section-head.center .eyebrow,
+.section-head .eyebrow {
+  color: var(--accent);
+}
+.card,
+.data-card,
+.qcard-main,
+.quote-aside .acard,
+.fleet-spec,
+.amen,
+.faq-item,
+.form-card {
+  border-radius: 8px;
+}
+.card,
+.data-card,
+.qcard-main,
+.fleet-spec,
+.amen,
+.faq-item,
+.form-card {
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 54px -42px rgba(8,12,17,.5);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 66px -42px rgba(8,12,17,.62);
+}
+.svc-card {
+  min-height: 100%;
+}
+.svc-card .btn-primary {
+  white-space: normal;
+  text-align: center;
+}
+.fleet-disclaimer {
+  margin-top: -10px;
+}
+.fleet-spec .fs-img {
+  filter: saturate(1.04) contrast(1.02);
+}
+
+.quote-hero {
+  background:
+    linear-gradient(90deg, rgba(3,5,8,.92) 0%, rgba(3,5,8,.78) 46%, rgba(3,5,8,.52) 76%, rgba(3,5,8,.72) 100%),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 64% 52% / cover no-repeat !important;
+}
+.quote-layout {
+  grid-template-columns: minmax(0, 1fr) 360px;
+}
+.quote-progress {
+  padding: 22px 22px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--sh-sm);
+}
+.qprog-fill {
+  background: var(--accent);
+}
+.qprog-step.done .dot,
+.qprog-step.active .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.qcard-main {
+  background: #fff;
+}
+.qcard-main .opt {
+  min-height: 90px;
+}
+.qcard-main .opt-grid.g-2 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.quote-aside .acard {
+  background:
+    linear-gradient(180deg, rgba(5,8,12,.96), rgba(5,8,12,.9)),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center / cover;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.quote-aside .awa {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (max-width: 980px) {
+  .site-header .bar { height: 76px; }
+  .nav-spacer { height: 76px; }
+  .brand .goobus-logo { width: min(190px, 54vw); }
+  .page-hero .container,
+  .quote-hero .container {
+    padding-block: 76px 86px !important;
+  }
+  .page-hero h1,
+  .quote-head h1 {
+    font-size: clamp(2.5rem, 11vw, 4.4rem) !important;
+  }
+  .qcard-main .opt-grid.g-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+.topbar-inner {
+justify-content: center;
+}
+  .topbar-inner span:not(:first-child) {
+    display: none;
+  }
+  .page-hero,
+  .quote-hero {
+    background:
+      linear-gradient(180deg, rgba(3,5,8,.78), rgba(3,5,8,.92)),
+      url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 58% center / cover no-repeat !important;
+  }
+  .page-hero::after,
+  .quote-hero::after {
+    height: 70px;
+    bottom: -30px;
+  }
+.quote-layout {
+grid-template-columns: 1fr;
+}
+}
+
+/* ---------- Refreshed internal pages ---------- */
+body.internal-refresh .page-hero,
+body.quote-refresh .quote-hero {
+  min-height: auto;
+  background:
+    linear-gradient(90deg, rgba(7,9,11,.96) 0%, rgba(7,9,11,.84) 42%, rgba(7,9,11,.46) 72%, rgba(7,9,11,.78) 100%),
+    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 62% center / cover no-repeat !important;
+}
+
+body.internal-refresh .page-hero .container,
+body.quote-refresh .quote-hero .container {
+  padding-block: clamp(76px, 9vw, 126px) clamp(78px, 8vw, 118px) !important;
+}
+
+.internal-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .96fr) minmax(300px, .54fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+
+.internal-hero-copy {
+  max-width: 800px;
+}
+
+.internal-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.internal-hero-kicker::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.internal-hero-copy h1,
+body.quote-refresh .quote-head h1 {
+  max-width: 11.2ch !important;
+  margin-top: 18px;
+  color: #fff8ef !important;
+  font-size: clamp(3.3rem, 7.2vw, 7rem) !important;
+  line-height: .87 !important;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.internal-hero-copy p,
+body.quote-refresh .quote-head p {
+  max-width: 56ch;
+  margin-top: 22px;
+  color: rgba(255,248,239,.84) !important;
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.internal-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.hero-ticket {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 8px;
+  padding: clamp(20px, 2.4vw, 28px);
+  color: #fff8ef;
+  background: rgba(255,248,239,.10);
+  box-shadow: 0 28px 80px -50px rgba(0,0,0,.9);
+  backdrop-filter: blur(14px);
+}
+
+.hero-ticket::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.55) 0 4px, transparent 4px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.11) 0 1px, transparent 1px 32px);
+}
+
+.hero-ticket > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-ticket .ticket-label {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.hero-ticket h2 {
+  max-width: 12ch;
+  margin-top: 12px;
+  color: #fff8ef;
+  font-size: clamp(1.55rem, 2.7vw, 2.5rem);
+  line-height: .96;
+}
+
+.ticket-rows {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,248,239,.76);
+  font-size: var(--fs-sm);
+}
+
+.ticket-row b {
+  color: #fff8ef;
+  font-family: var(--font-display);
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-chips span {
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 8px;
+  color: rgba(255,248,239,.82);
+  background: rgba(255,255,255,.08);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ops-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gut);
+}
+
+.ops-card {
+  min-height: 100%;
+  padding: 26px;
+}
+
+.ops-card .ops-icon,
+.ops-card .ops-num {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+.ops-card .ops-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ops-card h3 {
+  font-size: 1.18rem;
+}
+
+.ops-card p {
+  margin-top: 10px;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.62;
+}
+
+.service-refresh-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gut);
+}
+
+.service-refresh-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 24px;
+}
+
+.service-refresh-card h3 {
+  margin-top: 12px;
+  font-size: 1.18rem;
+}
+
+.service-refresh-card p {
+  margin-top: 10px;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.service-refresh-card .svc-points {
+  margin-top: 16px;
+}
+
+.service-refresh-card .svc-foot {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.service-refresh-card .btn {
+  width: 100%;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+}
+
+.route-band {
+  position: relative;
+  overflow: hidden;
+  color: #fff8ef;
+  background:
+    linear-gradient(90deg, rgba(255,112,32,.12) 0 1px, transparent 1px) 0 0 / 72px 72px,
+    #07090b;
+}
+
+.route-band h2,
+.route-band h3 {
+  color: #fff8ef;
+}
+
+.route-band p,
+.route-band li {
+  color: rgba(255,248,239,.74);
+}
+
+.route-band .eyebrow {
+  color: var(--accent);
+}
+
+.route-band .eyebrow::before {
+  background: var(--accent);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gut);
+}
+
+.compare-panel {
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+}
+
+.compare-panel ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.compare-panel li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.compare-panel li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-top: .55em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.fleet-refresh-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gut);
+}
+
+.fleet-refresh-card {
+  overflow: hidden;
+}
+
+.fleet-refresh-card .fs-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.fleet-refresh-card .fs-body {
+  padding: 24px;
+}
+
+.fleet-refresh-card h3 {
+  margin-top: 10px;
+  font-size: 1.34rem;
+}
+
+.fleet-refresh-card p {
+  margin-top: 12px;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.62;
+}
+
+.fleet-facts {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.fleet-facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.fleet-facts b {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.data-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.data-line {
+  display: grid;
+  grid-template-columns: minmax(130px, .45fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.data-line:last-child {
+  border-bottom: 0;
+}
+
+.data-line .k {
+  color: var(--ink-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.data-line .v {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.quote-refresh .quote-head {
+  max-width: 820px;
+}
+
+.quote-refresh .quote-head h1 {
+  max-width: 12ch !important;
+}
+
+.quote-refresh .quote-layout {
+  gap: clamp(24px, 3vw, 42px);
+}
+
+.quote-refresh .qcard-main,
+.quote-refresh .quote-progress {
+  border-radius: 8px;
+}
+
+.quote-refresh .quote-aside .acard {
+  border-radius: 8px;
+}
+
+@media (max-width: 1080px) {
+  .service-refresh-grid,
+  .ops-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  .internal-hero-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .hero-ticket {
+    max-width: 560px;
+  }
+
+  .fleet-refresh-grid,
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body.internal-refresh .page-hero .container,
+  body.quote-refresh .quote-hero .container {
+    padding-block: 58px 76px !important;
+  }
+
+  .internal-hero-copy h1,
+  body.quote-refresh .quote-head h1 {
+    font-size: clamp(2.7rem, 16vw, 4rem) !important;
+  }
+
+  .service-refresh-grid,
+  .ops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-line {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.site-header .nav a.active {
+  color: #2f2b28 !important;
+  background: var(--accent) !important;
+}
+
+.site-header .nav a:hover:not(.active) {
+  color: var(--accent) !important;
+  background: rgba(255,112,32,.12) !important;
+}
