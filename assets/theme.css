@@ -1413,26 +1413,6 @@ img.media-photo {
   border-bottom-color: var(--line);
 }
 
-.brandbook-hero {
-  background:
-    linear-gradient(90deg, rgba(47,43,40,.09) 1px, transparent 1px) 0 0 / 72px 72px,
-    linear-gradient(135deg, var(--accent) 0 57%, #fff8ef 57.2% 100%) !important;
-}
-
-.bb-module {
-  border-radius: 8px;
-}
-
-.bb-rule {
-  border-left: 0 !important;
-  padding-left: 0 !important;
-  color: var(--accent-ink-strong);
-}
-
-.bb-post {
-  border-radius: 8px;
-}
-
 @media (max-width: 1080px) {
   .hero-grid {
     grid-template-columns: 1fr;

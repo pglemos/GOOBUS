@@ -114,7 +114,6 @@
 const NAV = [
   { label: "Início", href: "/", match: ["/"] },
   { label: "Empresa", href: "/empresa/", match: ["/empresa/"] },
-  { label: "Marca", href: "/brandbook/", match: ["/brandbook/"] },
   { label: "Serviços", href: "/servicos/", match: ["/servicos/"] },
   { label: "Frota", href: "/frota/", match: ["/frota/"] },
   { label: "Orçamento", href: "/orcamento/", match: ["/orcamento/"] },
