@@ -4861,12 +4861,12 @@ textarea.input:focus {
 }
 
 /* Real-time inline validation feedback */
-.input:not(:placeholder-shown):valid,
+.input:user-valid,
 .select:not([value=""]):valid {
   border-color: #10b981 !important;
 }
 
-.input:not(:placeholder-shown):invalid {
+.input:user-invalid {
   border-color: #ef4444 !important;
 }
 
