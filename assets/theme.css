@@ -4523,7 +4523,8 @@ body.quote-refresh .quote-head p {
   margin-top: 24px;
 }
 
-.hero-chips span {
+.hero-chips span,
+.hero-chips li {
   padding: 9px 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
@@ -5134,5 +5135,473 @@ textarea.input:focus {
 .route-band .compare-grid article h3,
 .route-band .compare-panel h3,
 .route-band .box h3 {
-  color: #fff !important;
+color: #fff !important;
+}
+
+/* ========================================================
+   Empresa page visual/UX correction pass
+   ======================================================== */
+body.company-page {
+  --company-navy: oklch(20% 0.055 258);
+  --company-navy-2: oklch(26% 0.06 252);
+  --company-paper: oklch(98% 0.012 78);
+  --company-soft: oklch(95% 0.02 76);
+  background: var(--company-paper);
+}
+
+body.company-page .site-header.on-hero-mode {
+  background: rgba(7, 14, 22, 0.82);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+body.company-page .site-header .wa-icon {
+  display: none;
+}
+
+body.company-page .site-header .nav a.active {
+  background: rgba(255, 112, 32, 0.16);
+  color: #fff4ec;
+  box-shadow: none;
+}
+
+body.company-page .company-hero {
+  min-height: clamp(620px, 84vh, 780px);
+  background:
+    linear-gradient(90deg, rgba(5, 12, 18, 0.84) 0%, rgba(5, 12, 18, 0.6) 42%, rgba(5, 12, 18, 0.16) 76%),
+    linear-gradient(0deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0) 38%),
+    url("/assets/img/goobus-real-hero-bus.png") 58% center / cover no-repeat !important;
+}
+
+body.company-page .company-hero::before,
+body.company-page .company-hero::after,
+body.company-page .site-footer::before {
+  display: none !important;
+}
+
+body.company-page .company-hero .container {
+  padding-block: clamp(118px, 13vw, 178px) clamp(78px, 8vw, 116px) !important;
+}
+
+body.company-page .company-hero-grid {
+  grid-template-columns: minmax(0, 0.96fr) minmax(300px, 420px);
+  align-items: end;
+  gap: clamp(28px, 6vw, 88px);
+}
+
+body.company-page .company-hero-copy {
+  max-width: 760px;
+}
+
+body.company-page .company-hero-copy h1 {
+  max-width: 12.4ch !important;
+  font-size: clamp(3rem, 5.7vw, 5.9rem) !important;
+  line-height: 0.96 !important;
+  color: #fffaf4 !important;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.32);
+}
+
+body.company-page .company-hero-copy p {
+  max-width: 62ch;
+  color: rgba(255, 250, 244, 0.9) !important;
+  font-size: clamp(1rem, 1.16vw, 1.15rem);
+  line-height: 1.68;
+}
+
+body.company-page .company-proof {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(10, 16, 22, 0.82);
+  box-shadow: 0 24px 70px -40px rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+body.company-page .company-proof::before {
+  display: none;
+}
+
+body.company-page .company-proof h2 {
+  max-width: 15ch;
+  line-height: 1.04;
+}
+
+body.company-page .ticket-row {
+  border-top-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 250, 244, 0.82);
+}
+
+body.company-page .hero-chips li {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fffaf4;
+}
+
+body.company-page .company-story,
+body.company-page .company-data {
+  background: var(--company-soft);
+}
+
+body.company-page .company-story-grid,
+body.company-page .company-data-grid {
+  align-items: center;
+  gap: clamp(36px, 6vw, 92px);
+}
+
+body.company-page .company-story h2,
+body.company-page .company-data h2 {
+  max-width: 13ch;
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: var(--fs-h2);
+}
+
+body.company-page .company-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px -58px rgba(8, 39, 68, 0.68);
+}
+
+body.company-page .company-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+body.company-page .company-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 26px;
+}
+
+body.company-page .company-proof-strip li {
+  min-height: 78px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+}
+
+body.company-page .company-proof-strip b {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+}
+
+body.company-page .company-process {
+  background: var(--surface);
+}
+
+body.company-page .company-steps {
+  gap: 18px;
+}
+
+body.company-page .company-steps .ops-card {
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 20px 54px -44px rgba(8, 39, 68, 0.55);
+}
+
+body.company-page .company-steps .ops-num {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 16px;
+  color: #fff;
+  border-radius: 8px;
+}
+
+body.company-page .company-commitments {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 112, 32, 0.16), transparent 28%),
+    linear-gradient(135deg, var(--company-navy), #071018) !important;
+}
+
+body.company-page .company-commitments .section-head p {
+  color: rgba(255, 250, 244, 0.78);
+}
+
+body.company-page .company-commitments .compare-panel {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.085) !important;
+  border-radius: 8px;
+}
+
+body.company-page .compare-panel li::before {
+  width: 10px;
+  height: 10px;
+  margin-top: 0.42em;
+}
+
+body.company-page .data-card {
+  padding: clamp(20px, 2.2vw, 30px);
+  border-radius: 8px;
+}
+
+body.company-page .data-line {
+  grid-template-columns: minmax(118px, 0.38fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+body.company-page .company-final .cta-band {
+  align-items: center;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(112, 39, 8, 0.18), transparent 48%),
+    linear-gradient(135deg, #f05d0c, #d94105);
+  box-shadow: 0 28px 74px -54px rgba(217, 65, 5, 0.76);
+}
+
+body.company-page .company-final .cta-band .eyebrow {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+body.company-page .company-final .cta-band h2 {
+  max-width: 21ch;
+}
+
+body.company-page .company-final .cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+body.company-page .site-footer {
+  position: relative;
+  border-top-width: 3px;
+  background: linear-gradient(180deg, #07111d, #050b12);
+}
+
+body.company-page .site-footer .f-top {
+  grid-template-columns: minmax(240px, 1.35fr) minmax(140px, 0.7fr) minmax(220px, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  padding-block: clamp(36px, 5vw, 62px);
+}
+
+body.company-page .site-footer .f-top > div:nth-child(3) {
+  display: none;
+}
+
+body.company-page .wa-float {
+  display: none;
+}
+
+body.company-page .cookie-bar {
+  left: 18px;
+  right: auto;
+  bottom: 18px;
+  width: min(520px, calc(100vw - 36px));
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 22px 70px -38px rgba(0, 0, 0, 0.75);
+}
+
+body.company-page .cookie-bar p {
+  flex-basis: auto;
+}
+
+body.company-page .scroll-top-btn {
+  right: 18px;
+}
+
+@media (max-width: 1080px) {
+  body.company-page .company-proof-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 920px) {
+  body.company-page .company-hero {
+    min-height: auto;
+    background:
+      linear-gradient(180deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0.54) 46%, rgba(5, 12, 18, 0.86) 100%),
+      url("/assets/img/goobus-real-hero-bus.png") 58% top / cover no-repeat !important;
+  }
+
+  body.company-page .company-hero .container {
+    padding-block: 112px 54px !important;
+  }
+
+  body.company-page .company-hero-grid,
+  body.company-page .company-story-grid,
+  body.company-page .company-data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.company-page .company-proof {
+    max-width: none;
+  }
+
+  body.company-page .site-footer .f-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body.company-page .site-topline {
+    display: none;
+  }
+
+  body.company-page .site-header .bar {
+    height: 68px;
+  }
+
+  body.company-page .company-hero .container {
+    padding-block: 96px 44px !important;
+  }
+
+  body.company-page .company-hero-copy h1 {
+    max-width: 10.8ch !important;
+    font-size: clamp(2.45rem, 11.2vw, 3.6rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  body.company-page .company-hero-copy p {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  body.company-page .internal-hero-actions,
+  body.company-page .company-final .cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  body.company-page .internal-hero-actions .btn,
+  body.company-page .company-final .cta-actions .btn {
+    width: 100%;
+    min-height: 48px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  body.company-page .company-proof {
+    padding: 20px;
+  }
+
+  body.company-page .company-proof h2 {
+    max-width: none;
+    font-size: 1.45rem;
+  }
+
+  body.company-page .ticket-row {
+    display: grid;
+    gap: 2px;
+  }
+
+  body.company-page .company-story h2,
+  body.company-page .company-data h2,
+  body.company-page .section-head h2 {
+    max-width: 16ch;
+    margin-inline: auto;
+  }
+
+  body.company-page .company-story .reveal,
+  body.company-page .company-data .reveal {
+    text-align: left;
+  }
+
+  body.company-page .company-photo img {
+    aspect-ratio: 4 / 3;
+  }
+
+  body.company-page .company-steps {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  body.company-page .company-steps .ops-card {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 14px;
+    padding: 18px;
+  }
+
+  body.company-page .company-steps .ops-num {
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  body.company-page .company-steps .ops-card p {
+    margin-top: 6px;
+  }
+
+  body.company-page .company-commitments .compare-grid {
+    gap: 12px;
+  }
+
+  body.company-page .company-commitments .compare-panel {
+    padding: 20px;
+  }
+
+  body.company-page .data-line {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  body.company-page .company-final .cta-band {
+    padding: 26px 18px;
+    text-align: center;
+  }
+
+  body.company-page .company-final .cta-band h2 {
+    max-width: 15ch;
+    margin-inline: auto;
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+  }
+
+  body.company-page .site-footer .f-top {
+    grid-template-columns: 1fr;
+    padding-bottom: 86px;
+  }
+
+  body.company-page .site-footer .f-bottom {
+    display: grid;
+    gap: 8px;
+    text-align: left;
+  }
+
+  body.company-page .cookie-bar {
+    left: 12px;
+    right: 12px;
+    bottom: calc(66px + env(safe-area-inset-bottom));
+    width: auto;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  body.company-page .cookie-bar p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.72rem;
+    line-height: 1.28;
+  }
+
+  body.company-page .cookie-actions {
+    gap: 8px;
+    justify-content: end;
+  }
+
+  body.company-page .cookie-actions button {
+    min-height: 34px;
+    padding: 8px 11px;
+    font-size: 0.76rem;
+  }
+
+  body.company-page .scroll-top-btn {
+    display: none;
+  }
 }
