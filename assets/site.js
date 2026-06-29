@@ -5,6 +5,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   /* ---------- CONFIG CENTRAL DA EMPRESA ----------
      Edite SOMENTE aqui os dados oficiais. Nada de contato/endereço
      espalhado pelos componentes. */
@@ -428,6 +430,28 @@
       ripple.style.top = event.clientY - rect.top - size / 2 + "px";
       target.appendChild(ripple);
       window.setTimeout(() => ripple.remove(), 650);
+    });
+
+    const tiltSelector =
+      ".card-hover,.service-refresh-card,.fleet-refresh-card,.qcard-main,.quote-aside .acard,.data-card,.company-cta,.fcta,.cta-band";
+    document.querySelectorAll(tiltSelector).forEach((el) => {
+      el.classList.add("interactive-tilt");
+      el.addEventListener("pointermove", (event) => {
+        if (event.pointerType && event.pointerType !== "mouse") return;
+        const rect = el.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const rx = (0.5 - y) * 3.2;
+        const ry = (x - 0.5) * 3.2;
+        el.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
+        el.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+        el.style.setProperty("--rx", rx.toFixed(2) + "deg");
+        el.style.setProperty("--ry", ry.toFixed(2) + "deg");
+      });
+      el.addEventListener("pointerleave", () => {
+        el.style.removeProperty("--rx");
+        el.style.removeProperty("--ry");
+      });
     });
   }
 

@@ -7,7 +7,7 @@
 <meta name="description" content="Conte seu roteiro, quantidade de passageiros e datas. A GOOBUS avalia a melhor solução de transporte e responde com uma proposta sob medida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/theme.css?v=20260626-internal-ref">
+<link rel="stylesheet" href="/assets/theme.css?v=20260629-full-ui-polish">
 <style>
 .quote-hero { background: var(--bg-2); border-bottom: 1px solid var(--line); }
 .quote-hero .container { padding-block: clamp(28px, 4vw, 48px); }
@@ -181,10 +181,10 @@
             <h2>Dados do trajeto</h2>
             <p class="step-desc">Origem, destino e datas da viagem.</p>
             <div class="form-grid">
-              <div class="field"><label for="f-oc">Cidade de origem <span class="req">*</span></label><input class="input" id="f-oc" name="origin_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de origem.</span></div>
-              <div class="field"><label for="f-oa">Local de embarque</label><input class="input" id="f-oa" name="origin_address" placeholder="Endereço, terminal, ponto…"></div>
-              <div class="field"><label for="f-dc">Cidade de destino <span class="req">*</span></label><input class="input" id="f-dc" name="destination_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de destino.</span></div>
-              <div class="field"><label for="f-da">Local de destino</label><input class="input" id="f-da" name="destination_address" placeholder="Endereço, hotel, local…"></div>
+              <div class="field"><label for="f-oc">Cidade de origem <span class="req">*</span></label><input type="text" class="input" id="f-oc" name="origin_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de origem.</span></div>
+              <div class="field"><label for="f-oa">Local de embarque</label><input type="text" class="input" id="f-oa" name="origin_address" placeholder="Endereço, terminal, ponto…"></div>
+              <div class="field"><label for="f-dc">Cidade de destino <span class="req">*</span></label><input type="text" class="input" id="f-dc" name="destination_city" required autocomplete="address-level2"><span class="err-msg">Informe a cidade de destino.</span></div>
+              <div class="field"><label for="f-da">Local de destino</label><input type="text" class="input" id="f-da" name="destination_address" placeholder="Endereço, hotel, local…"></div>
               <div class="field"><label for="f-dd">Data de ida <span class="req">*</span></label><input class="input" id="f-dd" name="departure_date" type="date" required><span class="err-msg">Informe a data de ida.</span></div>
               <div class="field"><label for="f-dt">Horário de saída</label><input class="input" id="f-dt" name="departure_time" type="time"></div>
               <div class="field"><label for="f-rd">Data de retorno</label><input class="input" id="f-rd" name="return_date" type="date"></div>
@@ -222,33 +222,33 @@
             <div class="dyn-block" data-svc="corporativo" hidden>
               <span class="dyn-tag">Detalhes corporativos</span>
               <div class="form-grid">
-                <div class="field"><label>Nome da empresa</label><input class="input" name="org_company"></div>
-                <div class="field"><label>Nº aproximado de colaboradores</label><input class="input" name="org_headcount" inputmode="numeric"></div>
+                <div class="field"><label>Nome da empresa</label><input type="text" class="input" name="org_company"></div>
+                <div class="field"><label>Nº aproximado de colaboradores</label><input type="text" class="input" name="org_headcount" inputmode="numeric"></div>
                 <div class="field"><label>Frequência</label><select class="select" name="org_frequency"><option value="">Selecione…</option><option>Eventual</option><option>Recorrente</option><option>Contrato contínuo</option></select></div>
-                <div class="field"><label>Turnos / horários</label><input class="input" name="org_shifts" placeholder="Ex.: 06h e 18h"></div>
+                <div class="field"><label>Turnos / horários</label><input type="text" class="input" name="org_shifts" placeholder="Ex.: 06h e 18h"></div>
               </div>
             </div>
             <div class="dyn-block" data-svc="romaria" hidden>
               <span class="dyn-tag">Detalhes da romaria</span>
               <div class="form-grid">
-                <div class="field"><label>Igreja ou grupo</label><input class="input" name="rom_group"></div>
-                <div class="field"><label>Destino religioso</label><input class="input" name="rom_destination" placeholder="Santuário, paróquia…"></div>
+                <div class="field"><label>Igreja ou grupo</label><input type="text" class="input" name="rom_group"></div>
+                <div class="field"><label>Destino religioso</label><input type="text" class="input" name="rom_destination" placeholder="Santuário, paróquia…"></div>
                 <div class="field full"><label class="consent" style="margin-top:0"><input type="checkbox" name="rom_multi"><span>Precisaremos de vários pontos de embarque.</span></label></div>
               </div>
             </div>
             <div class="dyn-block" data-svc="transfer" hidden>
               <span class="dyn-tag">Detalhes do transfer</span>
               <div class="form-grid">
-                <div class="field"><label>Aeroporto</label><input class="input" name="tr_airport"></div>
-                <div class="field"><label>Número do voo</label><input class="input" name="tr_flight"></div>
-                <div class="field"><label>Hotel / destino</label><input class="input" name="tr_hotel"></div>
-                <div class="field"><label>Quantidade de bagagens</label><input class="input" name="tr_baggage" inputmode="numeric"></div>
+                <div class="field"><label>Aeroporto</label><input type="text" class="input" name="tr_airport"></div>
+                <div class="field"><label>Número do voo</label><input type="text" class="input" name="tr_flight"></div>
+                <div class="field"><label>Hotel / destino</label><input type="text" class="input" name="tr_hotel"></div>
+                <div class="field"><label>Quantidade de bagagens</label><input type="text" class="input" name="tr_baggage" inputmode="numeric"></div>
               </div>
             </div>
             <div class="dyn-block" data-svc="banda" hidden>
               <span class="dyn-tag">Detalhes da produção</span>
               <div class="form-grid">
-                <div class="field"><label>Evento / show</label><input class="input" name="bd_event"></div>
+                <div class="field"><label>Evento / show</label><input type="text" class="input" name="bd_event"></div>
                 <div class="field"><label>Data da apresentação</label><input class="input" name="bd_date" type="date"></div>
                 <div class="field full"><label>Instrumentos, equipamentos e bagagens</label><textarea class="textarea" name="bd_gear" placeholder="Descreva o que será transportado além das pessoas."></textarea></div>
               </div>
@@ -256,10 +256,10 @@
             <div class="dyn-block" data-svc="escola" hidden>
               <span class="dyn-tag">Detalhes da instituição</span>
               <div class="form-grid">
-                <div class="field"><label>Instituição</label><input class="input" name="ed_school"></div>
-                <div class="field"><label>Faixa etária dos alunos</label><input class="input" name="ed_age" placeholder="Ex.: ensino médio"></div>
-                <div class="field"><label>Tipo de passeio</label><input class="input" name="ed_trip" placeholder="Pedagógico, formatura…"></div>
-                <div class="field"><label>Responsável pelo contato</label><input class="input" name="ed_responsible"></div>
+                <div class="field"><label>Instituição</label><input type="text" class="input" name="ed_school"></div>
+                <div class="field"><label>Faixa etária dos alunos</label><input type="text" class="input" name="ed_age" placeholder="Ex.: ensino médio"></div>
+                <div class="field"><label>Tipo de passeio</label><input type="text" class="input" name="ed_trip" placeholder="Pedagógico, formatura…"></div>
+                <div class="field"><label>Responsável pelo contato</label><input type="text" class="input" name="ed_responsible"></div>
               </div>
             </div>
 
@@ -274,11 +274,11 @@
             <h2>Seus dados</h2>
             <p class="step-desc">Para enviarmos a proposta e combinar os detalhes.</p>
             <div class="form-grid">
-              <div class="field"><label for="f-name">Nome <span class="req">*</span></label><input class="input" id="f-name" name="name" required autocomplete="name"><span class="err-msg">Informe seu nome.</span></div>
-              <div class="field"><label for="f-org">Empresa, igreja, escola ou entidade</label><input class="input" id="f-org" name="organization" autocomplete="organization"></div>
-              <div class="field"><label for="f-wa">WhatsApp <span class="req">*</span></label><input class="input" id="f-wa" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" autocomplete="tel"><span class="err-msg">Informe um WhatsApp válido.</span></div>
+              <div class="field"><label for="f-name">Nome <span class="req">*</span></label><input type="text" class="input" id="f-name" name="name" required autocomplete="name"><span class="err-msg">Informe seu nome.</span></div>
+              <div class="field"><label for="f-org">Empresa, igreja, escola ou entidade</label><input type="text" class="input" id="f-org" name="organization" autocomplete="organization"></div>
+              <div class="field"><label for="f-wa">WhatsApp <span class="req">*</span></label><input type="text" class="input" id="f-wa" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" autocomplete="tel"><span class="err-msg">Informe um WhatsApp válido.</span></div>
               <div class="field"><label for="f-em">E-mail</label><input class="input" id="f-em" name="email" type="email" placeholder="voce@email.com" autocomplete="email"><span class="err-msg">Verifique o e-mail informado.</span></div>
-              <div class="field"><label for="f-city">Cidade</label><input class="input" id="f-city" name="city" autocomplete="address-level2"></div>
+              <div class="field"><label for="f-city">Cidade</label><input type="text" class="input" id="f-city" name="city" autocomplete="address-level2"></div>
               <div class="field full"><label for="f-cp">Melhor horário para contato</label>
                 <select class="select" id="f-cp" name="contact_preference"><option value="">Sem preferência</option><option>Manhã</option><option>Tarde</option><option>Noite</option></select>
               </div>
@@ -337,7 +337,7 @@
   </div>
 </main>
 
-<script src="/assets/site.js?v=20260626-internal-ref"></script>
+<script src="/assets/site.js?v=20260629-full-ui-polish"></script>
 <script src="/assets/quote.js?v=20260626-internal-ref"></script>
 </body>
 </html>

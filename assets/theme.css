@@ -5750,3 +5750,453 @@ body.company-page .company-cta-actions .btn-outline:hover {
     width: 100%;
   }
 }
+
+/* Modern motion layer */
+html.js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal.in {
+  animation: soft-reveal 520ms var(--ease-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes soft-reveal {
+  from {
+    opacity: 0.001;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.interactive-tilt {
+  --mx: 50%;
+  --my: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-tilt {
+    transition:
+      transform 180ms var(--ui-press),
+      box-shadow 180ms var(--ui-press),
+      border-color 180ms ease;
+  }
+
+  .interactive-tilt:hover {
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-4px);
+  }
+
+  .interactive-tilt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 112, 32, 0.16), transparent 32%);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .interactive-tilt:hover::before {
+    opacity: 1;
+  }
+
+  .interactive-tilt > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* ========================================================
+   Full public-site UI polish pass
+   ======================================================== */
+:root {
+  --ui-glow: 0 34px 90px -64px rgba(8, 39, 68, 0.68);
+  --ui-lift: 0 30px 74px -58px rgba(8, 39, 68, 0.62);
+  --ui-press: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.page-hero,
+.quote-hero {
+  overflow: hidden;
+}
+
+body:not(.company-page) .page-hero,
+body:not(.company-page) .page-hero.dark {
+  background:
+    linear-gradient(90deg, rgba(5, 12, 18, 0.88) 0%, rgba(5, 12, 18, 0.66) 48%, rgba(5, 12, 18, 0.24) 100%),
+    linear-gradient(0deg, rgba(5, 12, 18, 0.74) 0%, rgba(5, 12, 18, 0) 42%),
+    url("/assets/img/goobus-real-hero-bus.png") 58% center / cover no-repeat !important;
+}
+
+body:not(.company-page) .page-hero::before,
+body:not(.company-page) .page-hero::after,
+.quote-hero::before,
+.quote-hero::after,
+.site-footer::before {
+  display: none !important;
+}
+
+body:not(.company-page) .page-hero h1 {
+  max-width: 12.4ch;
+  color: #fffaf4 !important;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.32);
+}
+
+body:not(.company-page) .page-hero p {
+  max-width: 62ch;
+  color: rgba(255, 250, 244, 0.88) !important;
+}
+
+body:not(.company-page) .hero-ticket {
+  background: rgba(8, 13, 19, 0.84);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 26px 80px -44px rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(10px);
+}
+
+body:not(.company-page) .hero-ticket::before {
+  display: none;
+}
+
+.card,
+.service-refresh-card,
+.fleet-refresh-card,
+.qcard-main,
+.quote-progress,
+.quote-aside .acard,
+.legal,
+.data-card,
+.faq-item,
+.acard {
+  border-radius: 8px !important;
+  box-shadow: var(--ui-glow);
+}
+
+.service-refresh-card,
+.fleet-refresh-card,
+.compare-panel,
+.amen,
+.faq-item,
+.opt,
+.cmethod,
+.data-card {
+  transform: translateZ(0);
+  transition:
+    transform 220ms var(--ui-press),
+    box-shadow 220ms var(--ui-press),
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.service-refresh-card:hover,
+.fleet-refresh-card:hover,
+.amen:hover,
+.faq-item:hover,
+.opt:hover,
+.cmethod:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 34px 90px -58px rgba(8, 39, 68, 0.74);
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+}
+
+.service-refresh-card,
+.fleet-refresh-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-refresh-card::after,
+.fleet-refresh-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 112, 32, 0.08), transparent 36%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.service-refresh-card:hover::after,
+.fleet-refresh-card:hover::after {
+  opacity: 1;
+}
+
+.svc-icon,
+.ops-icon,
+.ops-num,
+.step .num,
+.qprog-step .dot {
+  box-shadow: 0 12px 28px -18px rgba(255, 112, 32, 0.75);
+}
+
+.btn,
+.icon-btn,
+.mbar a {
+  transition:
+    transform 180ms var(--ui-press),
+    box-shadow 180ms var(--ui-press),
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.btn:hover,
+.icon-btn:hover {
+  box-shadow: 0 18px 42px -30px rgba(8, 39, 68, 0.75);
+}
+
+.btn.is-pressed,
+.icon-btn.is-pressed,
+.card-hover.is-pressed,
+.mbar a.is-pressed {
+  transform: translateY(1px) scale(0.985);
+}
+
+.surface-tint,
+body:not(.company-page) .section:nth-of-type(even) {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 112, 32, 0.045), transparent 30%),
+    var(--bg);
+}
+
+.route-band,
+.surface-dark {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 112, 32, 0.14), transparent 28%),
+    linear-gradient(135deg, oklch(19% 0.055 258), #071018) !important;
+}
+
+.fcta,
+body:not(.company-page) .cta-band {
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 34%),
+    linear-gradient(135deg, #eb570d, #d94305) !important;
+  box-shadow: 0 28px 74px -54px rgba(217, 65, 5, 0.76);
+}
+
+.fcta .cta-row,
+.cta-band .cta-row {
+  align-items: center;
+}
+
+.quote-hero {
+  background:
+    radial-gradient(circle at 76% 20%, rgba(255, 112, 32, 0.12), transparent 26%),
+    linear-gradient(180deg, #fffaf3, var(--bg));
+}
+
+.quote-layout {
+  gap: clamp(24px, 4vw, 52px) !important;
+}
+
+.qcard-main,
+.quote-progress {
+  border-color: rgba(8, 39, 68, 0.1) !important;
+}
+
+.qcard-main .input,
+.qcard-main select,
+.qcard-main textarea,
+.input,
+.select {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.qcard-main .input:focus,
+.qcard-main select:focus,
+.qcard-main textarea:focus,
+.input:focus,
+.select:focus {
+  box-shadow: 0 0 0 4px rgba(255, 112, 32, 0.12);
+}
+
+.opt {
+  border-radius: 8px !important;
+}
+
+.opt:has(input:checked),
+.opt.selected,
+.chip.selected {
+  border-color: color-mix(in srgb, var(--accent) 54%, var(--line)) !important;
+  background: color-mix(in srgb, var(--accent) 8%, #fff) !important;
+  box-shadow: 0 24px 60px -52px rgba(255, 112, 32, 0.62);
+}
+
+.legal {
+  max-width: 920px !important;
+  padding: clamp(22px, 4vw, 42px);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+}
+
+.legal h2 {
+  scroll-margin-top: 110px;
+}
+
+.site-footer {
+  position: relative;
+  border-top-width: 3px;
+  background: linear-gradient(180deg, #07111d, #050b12);
+}
+
+.site-footer .f-top {
+  gap: clamp(24px, 4vw, 56px);
+}
+
+.cookie-bar {
+  max-width: min(620px, calc(100vw - 32px));
+  border-radius: 8px;
+  box-shadow: 0 22px 70px -38px rgba(0, 0, 0, 0.76);
+}
+
+@media (min-width: 981px) {
+  .service-refresh-grid,
+  .fleet-refresh-grid {
+    gap: clamp(22px, 2.6vw, 34px);
+  }
+}
+
+@media (max-width: 920px) {
+  body:not(.company-page) .page-hero,
+  body:not(.company-page) .page-hero.dark {
+    background:
+      linear-gradient(180deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0.56) 42%, rgba(5, 12, 18, 0.88) 100%),
+      url("/assets/img/goobus-real-hero-bus.png") 58% top / cover no-repeat !important;
+  }
+
+  body:not(.company-page) .hero-ticket {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-topline {
+    display: none;
+  }
+
+  .site-header .bar {
+    height: 68px;
+  }
+
+  body:not(.company-page) .page-hero .container,
+  body:not(.company-page) .quote-hero .container {
+    padding-block: 92px 48px !important;
+  }
+
+  body:not(.company-page) .page-hero h1,
+  .quote-head h1 {
+    font-size: clamp(2.4rem, 11.6vw, 3.7rem) !important;
+    line-height: 0.98 !important;
+    max-width: 11ch;
+  }
+
+  body:not(.company-page) .page-hero p,
+  .quote-head p {
+    font-size: 1rem;
+    line-height: 1.56;
+  }
+
+  .page-hero .hero-cta,
+  .internal-hero-actions,
+  .fcta .cta-row,
+  .cta-band .cta-row,
+  .qnav,
+  .qnav > div {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .page-hero .btn,
+  .internal-hero-actions .btn,
+  .fcta .btn,
+  .cta-band .btn,
+  .qnav .btn {
+    width: 100%;
+    min-height: 48px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .service-refresh-grid,
+  .fleet-refresh-grid,
+  .ops-grid,
+  .compare-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .service-refresh-card,
+  .fleet-refresh-card .fs-body,
+  .ops-card,
+  .compare-panel,
+  .data-card,
+  .legal {
+    padding: 18px !important;
+  }
+
+  .fleet-refresh-card .fs-img,
+  .media-photo {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .qcard-main {
+    padding: 18px !important;
+  }
+
+  .qprog-step .dot {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cookie-bar {
+    left: 10px;
+    right: 10px;
+    bottom: calc(66px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .cookie-bar p {
+    font-size: 0.72rem;
+    line-height: 1.28;
+  }
+
+  .cookie-actions {
+    gap: 7px;
+  }
+
+  .cookie-bar button {
+    min-height: 34px;
+    padding: 8px 10px;
+    font-size: 0.76rem;
+  }
+
+  .site-footer .f-top {
+    grid-template-columns: 1fr !important;
+    padding-bottom: 86px;
+  }
+
+  .site-footer .f-bottom {
+    display: grid;
+    gap: 8px;
+    text-align: left;
+  }
+}
