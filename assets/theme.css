@@ -5655,3 +5655,98 @@ body.company-page .scroll-top-btn {
     display: none;
   }
 }
+
+/* Empresa final CTA: isolated from the global orange CTA band */
+body.company-page .company-final {
+  background: var(--company-paper);
+}
+
+body.company-page .company-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(28px, 4vw, 46px);
+  border: 1px solid rgba(8, 39, 68, 0.1);
+  border-radius: 8px;
+  background: #fffaf3;
+  box-shadow: 0 28px 78px -62px rgba(8, 39, 68, 0.5);
+}
+
+body.company-page .company-cta .eyebrow {
+  justify-content: flex-start;
+  color: var(--accent);
+}
+
+body.company-page .company-cta-copy h2 {
+  max-width: 18ch;
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: clamp(2rem, 3.15vw, 3.05rem);
+  line-height: 1.04;
+}
+
+body.company-page .company-cta-copy p {
+  max-width: 64ch;
+  margin-top: 14px;
+  color: var(--ink-2);
+  font-size: clamp(1rem, 1.05vw, 1.08rem);
+  line-height: 1.58;
+}
+
+body.company-page .company-cta-actions {
+  display: grid;
+  gap: 12px;
+  min-width: 270px;
+}
+
+body.company-page .company-cta-actions .btn {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 8px;
+  padding-inline: 22px;
+}
+
+body.company-page .company-cta-actions .btn-outline {
+  border-color: rgba(8, 39, 68, 0.2);
+  color: var(--ink) !important;
+  background: #fff;
+}
+
+body.company-page .company-cta-actions .btn-outline:hover {
+  border-color: rgba(255, 112, 32, 0.36);
+  background: color-mix(in srgb, var(--accent) 7%, #fff);
+}
+
+@media (max-width: 720px) {
+  body.company-page .company-cta {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px 16px;
+  }
+
+  body.company-page .company-cta .eyebrow {
+    justify-content: center;
+  }
+
+  body.company-page .company-cta-copy {
+    text-align: center;
+  }
+
+  body.company-page .company-cta-copy h2 {
+    max-width: 15ch;
+    margin-inline: auto;
+    font-size: clamp(1.7rem, 7.2vw, 2.22rem);
+  }
+
+  body.company-page .company-cta-copy p {
+    margin-inline: auto;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  body.company-page .company-cta-actions {
+    min-width: 0;
+    width: 100%;
+  }
+}
