@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 
 const root = process.cwd();
 const mainHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -65,17 +66,33 @@ assert.ok(fs.existsSync(path.join(dist, 'assets/page-audit-v4.css')), 'CSS da au
 
 const bootstrap = fs.readFileSync(path.join(root, 'assets/route-bootstrap-v4.js'), 'utf8');
 assert.match(bootstrap, /location\.pathname/, 'o bootstrap deve resolver a página pela URL real');
-for (const route of [
-  'service-aluguel-de-onibus',
-  'service-fretamento-corporativo',
-  'service-turismo-excursoes',
-  'service-romarias',
-  'service-eventos',
-  'service-escolas-formaturas',
-  'service-bandas-producoes',
-  'service-transfers'
-]) {
-  assert.match(bootstrap, new RegExp(route.replace('service-', '')), `bootstrap não reconhece ${route}`);
+
+const runtimeRoutes = {
+  '/': 'home',
+  '/empresa/': 'empresa',
+  '/servicos/': 'servicos',
+  '/frota/': 'frota',
+  '/orcamento/': 'orcamento',
+  '/contato/': 'contato',
+  '/politica-de-privacidade/': 'privacidade',
+  '/servicos/aluguel-de-onibus/': 'service-aluguel-de-onibus',
+  '/servicos/fretamento-corporativo/': 'service-fretamento-corporativo',
+  '/servicos/turismo-excursoes/': 'service-turismo-excursoes',
+  '/servicos/romarias/': 'service-romarias',
+  '/servicos/eventos/': 'service-eventos',
+  '/servicos/escolas-formaturas/': 'service-escolas-formaturas',
+  '/servicos/bandas-producoes/': 'service-bandas-producoes',
+  '/servicos/transfers/': 'service-transfers',
+  '/rota-inexistente/': 'not-found'
+};
+
+for (const [pathname, expectedPage] of Object.entries(runtimeRoutes)) {
+  const location = { pathname };
+  const document = { body: { dataset: {} } };
+  const window = { location };
+  vm.runInNewContext(bootstrap, { window, location, document, decodeURIComponent, Set, Object });
+  assert.equal(document.body.dataset.page, expectedPage, `${pathname} deve resolver para ${expectedPage}`);
+  assert.equal(window.GOOBUS_ROUTE.page, expectedPage, `${pathname} deve expor ${expectedPage} em GOOBUS_ROUTE`);
 }
 
 const audit = fs.readFileSync(path.join(root, 'assets/page-audit-v4.js'), 'utf8');
@@ -118,4 +135,4 @@ for (const file of topLevelCode) assert.ok(allowedTopLevelCode.has(file), `asset
 const buildScript = fs.readFileSync(path.join(root, 'scripts/build-hostinger.mjs'), 'utf8');
 assert.match(buildScript, /["']tests["']/, 'a pasta de testes não deve ser enviada para produção');
 
-console.log(`OK: ${Object.keys(pages).length} páginas validadas; front controller, bootstrap, auditoria individual e build ${buildMarker}.`);
+console.log(`OK: ${Object.keys(pages).length} páginas validadas; ${Object.keys(runtimeRoutes).length} rotas testadas em runtime; build ${buildMarker}.`);
