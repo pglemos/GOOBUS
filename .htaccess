@@ -9,9 +9,13 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} ^www\.goobuss\.com$ [NC]
   RewriteRule ^ https://goobuss.com%{REQUEST_URI} [R=301,L]
 
-  # Remove index.html e index.php expostos na URL.
-  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(?:html|php)[\s?] [NC]
-  RewriteRule ^(?:.*/)?index\.(?:html|php)$ /$1 [R=301,L,NE]
+  # Remove index.html ou index.php da raiz.
+  RewriteCond %{THE_REQUEST} \s/+index\.(?:html|php)[\s?] [NC]
+  RewriteRule ^index\.(?:html|php)$ / [R=301,L,NE]
+
+  # Remove index.html ou index.php de um caminho antigo sem perder a rota.
+  RewriteCond %{THE_REQUEST} \s/+(.+)/index\.(?:html|php)[\s?] [NC]
+  RewriteRule ^(.+)/index\.(?:html|php)$ /$1 [R=301,L,NE]
 
   # Remove extensões antigas das URLs públicas.
   RewriteCond %{THE_REQUEST} \s/+(.+?)\.(?:html|php)[\s?] [NC]
