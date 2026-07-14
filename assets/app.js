@@ -177,7 +177,7 @@
     return `<footer class="site-footer"><div class="container"><div class="footer-grid">
       <div class="footer-brand"><img src="/assets/brand/approved/goobus-logo-approved-dark-header.png" alt="GOOBUS"><p>Transporte sob medida para empresas e grupos, com planejamento de rota, atendimento direto e proposta coerente com cada operação.</p><a href="mailto:${COMPANY.email}">${ICON.mail} ${COMPANY.email}</a></div>
       <div><h2>Navegação</h2><a href="/empresa">Empresa</a><a href="/servicos">Serviços</a><a href="/frota">Frota</a><a href="/orcamento">Orçamento</a><a href="/contato">Contato</a></div>
-      <div><h2>Serviços</h2>${SERVICES.slice(0, 5).map(service => `<a href="${serviceUrl(service.slug)}">${service.title}</a>`).join('')}</div>
+      <div><h2>Serviços</h2>${SERVICES.map(service => `<a href="${serviceUrl(service.slug)}">${service.title}</a>`).join('')}</div>
       <div><h2>Contato</h2><a href="${wa('Olá! Gostaria de solicitar um orçamento GOOBUS.')}" target="_blank" rel="noopener noreferrer">WhatsApp ${COMPANY.phone}</a><a href="mailto:${COMPANY.email}">${COMPANY.email}</a><a href="/politica-de-privacidade">Política de privacidade</a></div>
     </div><div class="footer-bottom"><span>© ${new Date().getFullYear()} GOOBUS TRANSPORTES E TURISMO LTDA · CNPJ ${COMPANY.cnpj}</span><span>Dados de rotas exibidos no mapa são simulações demonstrativas.</span><a href="/politica-de-privacidade">Privacidade</a></div></div></footer>
     <a class="floating-whatsapp" href="${wa('Olá! Estou no site da GOOBUS e gostaria de atendimento.')}" target="_blank" rel="noopener noreferrer" aria-label="Falar com a GOOBUS no WhatsApp">${ICON.whatsapp}<span>WhatsApp</span></a>`;
