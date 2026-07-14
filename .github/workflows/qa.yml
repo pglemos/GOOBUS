@@ -17,33 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Collect diagnostics and run tests
-        id: qa
-        shell: bash
-        run: |
-          set +e
-          find assets -maxdepth 1 -type f \( -name '*.css' -o -name '*.js' \) -printf '%f\n' | sort > assets-code.txt
-          npm test > qa-output.txt 2>&1
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
-          set -e
-      - name: Upload diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: goobus-qa-diagnostics
-          path: |
-            assets-code.txt
-            qa-output.txt
-          retention-days: 3
-      - name: Enforce test result
-        if: always()
-        run: |
-          cat qa-output.txt
-          test "${{ steps.qa.outputs.exit_code }}" = "0"
       - name: Production build
         run: npm run build
+      - name: Route and asset consistency tests
+        run: npm test
