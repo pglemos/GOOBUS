@@ -9,6 +9,7 @@ const ignored = new Set([
   "dist",
   "node_modules",
   "scripts",
+  "tests",
   "package.json",
   "package-lock.json",
   "README.md",
