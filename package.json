@@ -1,13 +1,16 @@
 {
   "name": "goobus-cinematic-site",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "test": "node tests/route-shell-consistency.mjs",
+    "test:files": "node tests/clean-files.mjs",
+    "test:routes": "node tests/routes.mjs",
+    "test:server": "node tests/server-config.mjs",
+    "test": "npm run test:files && npm run test:routes && npm run test:server",
     "build": "node scripts/build-hostinger.mjs"
   }
 }
