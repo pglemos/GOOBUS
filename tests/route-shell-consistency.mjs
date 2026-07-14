@@ -42,4 +42,20 @@ for (const legacyFile of ['assets/theme.css', 'assets/site.js']) {
   assert.match(content, /GOOBUS_LEGACY_BRIDGE/, `${legacyFile} ainda contém o motor visual antigo`);
 }
 
+const allowedTopLevelCode = new Set([
+  'cinematic.css',
+  'cinematic-pages-v3.css',
+  'cinematic.js',
+  'theme.css',
+  'site.js'
+]);
+const topLevelCode = fs.readdirSync(path.join(root, 'assets'))
+  .filter(file => /\.(css|js)$/i.test(file));
+for (const file of topLevelCode) {
+  assert.ok(allowedTopLevelCode.has(file), `asset legado não auditado: assets/${file}`);
+}
+
+const buildScript = fs.readFileSync(path.join(root, 'scripts/build-hostinger.mjs'), 'utf8');
+assert.match(buildScript, /["']tests["']/, 'a pasta de testes não deve ser enviada para produção');
+
 console.log(`OK: ${Object.keys(pages).length} páginas usam o build cinematográfico ${build}.`);
