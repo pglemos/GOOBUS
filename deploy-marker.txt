@@ -1,3 +1,0 @@
-GOOBUS_DEPLOY_MARKER_2026-07-14_D01F45B
-branch=main
-purpose=hostinger-sync-validation
