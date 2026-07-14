@@ -3,7 +3,20 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const build = '20260714-3';
+const mainHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const cssVersion = mainHtml.match(/cinematic\.css\?v=([a-zA-Z0-9-]+)/)?.[1];
+const jsVersion = mainHtml.match(/cinematic\.js\?v=([a-zA-Z0-9-]+)/)?.[1];
+const buildMarker = mainHtml.match(/name=["']goobus-build["'][^>]+content=["']([^"']+)["']/)?.[1];
+
+assert.ok(cssVersion, 'Não foi possível extrair a versão do cinematic.css em index.html');
+assert.ok(jsVersion, 'Não foi possível extrair a versão do cinematic.js em index.html');
+assert.ok(buildMarker, 'Não foi possível extrair o marcador goobus-build em index.html');
+
+const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const cssPattern = new RegExp(`cinematic\\.css\\?v=${escapeRegExp(cssVersion)}`);
+const jsPattern = new RegExp(`cinematic\\.js\\?v=${escapeRegExp(jsVersion)}`);
+const buildPattern = new RegExp(`name=["']goobus-build["'][^>]+content=["']${escapeRegExp(buildMarker)}["']`);
+
 const pages = {
   'index.html': 'home',
   'empresa/index.html': 'empresa',
@@ -22,16 +35,26 @@ const pages = {
   'servicos/bandas-producoes/index.html': 'service-bandas-producoes'
 };
 
-for (const [relativePath, page] of Object.entries(pages)) {
-  const absolutePath = path.join(root, relativePath);
-  assert.ok(fs.existsSync(absolutePath), `${relativePath} deve existir`);
-  const html = fs.readFileSync(absolutePath, 'utf8');
-  assert.match(html, new RegExp(`cinematic\\.css\\?v=${build}`), `${relativePath} usa CSS antigo`);
-  assert.match(html, new RegExp(`cinematic\\.js\\?v=${build}`), `${relativePath} usa JS antigo`);
-  assert.match(html, new RegExp(`name=["']goobus-build["'][^>]+${build}`), `${relativePath} não possui marcador de build`);
-  assert.match(html, new RegExp(`data-page=["']${page}["']`), `${relativePath} aponta para a página errada`);
-  assert.doesNotMatch(html, /theme\.css|site\.js/, `${relativePath} ainda referencia o motor legado`);
+function validatePageShells(baseDirectory, label) {
+  for (const [relativePath, page] of Object.entries(pages)) {
+    const absolutePath = path.join(baseDirectory, relativePath);
+    assert.ok(fs.existsSync(absolutePath), `${label}: ${relativePath} deve existir`);
+    const html = fs.readFileSync(absolutePath, 'utf8');
+    assert.match(html, cssPattern, `${label}: ${relativePath} usa CSS divergente`);
+    assert.match(html, jsPattern, `${label}: ${relativePath} usa JS divergente`);
+    assert.match(html, buildPattern, `${label}: ${relativePath} não possui o marcador de build correto`);
+    assert.match(html, new RegExp(`data-page=["']${escapeRegExp(page)}["']`), `${label}: ${relativePath} aponta para a página errada`);
+    assert.doesNotMatch(html, /theme\.css|site\.js|quote\.js/, `${label}: ${relativePath} ainda referencia motor legado`);
+  }
 }
+
+validatePageShells(root, 'fonte');
+
+const dist = path.join(root, 'dist');
+assert.ok(fs.existsSync(dist), 'dist deve existir antes dos testes; execute npm run build');
+validatePageShells(dist, 'dist');
+assert.ok(!fs.existsSync(path.join(dist, 'tests')), 'tests não podem ser publicados em dist');
+assert.ok(!fs.existsSync(path.join(dist, 'package.json')), 'package.json não deve ser publicado em dist');
 
 const htaccess = fs.readFileSync(path.join(root, '.htaccess'), 'utf8');
 assert.match(htaccess, /DirectoryIndex\s+index\.html\s+index\.php/, 'index.html deve ter prioridade');
@@ -58,4 +81,4 @@ for (const file of topLevelCode) {
 const buildScript = fs.readFileSync(path.join(root, 'scripts/build-hostinger.mjs'), 'utf8');
 assert.match(buildScript, /["']tests["']/, 'a pasta de testes não deve ser enviada para produção');
 
-console.log(`OK: ${Object.keys(pages).length} páginas usam o build cinematográfico ${build}.`);
+console.log(`OK: ${Object.keys(pages).length} páginas consistentes na fonte e em dist; CSS ${cssVersion}, JS ${jsVersion}, build ${buildMarker}.`);
