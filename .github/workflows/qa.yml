@@ -29,6 +29,8 @@ jobs:
         run: npm run build
       - name: No legacy files
         run: npm run test:files
+      - name: Footer services
+        run: npm run test:footer
       - name: Canonical routes
         run: npm run test:routes
       - name: Apache configuration
