@@ -1,0 +1,38 @@
+/* GOOBUS page-by-page audit v4 */
+.page-audit-stamp{display:grid;gap:.35rem;max-width:720px;margin-top:2rem;padding:1rem 1.15rem;border-left:3px solid var(--orange);background:rgba(3,21,34,.56);backdrop-filter:blur(12px)}
+.page-audit-stamp strong{font:800 .72rem/1 var(--display);letter-spacing:.18em;color:#ffb184}
+.page-audit-stamp span{font-size:.86rem;line-height:1.5;color:rgba(255,255,255,.72)}
+.audited-service{position:relative;overflow:hidden}
+.audited-service::before{content:"GOOBUS";position:absolute;right:-.08em;top:.12em;color:rgba(255,255,255,.025);font:800 clamp(8rem,22vw,24rem)/.7 var(--display);letter-spacing:-.08em;pointer-events:none}
+.audit-benefit-grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:2.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.audit-benefit-grid article{min-height:260px;padding:2rem;background:#071b28}
+.audit-benefit-grid article>span{display:block;margin-bottom:3.5rem;color:var(--orange);font:800 1rem/1 var(--display);letter-spacing:.12em}
+.audit-benefit-grid h3{margin:0 0 .8rem;font-size:clamp(1.5rem,2.5vw,2.3rem)}
+.audit-benefit-grid p{margin:0;color:rgba(255,255,255,.68);line-height:1.7}
+.audit-scenarios{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:4rem;align-items:start;padding:5rem 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.audit-scenarios h2{margin:.5rem 0 0;font-size:clamp(2.4rem,5vw,5.5rem);max-width:8ch}
+.audit-scenarios ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0;padding:0;list-style:none;counter-reset:scenario}
+.audit-scenarios li{counter-increment:scenario;min-height:120px;padding:1.35rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);font:700 1.05rem/1.35 var(--display)}
+.audit-scenarios li::before{content:counter(scenario,decimal-leading-zero);display:block;margin-bottom:1.4rem;color:var(--orange);font-size:.72rem;letter-spacing:.14em}
+.audit-faq{position:relative;max-width:980px;padding:5rem 0}
+.audit-faq details{border-top:1px solid rgba(255,255,255,.15)}
+.audit-faq details:last-child{border-bottom:1px solid rgba(255,255,255,.15)}
+.audit-faq summary{display:flex;justify-content:space-between;gap:2rem;align-items:center;padding:1.4rem 0;cursor:pointer;font:700 clamp(1.15rem,2vw,1.5rem)/1.3 var(--display);list-style:none}
+.audit-faq summary::-webkit-details-marker{display:none}
+.audit-faq summary span{color:var(--orange);font-size:1.6rem;transition:transform .2s ease}
+.audit-faq details[open] summary span{transform:rotate(45deg)}
+.audit-faq details p{max-width:760px;margin:0;padding:0 0 1.5rem;color:rgba(255,255,255,.7);line-height:1.7}
+.audit-service-cta{position:relative;display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;padding:2rem;border:1px solid rgba(255,255,255,.14);background:linear-gradient(115deg,rgba(255,112,32,.17),rgba(255,255,255,.035))}
+.audit-service-cta h2{margin:0;font-size:clamp(1.6rem,3vw,3rem);max-width:18ch}
+.contact-cards{display:grid;gap:.75rem;margin:2rem 0}
+.contact-cards>a,.contact-cards>div{display:grid;gap:.25rem;padding:1rem 1.1rem;border:1px solid rgba(3,21,34,.12);background:#fff;color:inherit;text-decoration:none}
+.contact-cards span{color:var(--orange);font:800 .68rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.contact-cards strong{overflow-wrap:anywhere}
+.form-aside__contact{display:grid;gap:.65rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(3,21,34,.12)}
+.form-aside__contact a{display:inline-flex;align-items:center;gap:.55rem;color:var(--navy);font-weight:800;text-decoration:none}
+.editorial-card__body>b{display:inline-flex;align-items:center;gap:.45rem;margin-top:.9rem;color:var(--orange);font:800 .72rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+body[data-audited-page] .internal-hero{min-height:700px}
+body[data-audited-page^="service-"] .internal-hero h1{max-width:12ch}
+@media(max-width:900px){.audit-benefit-grid{grid-template-columns:1fr}.audit-benefit-grid article{min-height:auto}.audit-benefit-grid article>span{margin-bottom:1.5rem}.audit-scenarios{grid-template-columns:1fr;gap:2rem}.audit-scenarios h2{max-width:none}.audit-service-cta{grid-template-columns:1fr}.audit-service-cta .button{width:100%}}
+@media(max-width:620px){.page-audit-stamp{margin-top:1.25rem}.audit-scenarios ul{grid-template-columns:1fr}.audit-service-cta{padding:1.25rem}.audit-faq{padding:3rem 0}}
+@media(prefers-reduced-motion:reduce){.audit-faq summary span{transition:none}}
