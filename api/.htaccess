@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "^(data|.*\.(ndjson|log|env|ini))$">
+  Require all denied
+</FilesMatch>
