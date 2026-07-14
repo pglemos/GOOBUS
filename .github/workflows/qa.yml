@@ -27,5 +27,9 @@ jobs:
         run: node --check assets/app.js
       - name: Production build
         run: npm run build
-      - name: Clean architecture and routes
-        run: npm test
+      - name: No legacy files
+        run: npm run test:files
+      - name: Canonical routes
+        run: npm run test:routes
+      - name: Apache configuration
+        run: npm run test:server
