@@ -1,13 +1,17 @@
 {
   "name": "goobus-cinematic-site",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "scripts": {
-    "test": "node tests/route-shell-consistency.mjs",
+    "test": "node tests/route-shell-consistency.mjs && node tests/public-pages-regression.mjs",
+    "test:browser": "playwright test",
     "build": "node scripts/build-hostinger.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest"
   }
 }
