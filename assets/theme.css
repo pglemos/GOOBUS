@@ -1,8 +1,0 @@
-/* GOOBUS_LEGACY_BRIDGE
-   Compatibilidade temporária para HTML antigo que ainda esteja em cache.
-   O motor visual legado foi removido. */
-html,body{margin:0;min-height:100%;background:#031522}
-body:not(.goobus-bridge-ready){overflow:hidden}
-body:not(.goobus-bridge-ready)>*{opacity:0!important}
-body:not(.goobus-bridge-ready)::after{content:"Atualizando experiência GOOBUS…";position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#031522,#082744);font:700 16px/1.4 Arial,sans-serif;letter-spacing:.04em}
-body.goobus-bridge-ready::after{display:none}

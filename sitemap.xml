@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://goobuss.com/</loc><priority>1.0</priority></url><url><loc>https://goobuss.com/empresa/</loc></url><url><loc>https://goobuss.com/servicos/</loc></url><url><loc>https://goobuss.com/frota/</loc></url><url><loc>https://goobuss.com/orcamento/</loc><priority>0.9</priority></url><url><loc>https://goobuss.com/contato/</loc></url><url><loc>https://goobuss.com/servicos/aluguel-de-onibus/</loc></url><url><loc>https://goobuss.com/servicos/fretamento-corporativo/</loc><priority>0.9</priority></url><url><loc>https://goobuss.com/servicos/turismo-excursoes/</loc></url><url><loc>https://goobuss.com/servicos/transfers/</loc></url><url><loc>https://goobuss.com/servicos/eventos/</loc></url><url><loc>https://goobuss.com/servicos/escolas-formaturas/</loc></url><url><loc>https://goobuss.com/servicos/romarias/</loc></url><url><loc>https://goobuss.com/servicos/bandas-producoes/</loc></url><url><loc>https://goobuss.com/politica-de-privacidade/</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://goobuss.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://goobuss.com/empresa</loc></url>
+  <url><loc>https://goobuss.com/servicos</loc></url>
+  <url><loc>https://goobuss.com/frota</loc></url>
+  <url><loc>https://goobuss.com/orcamento</loc><priority>0.9</priority></url>
+  <url><loc>https://goobuss.com/contato</loc></url>
+  <url><loc>https://goobuss.com/servicos/aluguel-de-onibus</loc></url>
+  <url><loc>https://goobuss.com/servicos/fretamento-corporativo</loc><priority>0.9</priority></url>
+  <url><loc>https://goobuss.com/servicos/turismo-excursoes</loc></url>
+  <url><loc>https://goobuss.com/servicos/transfers</loc></url>
+  <url><loc>https://goobuss.com/servicos/eventos</loc></url>
+  <url><loc>https://goobuss.com/servicos/escolas-formaturas</loc></url>
+  <url><loc>https://goobuss.com/servicos/romarias</loc></url>
+  <url><loc>https://goobuss.com/servicos/bandas-producoes</loc></url>
+  <url><loc>https://goobuss.com/politica-de-privacidade</loc></url>
+</urlset>
