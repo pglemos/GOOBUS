@@ -11,6 +11,10 @@ const buildMarker = mainHtml.match(/name=["']goobus-build["'][^>]+content=["']([
 assert.ok(cssVersion, 'Não foi possível extrair a versão do cinematic.css em index.html');
 assert.ok(jsVersion, 'Não foi possível extrair a versão do cinematic.js em index.html');
 assert.ok(buildMarker, 'Não foi possível extrair o marcador goobus-build em index.html');
+assert.match(mainHtml, /route-bootstrap-v4\.js/, 'index.html deve carregar o bootstrap de rotas antes do frontend');
+assert.match(mainHtml, /page-audit-v4\.css/, 'index.html deve carregar o CSS da auditoria página por página');
+assert.match(mainHtml, /page-audit-v4\.js/, 'index.html deve carregar a auditoria página por página');
+assert.ok(mainHtml.indexOf('route-bootstrap-v4.js') < mainHtml.indexOf('cinematic.js'), 'o bootstrap de rota deve executar antes do cinematic.js');
 
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const cssPattern = new RegExp(`cinematic\\.css\\?v=${escapeRegExp(cssVersion)}`);
@@ -55,23 +59,43 @@ assert.ok(fs.existsSync(dist), 'dist deve existir antes dos testes; execute npm 
 validatePageShells(dist, 'dist');
 assert.ok(!fs.existsSync(path.join(dist, 'tests')), 'tests não podem ser publicados em dist');
 assert.ok(!fs.existsSync(path.join(dist, 'package.json')), 'package.json não deve ser publicado em dist');
+assert.ok(fs.existsSync(path.join(dist, 'assets/route-bootstrap-v4.js')), 'bootstrap de rotas deve ser publicado em dist');
+assert.ok(fs.existsSync(path.join(dist, 'assets/page-audit-v4.js')), 'auditoria de páginas deve ser publicada em dist');
+assert.ok(fs.existsSync(path.join(dist, 'assets/page-audit-v4.css')), 'CSS da auditoria deve ser publicado em dist');
 
-const cinematicJs = fs.readFileSync(path.join(root, 'assets/cinematic.js'), 'utf8');
-assert.match(cinematicJs, /location\.pathname/, 'o frontend deve resolver a página pela URL real, não apenas por data-page do HTML');
-assert.match(cinematicJs, /service-aluguel-de-onibus/, 'o resolvedor deve reconhecer páginas de serviço');
-assert.match(cinematicJs, /service-fretamento-corporativo/, 'o resolvedor deve reconhecer fretamento corporativo');
-assert.match(cinematicJs, /service-turismo-excursoes/, 'o resolvedor deve reconhecer turismo e excursões');
-assert.match(cinematicJs, /service-romarias/, 'o resolvedor deve reconhecer romarias');
-assert.match(cinematicJs, /service-eventos/, 'o resolvedor deve reconhecer eventos');
-assert.match(cinematicJs, /service-escolas-formaturas/, 'o resolvedor deve reconhecer escolas e formaturas');
-assert.match(cinematicJs, /service-bandas-producoes/, 'o resolvedor deve reconhecer bandas e produções');
-assert.match(cinematicJs, /service-transfers/, 'o resolvedor deve reconhecer transfers');
+const bootstrap = fs.readFileSync(path.join(root, 'assets/route-bootstrap-v4.js'), 'utf8');
+assert.match(bootstrap, /location\.pathname/, 'o bootstrap deve resolver a página pela URL real');
+for (const route of [
+  'service-aluguel-de-onibus',
+  'service-fretamento-corporativo',
+  'service-turismo-excursoes',
+  'service-romarias',
+  'service-eventos',
+  'service-escolas-formaturas',
+  'service-bandas-producoes',
+  'service-transfers'
+]) {
+  assert.match(bootstrap, new RegExp(route.replace('service-', '')), `bootstrap não reconhece ${route}`);
+}
+
+const audit = fs.readFileSync(path.join(root, 'assets/page-audit-v4.js'), 'utf8');
+for (const page of ['servicos','frota','empresa','orcamento','contato']) {
+  assert.match(audit, new RegExp(`${page}:`), `auditoria não contém configuração de ${page}`);
+}
+for (const title of ['Aluguel de ônibus','Fretamento corporativo','Turismo e excursões','Romarias','Eventos e congressos','Escolas e formaturas','Bandas e produções','Transfers e city tour']) {
+  assert.match(audit, new RegExp(escapeRegExp(title)), `auditoria não contém conteúdo específico para ${title}`);
+}
+assert.match(audit, /prepareForms/, 'auditoria deve preparar e preencher formulários');
+assert.match(audit, /updateMeta/, 'auditoria deve atualizar metadados por rota');
 
 const htaccess = fs.readFileSync(path.join(root, '.htaccess'), 'utf8');
 assert.match(htaccess, /DirectoryIndex\s+index\.html\s+index\.php/, 'index.html deve ter prioridade');
 assert.match(htaccess, /Cache-Control[^\n]+no-store/, 'HTML deve ser publicado sem cache persistente');
 assert.match(htaccess, /RewriteRule\s+\^\(empresa\|servicos\|frota\|orcamento\|contato\|politica-de-privacidade\)/, 'rotas públicas devem passar pelo front controller antes da verificação de diretórios físicos');
 assert.match(htaccess, /RewriteRule[^\n]+\/index\.html/, 'rotas públicas devem ser servidas pelo index.html raiz');
+const routeRulePosition = htaccess.indexOf('RewriteRule ^(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)');
+const directoryConditionPosition = htaccess.indexOf('RewriteCond %{REQUEST_FILENAME} -d');
+assert.ok(routeRulePosition > -1 && routeRulePosition < directoryConditionPosition, 'front controller deve executar antes de respeitar diretórios físicos');
 
 for (const legacyFile of ['assets/theme.css', 'assets/site.js']) {
   const content = fs.readFileSync(path.join(root, legacyFile), 'utf8');
@@ -82,16 +106,16 @@ const allowedTopLevelCode = new Set([
   'cinematic.css',
   'cinematic-pages-v3.css',
   'cinematic.js',
+  'page-audit-v4.css',
+  'page-audit-v4.js',
+  'route-bootstrap-v4.js',
   'theme.css',
   'site.js'
 ]);
-const topLevelCode = fs.readdirSync(path.join(root, 'assets'))
-  .filter(file => /\.(css|js)$/i.test(file));
-for (const file of topLevelCode) {
-  assert.ok(allowedTopLevelCode.has(file), `asset legado não auditado: assets/${file}`);
-}
+const topLevelCode = fs.readdirSync(path.join(root, 'assets')).filter(file => /\.(css|js)$/i.test(file));
+for (const file of topLevelCode) assert.ok(allowedTopLevelCode.has(file), `asset legado não auditado: assets/${file}`);
 
 const buildScript = fs.readFileSync(path.join(root, 'scripts/build-hostinger.mjs'), 'utf8');
 assert.match(buildScript, /["']tests["']/, 'a pasta de testes não deve ser enviada para produção');
 
-console.log(`OK: ${Object.keys(pages).length} páginas consistentes na fonte e em dist; CSS ${cssVersion}, JS ${jsVersion}, build ${buildMarker}.`);
+console.log(`OK: ${Object.keys(pages).length} páginas validadas; front controller, bootstrap, auditoria individual e build ${buildMarker}.`);
