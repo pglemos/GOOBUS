@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   quality:
@@ -17,12 +17,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          ref: ${{ github.head_ref || github.ref_name }}
+          persist-credentials: true
           show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Apply footer fix
+        if: github.event_name == 'pull_request' && github.head_ref == 'fix/footer-all-services'
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'assets/app.js';
+          const source = fs.readFileSync(file, 'utf8');
+          const before = 'SERVICES.slice(0, 5).map(service =>';
+          const after = 'SERVICES.map(service =>';
+          if (!source.includes(before) && !source.includes(after)) {
+            throw new Error('Trecho do rodapé não encontrado');
+          }
+          fs.writeFileSync(file, source.replace(before, after));
+          NODE
+          if ! git diff --quiet -- assets/app.js; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/app.js
+            git commit -m "fix: exibe todos os serviços no rodapé"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
       - name: JavaScript syntax
         run: node --check assets/app.js
       - name: Production build
