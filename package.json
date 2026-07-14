@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test:files": "node tests/clean-files.mjs",
+    "test:footer": "node tests/footer-services.mjs",
     "test:routes": "node tests/routes.mjs",
     "test:server": "node tests/server-config.mjs",
-    "test": "npm run test:files && npm run test:routes && npm run test:server",
+    "test": "npm run test:files && npm run test:footer && npm run test:routes && npm run test:server",
     "build": "node scripts/build-hostinger.mjs"
   }
 }
