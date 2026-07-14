@@ -56,9 +56,22 @@ validatePageShells(dist, 'dist');
 assert.ok(!fs.existsSync(path.join(dist, 'tests')), 'tests não podem ser publicados em dist');
 assert.ok(!fs.existsSync(path.join(dist, 'package.json')), 'package.json não deve ser publicado em dist');
 
+const cinematicJs = fs.readFileSync(path.join(root, 'assets/cinematic.js'), 'utf8');
+assert.match(cinematicJs, /location\.pathname/, 'o frontend deve resolver a página pela URL real, não apenas por data-page do HTML');
+assert.match(cinematicJs, /service-aluguel-de-onibus/, 'o resolvedor deve reconhecer páginas de serviço');
+assert.match(cinematicJs, /service-fretamento-corporativo/, 'o resolvedor deve reconhecer fretamento corporativo');
+assert.match(cinematicJs, /service-turismo-excursoes/, 'o resolvedor deve reconhecer turismo e excursões');
+assert.match(cinematicJs, /service-romarias/, 'o resolvedor deve reconhecer romarias');
+assert.match(cinematicJs, /service-eventos/, 'o resolvedor deve reconhecer eventos');
+assert.match(cinematicJs, /service-escolas-formaturas/, 'o resolvedor deve reconhecer escolas e formaturas');
+assert.match(cinematicJs, /service-bandas-producoes/, 'o resolvedor deve reconhecer bandas e produções');
+assert.match(cinematicJs, /service-transfers/, 'o resolvedor deve reconhecer transfers');
+
 const htaccess = fs.readFileSync(path.join(root, '.htaccess'), 'utf8');
 assert.match(htaccess, /DirectoryIndex\s+index\.html\s+index\.php/, 'index.html deve ter prioridade');
 assert.match(htaccess, /Cache-Control[^\n]+no-store/, 'HTML deve ser publicado sem cache persistente');
+assert.match(htaccess, /RewriteRule\s+\^\(empresa\|servicos\|frota\|orcamento\|contato\|politica-de-privacidade\)/, 'rotas públicas devem passar pelo front controller antes da verificação de diretórios físicos');
+assert.match(htaccess, /RewriteRule[^\n]+\/index\.html/, 'rotas públicas devem ser servidas pelo index.html raiz');
 
 for (const legacyFile of ['assets/theme.css', 'assets/site.js']) {
   const content = fs.readFileSync(path.join(root, legacyFile), 'utf8');
