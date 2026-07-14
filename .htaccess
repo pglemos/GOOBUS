@@ -1,4 +1,4 @@
-DirectoryIndex index.html index.php
+DirectoryIndex index.html
 Options -Indexes
 ErrorDocument 404 /404.html
 
@@ -9,18 +9,29 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP_HOST} ^www\.goobuss\.com$ [NC]
   RewriteRule ^ https://goobuss.com%{REQUEST_URI} [R=301,L]
 
-  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-  RewriteRule ^(.+)\.html$ /$1/ [R=301,L,NE]
+  # Remove index.html e index.php expostos na URL.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(?:html|php)[\s?] [NC]
+  RewriteRule ^(?:.*/)?index\.(?:html|php)$ /$1 [R=301,L,NE]
 
-  # Front controller público: passa pelo frontend cinematográfico antes de
-  # considerar diretórios físicos antigos deixados por implantações anteriores.
-  RewriteRule ^(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)(/.*)?$ /index.html [L,NC]
+  # Remove extensões antigas das URLs públicas.
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.(?:html|php)[\s?] [NC]
+  RewriteRule ^(.+)\.(?:html|php)$ /$1 [R=301,L,NE]
 
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
+  # A URL canônica não termina com barra, exceto a raiz.
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteCond %{THE_REQUEST} \s/+(.+?)/+[?\s] [NC]
+  RewriteRule ^(.+?)/+$ /$1 [R=301,L,NE]
+
+  # Arquivos reais, inclusive imagens, fontes e endpoint de formulário.
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  RewriteRule ^ /index.html [L]
+  # Única entrada do frontend.
+  RewriteRule ^$ /index.html [L]
+  RewriteRule ^(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)$ /index.html [L,NC]
+  RewriteRule ^servicos/(aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|transfers|eventos|escolas-formaturas|romarias|bandas-producoes)$ /index.html [L,NC]
+
+  RewriteRule ^ - [R=404,L]
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -31,14 +42,8 @@ ErrorDocument 404 /404.html
   Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0" "expr=%{REQUEST_URI} == '/' || %{REQUEST_URI} =~ m#^/(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)(/.*)?$# || %{REQUEST_URI} =~ m#\.(html|php)$#"
   Header always set Pragma "no-cache" "expr=%{REQUEST_URI} == '/' || %{REQUEST_URI} =~ m#^/(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)(/.*)?$# || %{REQUEST_URI} =~ m#\.(html|php)$#"
   Header always set Expires "0" "expr=%{REQUEST_URI} == '/' || %{REQUEST_URI} =~ m#^/(empresa|servicos|frota|orcamento|contato|politica-de-privacidade)(/.*)?$# || %{REQUEST_URI} =~ m#\.(html|php)$#"
-  Header set Cache-Control "public, max-age=31536000, immutable" "expr=%{REQUEST_URI} =~ m#^/assets/(cinematic|page-audit|route-bootstrap|img|brand|video)#"
+  Header set Cache-Control "public, max-age=31536000, immutable" "expr=%{REQUEST_URI} =~ m#^/assets/(app|pages|cinematic|img|brand|video)#"
 </IfModule>
-
-<FilesMatch "^(theme\.css|site\.js|quote\.js)$">
-  <IfModule mod_headers.c>
-    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
-  </IfModule>
-</FilesMatch>
 
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
