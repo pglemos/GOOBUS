@@ -7,7 +7,6 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "node scripts/build-hostinger.mjs",
-    "start": "node scripts/serve-dist.mjs"
+    "build": "node scripts/build-hostinger.mjs"
   }
 }
