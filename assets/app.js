@@ -484,6 +484,7 @@
       let markers = [];
       let bus;
       let animation;
+      let drawToken = 0;
       const busIcon = L.divIcon({ className: '', html: '<div class="route-bus-marker"></div>', iconSize: [34, 34], iconAnchor: [17, 27] });
       const stopIcon = L.divIcon({ className: '', html: '<div class="route-stop-marker"></div>', iconSize: [14, 14], iconAnchor: [7, 7] });
       const clear = () => {
@@ -509,6 +510,7 @@
         }
       };
       const draw = async index => {
+        const token = ++drawToken;
         clear();
         const selected = DEMO_ROUTES[index];
         document.querySelector('[data-route-duration]').textContent = selected.duration;
@@ -517,21 +519,25 @@
         document.querySelectorAll('.route-tab').forEach((button, buttonIndex) => button.setAttribute('aria-selected', String(buttonIndex === index)));
         let points;
         try { points = await geometry(selected); } catch { points = selected.stops.map(stop => [stop[1], stop[2]]); }
+        if (token !== drawToken || !points?.length) return;
         layer = L.polyline(points, { color: '#ff7020', weight: 5, opacity: 0.9, lineCap: 'round' }).addTo(map);
         selected.stops.forEach(stop => markers.push(L.marker([stop[1], stop[2]], { icon: stopIcon }).addTo(map).bindTooltip(stop[0], { direction: 'top' })));
         map.fitBounds(layer.getBounds(), { padding: [32, 32], maxZoom: 12 });
         bus = L.marker(points[0], { icon: busIcon, zIndexOffset: 500 }).addTo(map);
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const total = points.length;
+        if (total < 2) return;
         const startedAt = performance.now();
         const duration = 16000;
         const step = now => {
+          if (token !== drawToken || !bus) return;
           const progress = ((now - startedAt) % duration) / duration;
           const scaled = progress * (total - 1);
           const pointIndex = Math.floor(scaled);
           const part = scaled - pointIndex;
           const current = points[pointIndex];
           const next = points[Math.min(pointIndex + 1, total - 1)];
+          if (!current || !next) return;
           bus.setLatLng([current[0] + (next[0] - current[0]) * part, current[1] + (next[1] - current[1]) * part]);
           animation = requestAnimationFrame(step);
         };

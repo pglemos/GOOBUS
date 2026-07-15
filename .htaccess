@@ -5,12 +5,10 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
-# The canonical frontend routes are served internally by the single application entrypoint.
 RewriteRule ^index\.html$ - [R=404,END]
 RewriteRule ^(?:empresa|frota|servicos|orcamento|contato|politica-de-privacidade)(?:/|/index\.html)$ - [R=404,END]
 RewriteRule ^servicos/(?:aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|transfers|eventos|escolas-formaturas|romarias|bandas-producoes)(?:/|/index\.html)$ - [R=404,END]
 
-# Functional files such as assets and the form endpoint remain directly accessible.
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [END]
 

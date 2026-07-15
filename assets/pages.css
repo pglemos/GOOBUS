@@ -1,4 +1,3 @@
-/* GOOBUS pages */
 .internal-hero{min-height:720px;align-items:center;isolation:isolate}
 .internal-hero::before{content:"GOOBUS";position:absolute;z-index:1;right:-.04em;bottom:-.15em;color:rgba(255,255,255,.035);font:800 clamp(8rem,20vw,22rem)/.75 var(--display);letter-spacing:-.08em;pointer-events:none}
 .internal-hero::after{content:"";position:absolute;z-index:1;inset:18% -8% auto 42%;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);transform:rotate(-12deg);box-shadow:0 0 26px rgba(255,112,32,.48);animation:internalRoute 8s linear infinite}
