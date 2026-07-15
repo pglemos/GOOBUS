@@ -1,11 +1,12 @@
-# Ferramentas / IDE
+# Ferramentas locais / IDE
 .serena/
+.playwright-mcp/
 .vscode/
 .idea/
 
 # macOS
 .DS_Store
 
-# Logs e temporários
+# Dependências e logs locais
 *.log
 node_modules/

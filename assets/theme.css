@@ -2547,7 +2547,7 @@ li {
   bottom: -54px;
   width: clamp(180px, 28vw, 420px);
   aspect-ratio: 261 / 155;
-  background: url("/assets/brand/approved/goobus-go-symbol-approved-light.png")
+  background: url("/assets/brand/goobus-symbol-light.png")
     center / contain no-repeat;
   opacity: 0.08;
   pointer-events: none;
@@ -2730,7 +2730,7 @@ li {
   top: 50%;
   width: clamp(240px, 36vw, 620px);
   aspect-ratio: 261 / 155;
-  background: url("/assets/brand/approved/goobus-go-symbol-approved-light.png")
+  background: url("/assets/brand/goobus-symbol-light.png")
     center / contain no-repeat;
   opacity: 0.18;
   transform: translateY(-50%);
@@ -2907,21 +2907,21 @@ img.media-photo {
   aspect-ratio: 16 / 10;
   background: var(
       --fleet-img,
-      url("/assets/img/frota-real-onibus-convencional-20260606.jpg")
+      url("/assets/images/onibus-convencional.jpg")
     )
     center / cover no-repeat;
 }
 
 .fleet-spec:nth-child(2)::after {
-  --fleet-img: url("/assets/img/frota-real-onibus-executivo-20260606.jpg");
+  --fleet-img: url("/assets/images/onibus-executivo.jpg");
 }
 
 .fleet-spec:nth-child(3)::after {
-  --fleet-img: url("/assets/img/frota-real-micro-onibus-20260606.jpg");
+  --fleet-img: url("/assets/images/micro-onibus.jpg");
 }
 
 .fleet-spec:nth-child(4)::after {
-  --fleet-img: url("/assets/img/frota-real-van-executiva-20260606.jpg");
+  --fleet-img: url("/assets/images/van-executiva.jpg");
 }
 
 .fleet-spec > img.fs-img {
@@ -3213,7 +3213,7 @@ body {
       rgba(8, 39, 68, 0.82) 46%,
       rgba(8, 39, 68, 0.52)
     ),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center 44% /
+    url("/assets/images/goobus-bus-hero.png") center 44% /
       cover no-repeat;
 }
 
@@ -3842,7 +3842,7 @@ body {
   padding-block: clamp(64px, 9vw, 112px);
   background:
     linear-gradient(90deg, rgba(8, 39, 68, 0.92), rgba(8, 39, 68, 0.78)),
-    url("/assets/img/brand-mockups/goobus-bus-side-approved-logo.png") center /
+    url("/assets/images/goobus-bus-side-view.png") center /
       cover no-repeat;
 }
 
@@ -4087,7 +4087,7 @@ body {
       rgba(8, 39, 68, 0.82) 46%,
       rgba(8, 39, 68, 0.52)
     ),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center 44% /
+    url("/assets/images/goobus-bus-hero.png") center 44% /
       cover no-repeat !important;
   border-bottom: 0 !important;
 }
@@ -4165,7 +4165,7 @@ body {
       rgba(3, 5, 8, 0.44) 66%,
       rgba(3, 5, 8, 0.72) 100%
     ),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 62% 52% / cover
+    url("/assets/images/goobus-bus-hero.png") 62% 52% / cover
       no-repeat !important;
   border: 0 !important;
 }
@@ -4279,7 +4279,7 @@ body {
       rgba(3, 5, 8, 0.52) 76%,
       rgba(3, 5, 8, 0.72) 100%
     ),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 64% 52% / cover
+    url("/assets/images/goobus-bus-hero.png") 64% 52% / cover
       no-repeat !important;
 }
 .quote-layout {
@@ -4313,7 +4313,7 @@ body {
 .quote-aside .acard {
   background:
     linear-gradient(180deg, rgba(5, 8, 12, 0.96), rgba(5, 8, 12, 0.9)),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") center / cover;
+    url("/assets/images/goobus-bus-hero.png") center / cover;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .quote-aside .awa {
@@ -4355,7 +4355,7 @@ body {
   .quote-hero {
     background:
       linear-gradient(180deg, rgba(3, 5, 8, 0.78), rgba(3, 5, 8, 0.92)),
-      url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 58% center /
+      url("/assets/images/goobus-bus-hero.png") 58% center /
         cover no-repeat !important;
   }
   .page-hero::after,
@@ -4380,7 +4380,7 @@ body.quote-refresh .quote-hero {
       rgba(7, 9, 11, 0.46) 72%,
       rgba(7, 9, 11, 0.78) 100%
     ),
-    url("/assets/img/brand-mockups/goobus-bus-rebrand-hero.png") 62% center /
+    url("/assets/images/goobus-bus-hero.png") 62% center /
       cover no-repeat !important;
 }
 
@@ -5170,7 +5170,7 @@ body.company-page .company-hero {
   background:
     linear-gradient(90deg, rgba(5, 12, 18, 0.84) 0%, rgba(5, 12, 18, 0.6) 42%, rgba(5, 12, 18, 0.16) 76%),
     linear-gradient(0deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0) 38%),
-    url("/assets/img/goobus-real-hero-bus.png") 58% center / cover no-repeat !important;
+    url("/assets/images/goobus-bus-real-hero.png") 58% center / cover no-repeat !important;
 }
 
 body.company-page .company-hero::before,
@@ -5457,7 +5457,7 @@ body.company-page .scroll-top-btn {
     min-height: auto;
     background:
       linear-gradient(180deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0.54) 46%, rgba(5, 12, 18, 0.86) 100%),
-      url("/assets/img/goobus-real-hero-bus.png") 58% top / cover no-repeat !important;
+      url("/assets/images/goobus-bus-real-hero.png") 58% top / cover no-repeat !important;
   }
 
   body.company-page .company-hero .container {
@@ -5835,7 +5835,7 @@ body:not(.company-page) .page-hero.dark {
   background:
     linear-gradient(90deg, rgba(5, 12, 18, 0.88) 0%, rgba(5, 12, 18, 0.66) 48%, rgba(5, 12, 18, 0.24) 100%),
     linear-gradient(0deg, rgba(5, 12, 18, 0.74) 0%, rgba(5, 12, 18, 0) 42%),
-    url("/assets/img/goobus-real-hero-bus.png") 58% center / cover no-repeat !important;
+    url("/assets/images/goobus-bus-real-hero.png") 58% center / cover no-repeat !important;
 }
 
 body:not(.company-page) .page-hero::before,
@@ -6075,7 +6075,7 @@ body:not(.company-page) .cta-band {
   body:not(.company-page) .page-hero.dark {
     background:
       linear-gradient(180deg, rgba(5, 12, 18, 0.72) 0%, rgba(5, 12, 18, 0.56) 42%, rgba(5, 12, 18, 0.88) 100%),
-      url("/assets/img/goobus-real-hero-bus.png") 58% top / cover no-repeat !important;
+      url("/assets/images/goobus-bus-real-hero.png") 58% top / cover no-repeat !important;
   }
 
   body:not(.company-page) .hero-ticket {

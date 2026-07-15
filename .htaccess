@@ -1,12 +1,25 @@
 Options -MultiViews
+DirectorySlash Off
 RewriteEngine On
 
-# Redirect legacy .html URLs to public clean routes.
-RewriteRule ^index\.html$ / [R=301,L]
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
-RewriteRule ^(.+)\.html$ /$1/ [R=301,L]
+# Only the canonical public routes without a trailing slash are exposed.
+# Legacy paths intentionally return 404; no public redirect is configured.
+RewriteRule ^(?:empresa|frota|servicos|orcamento|contato|politica-de-privacidade)(?:/|/index\.html)$ - [R=404,END]
+RewriteRule ^servicos/(?:aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|romarias|eventos|escolas-formaturas|bandas-producoes|transfers)(?:/|/index\.html)$ - [R=404,END]
+RewriteRule ^index\.html$ - [R=404,END]
 
-# Serve extensionless URLs from the matching .html file when no route directory exists.
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+?)/?$ $1.html [L]
+# Resolve canonical no-slash URLs internally to their route entrypoints.
+RewriteRule ^empresa$ empresa/index.html [END]
+RewriteRule ^frota$ frota/index.html [END]
+RewriteRule ^servicos$ servicos/index.html [END]
+RewriteRule ^orcamento$ orcamento/index.html [END]
+RewriteRule ^contato$ contato/index.html [END]
+RewriteRule ^politica-de-privacidade$ politica-de-privacidade/index.html [END]
+RewriteRule ^servicos/aluguel-de-onibus$ servicos/aluguel-de-onibus/index.html [END]
+RewriteRule ^servicos/fretamento-corporativo$ servicos/fretamento-corporativo/index.html [END]
+RewriteRule ^servicos/turismo-excursoes$ servicos/turismo-excursoes/index.html [END]
+RewriteRule ^servicos/romarias$ servicos/romarias/index.html [END]
+RewriteRule ^servicos/eventos$ servicos/eventos/index.html [END]
+RewriteRule ^servicos/escolas-formaturas$ servicos/escolas-formaturas/index.html [END]
+RewriteRule ^servicos/bandas-producoes$ servicos/bandas-producoes/index.html [END]
+RewriteRule ^servicos/transfers$ servicos/transfers/index.html [END]

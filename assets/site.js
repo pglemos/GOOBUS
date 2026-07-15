@@ -29,8 +29,6 @@
     instagram: "https://instagram.com/goobustransportes",
     facebook: "https://facebook.com/goobustransportes",
   };
-  window.GOOBUS = COMPANY;
-
   /* ---------- ANALYTICS / CONSENTIMENTO (LGPD) ----------
      Troque os placeholders pelos IDs reais para ativar o tracking.
      Nada é carregado antes do aceite explícito do usuário. */
@@ -40,13 +38,10 @@
   };
   const CONSENT_KEY = "goobus.consent";
 
-  /* ---------- Rotas públicas limpas ---------- */
+  /* ---------- Rotas públicas sem barra final ---------- */
   const cleanPath = (pathname) => {
-    let p = pathname || "/";
-    if (p.endsWith("/index.html")) p = p.slice(0, -10) || "/";
-    if (p.endsWith(".html")) p = p.slice(0, -5) + "/";
-    if (p !== "/" && !p.endsWith("/")) p += "/";
-    return p;
+    const p = pathname || "/";
+    return p === "/" ? "/" : p.replace(/\/+$/, "");
   };
   const url = (p) => (p.startsWith("/") ? p : "/" + p);
 
@@ -118,22 +113,15 @@
       '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
     star: '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
   };
-  window.GOOBUS_ICONS = I;
-
   /* ---------- Logo ---------- */
-  function mark() {
-    return `<img class="mark mark-go" src="${url("/assets/brand/approved/goobus-go-symbol-approved.png")}" width="261" height="155" alt="" aria-hidden="true">`;
-  }
   function brand(onHero, forDark) {
     const logoSrc = forDark
-      ? "/assets/brand/approved/goobus-logo-approved-dark-header.png"
-      : "/assets/brand/approved/goobus-logo-approved.png";
+      ? "/assets/brand/goobus-logo-dark.png"
+      : "/assets/brand/goobus-logo.png";
     return `<a class="brand ${onHero ? "on-hero" : ""} ${forDark ? "on-dark" : ""}" href="${url("/")}" aria-label="GOOBUS | página inicial">
       <img class="goobus-logo" src="${url(logoSrc)}" width="715" height="156" alt="GOOBUS">
     </a>`;
   }
-  window.GOOBUS_MARK = mark;
-
   /* ---------- WhatsApp link ---------- */
   function waLink(message) {
     const base = "https://wa.me/" + COMPANY.whatsapp;
@@ -148,14 +136,16 @@
 
   /* ---------- Navegação ---------- */
   const NAV = [
-    { label: "Serviços", href: "/servicos/", match: ["/servicos/"] },
-    { label: "Frota", href: "/frota/", match: ["/frota/"] },
-    { label: "Empresa", href: "/empresa/", match: ["/empresa/"] },
-    { label: "Orçamento", href: "/orcamento/", match: ["/orcamento/"] },
+    { label: "Serviços", href: "/servicos", match: ["/servicos"] },
+    { label: "Frota", href: "/frota", match: ["/frota"] },
+    { label: "Empresa", href: "/empresa", match: ["/empresa"] },
+    { label: "Orçamento", href: "/orcamento", match: ["/orcamento"] },
   ];
   const path = cleanPath(location.pathname);
   const isActive = (m) =>
-    m.some((x) => (x === "/" ? path === "/" : path.startsWith(x)));
+    m.some((x) =>
+      x === "/" ? path === "/" : path === x || path.startsWith(`${x}/`),
+    );
 
   /* ---------- HEADER ---------- */
   function buildHeader() {
@@ -177,7 +167,7 @@
         </nav>
         <div class="header-actions">
           <a class="icon-btn wa-icon" href="${waLink("Olá! Gostaria de falar com a equipe GOOBUS.")}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">${I.wa}</a>
-          <a class="btn btn-primary" href="${url("/orcamento/")}">Solicitar orçamento</a>
+          <a class="btn btn-primary" href="${url("/orcamento")}">Solicitar orçamento</a>
           <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">${I.menu}</button>
         </div>
       </div>`;
@@ -214,7 +204,7 @@
           ${NAV.map((n) => `<a class="d-link ${isActive(n.match) ? "active" : ""}" href="${url(n.href)}">${n.label}</a>`).join("")}
         </nav>
         <div class="d-cta">
-        <a class="btn btn-primary btn-lg btn-block" href="${url("/orcamento/")}">Cotar viagem</a>
+        <a class="btn btn-primary btn-lg btn-block" href="${url("/orcamento")}">Cotar viagem</a>
           <a class="btn btn-wa btn-lg btn-block" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} Falar no WhatsApp</a>
         </div>
       </div>`;
@@ -247,14 +237,14 @@
     const f = document.createElement("footer");
     f.className = "site-footer";
     const svcLinks = [
-      ["Aluguel de ônibus", "/servicos/aluguel-de-onibus/"],
-      ["Fretamento corporativo", "/servicos/fretamento-corporativo/"],
-      ["Turismo e excursões", "/servicos/turismo-excursoes/"],
-      ["Romarias", "/servicos/romarias/"],
-      ["Eventos e congressos", "/servicos/eventos/"],
-      ["Escolas e formaturas", "/servicos/escolas-formaturas/"],
-      ["Bandas e produções", "/servicos/bandas-producoes/"],
-      ["Transfers e city tour", "/servicos/transfers/"],
+      ["Aluguel de ônibus", "/servicos/aluguel-de-onibus"],
+      ["Fretamento corporativo", "/servicos/fretamento-corporativo"],
+      ["Turismo e excursões", "/servicos/turismo-excursoes"],
+      ["Romarias", "/servicos/romarias"],
+      ["Eventos e congressos", "/servicos/eventos"],
+      ["Escolas e formaturas", "/servicos/escolas-formaturas"],
+      ["Bandas e produções", "/servicos/bandas-producoes"],
+      ["Transfers e city tour", "/servicos/transfers"],
     ];
     f.innerHTML = `
       <div class="container container-wide">
@@ -271,7 +261,7 @@
           <div>
             <h4>Navegação</h4>
             <ul>${NAV.map((n) => `<li><a href="${url(n.href)}">${n.label}</a></li>`).join("")}
-              <li><a href="${url("/politica-de-privacidade/")}">Política de Privacidade</a></li>
+              <li><a href="${url("/politica-de-privacidade")}">Política de Privacidade</a></li>
             </ul>
           </div>
           <div>
@@ -316,7 +306,7 @@
     mbar.setAttribute("aria-label", "Ações rápidas");
     mbar.innerHTML = `
       <a class="m-wa" href="${waDefault()}" target="_blank" rel="noopener">${I.wa} WhatsApp</a>
-      <a class="m-quote" href="${url("/orcamento/")}">${I.arrow} Cotar</a>`;
+      <a class="m-quote" href="${url("/orcamento")}">${I.arrow} Cotar</a>`;
     document.body.appendChild(mbar);
     document.body.classList.add("has-mbar");
     const onScroll = () => {
@@ -478,8 +468,6 @@
       a.rel = "noopener";
     });
   }
-  window.GOOBUS_injectIcons = injectIcons;
-
   /* ---------- SEO: head tags + JSON-LD + skip link ---------- */
   function buildSeo() {
     const head = document.head;
@@ -491,7 +479,7 @@
     const desc = descEl ? descEl.getAttribute("content") : "";
     const siteUrl = origin || "https://goobuss.com";
     const ogImg =
-      siteUrl + "/assets/img/brand-mockups/goobus-bus-rebrand-hero.png";
+      siteUrl + "/assets/images/goobus-bus-hero.png";
 
     const add = (tag, attrs) => {
       const el = document.createElement(tag);
@@ -659,7 +647,7 @@
     bar.setAttribute("role", "dialog");
     bar.setAttribute("aria-label", "Aviso de cookies");
     bar.innerHTML = `
-      <p>Usamos cookies para analisar a navegação e melhorar sua experiência. Saiba mais na <a href="${url("/politica-de-privacidade/")}">Política de Privacidade</a>.</p>
+      <p>Usamos cookies para analisar a navegação e melhorar sua experiência. Saiba mais na <a href="${url("/politica-de-privacidade")}">Política de Privacidade</a>.</p>
       <div class="cookie-actions">
         <button type="button" class="c-decline" data-consent="declined">Recusar</button>
         <button type="button" class="c-accept" data-consent="accepted">Aceitar</button>
