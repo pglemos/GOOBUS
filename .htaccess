@@ -1,25 +1,36 @@
-Options -MultiViews
+DirectoryIndex index.html
 DirectorySlash Off
+Options -Indexes -MultiViews
+ErrorDocument 404 /404.html
+
 RewriteEngine On
 
-# Only the canonical public routes without a trailing slash are exposed.
-# Legacy paths intentionally return 404; no public redirect is configured.
-RewriteRule ^(?:empresa|frota|servicos|orcamento|contato|politica-de-privacidade)(?:/|/index\.html)$ - [R=404,END]
-RewriteRule ^servicos/(?:aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|romarias|eventos|escolas-formaturas|bandas-producoes|transfers)(?:/|/index\.html)$ - [R=404,END]
+# The canonical frontend routes are served internally by the single application entrypoint.
 RewriteRule ^index\.html$ - [R=404,END]
+RewriteRule ^(?:empresa|frota|servicos|orcamento|contato|politica-de-privacidade)(?:/|/index\.html)$ - [R=404,END]
+RewriteRule ^servicos/(?:aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|transfers|eventos|escolas-formaturas|romarias|bandas-producoes)(?:/|/index\.html)$ - [R=404,END]
 
-# Resolve canonical no-slash URLs internally to their route entrypoints.
-RewriteRule ^empresa$ empresa/index.html [END]
-RewriteRule ^frota$ frota/index.html [END]
-RewriteRule ^servicos$ servicos/index.html [END]
-RewriteRule ^orcamento$ orcamento/index.html [END]
-RewriteRule ^contato$ contato/index.html [END]
-RewriteRule ^politica-de-privacidade$ politica-de-privacidade/index.html [END]
-RewriteRule ^servicos/aluguel-de-onibus$ servicos/aluguel-de-onibus/index.html [END]
-RewriteRule ^servicos/fretamento-corporativo$ servicos/fretamento-corporativo/index.html [END]
-RewriteRule ^servicos/turismo-excursoes$ servicos/turismo-excursoes/index.html [END]
-RewriteRule ^servicos/romarias$ servicos/romarias/index.html [END]
-RewriteRule ^servicos/eventos$ servicos/eventos/index.html [END]
-RewriteRule ^servicos/escolas-formaturas$ servicos/escolas-formaturas/index.html [END]
-RewriteRule ^servicos/bandas-producoes$ servicos/bandas-producoes/index.html [END]
-RewriteRule ^servicos/transfers$ servicos/transfers/index.html [END]
+# Functional files such as assets and the form endpoint remain directly accessible.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [END]
+
+RewriteRule ^$ index.html [END]
+RewriteRule ^(?:empresa|frota|servicos|orcamento|contato|politica-de-privacidade)$ index.html [END]
+RewriteRule ^servicos/(?:aluguel-de-onibus|fretamento-corporativo|turismo-excursoes|transfers|eventos|escolas-formaturas|romarias|bandas-producoes)$ index.html [END]
+
+RewriteRule ^ - [R=404,END]
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
