@@ -163,7 +163,7 @@
         <a class="brand" href="/" aria-label="GOOBUS - Página inicial"><img src="/assets/brand/goobus-logo-dark.png" alt="GOOBUS" width="715" height="156"></a>
         <nav class="site-nav" aria-label="Navegação principal">${navigation}</nav>
         <div class="header-actions">
-          <a class="header-whatsapp" href="${wa('Olá! Gostaria de falar com a equipe GOOBUS.')}" target="_blank" rel="noopener noreferrer">${ICON.whatsapp} ${COMPANY.phone}</a>
+          <a class="header-whatsapp" href="${wa('Olá! Gostaria de falar com a equipe GOOBUS.')}" target="_blank" rel="noopener noreferrer" aria-label="Falar com a GOOBUS no WhatsApp">${ICON.whatsapp} WhatsApp</a>
           <a class="button button--orange" href="/orcamento">Solicitar orçamento</a>
           <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
         </div>
@@ -190,13 +190,13 @@
     </div></div>`;
   }
 
-  function hero({ title, accent, description, imagePath = IMG.hero, panel = true }) {
+  function hero({ title, accent, description, imagePath = IMG.hero, panel = true, badge = 'Transporte de grupos sob medida' }) {
     const highlighted = accent ? title.replace(accent, `<span class="accent">${accent}</span>`) : title;
-    return `<section class="cinematic-hero"><div class="cinematic-hero__media">${image(imagePath, 'Ônibus e operação de transporte GOOBUS', 'fetchpriority="high"')}<div class="cinematic-hero__route"><svg viewBox="0 0 1440 820" preserveAspectRatio="none"><path d="M-80 650 C 220 510, 330 715, 590 510 S 980 220, 1510 330"/></svg></div></div><div class="container cinematic-hero__grid"><div class="hero-copy"><h1 class="hero-title">${highlighted}</h1><p>${description}</p><div class="hero-actions"><a class="button button--orange" href="/orcamento">Solicitar orçamento ${ICON.arrow}</a><a class="button button--outline" href="${wa('Olá! Gostaria de falar sobre uma operação de transporte com a GOOBUS.')}" target="_blank" rel="noopener noreferrer">${ICON.whatsapp} Falar no WhatsApp</a></div><div class="hero-proof"><span>${ICON.route} Roteiro avaliado</span><span>${ICON.shield} Condições confirmadas</span><span>${ICON.users} Atendimento humano</span></div></div>${panel ? `<aside class="hero-panel"><span class="hero-panel__label">Briefing operacional</span><h2>Uma boa viagem começa antes da partida.</h2><div class="hero-panel__rows"><div class="hero-panel__row"><span>Passageiros</span><b>Perfil e quantidade</b></div><div class="hero-panel__row"><span>Rota</span><b>Origem, destino e paradas</b></div><div class="hero-panel__row"><span>Agenda</span><b>Ida, retorno e janelas</b></div><div class="hero-panel__row"><span>Veículo</span><b>Confirmado na proposta</b></div></div></aside>` : ''}</div><a class="scroll-cue" href="#inicio"><i></i>Continue a viagem</a></section>`;
+    return `<section class="cinematic-hero"><div class="cinematic-hero__media">${image(imagePath, 'Ônibus e operação de transporte GOOBUS', 'fetchpriority="high"')}<div class="cinematic-hero__route"><svg viewBox="0 0 1440 820" preserveAspectRatio="none"><path d="M-80 650 C 220 510, 330 715, 590 510 S 980 220, 1510 330"/></svg></div></div><div class="container cinematic-hero__grid"><div class="hero-copy">${badge ? `<span class="hero-badge hero-in"><span class="hero-badge__dot"></span>${badge}</span>` : ''}<h1 class="hero-title hero-in" style="--d:.06s">${highlighted}</h1><p class="hero-in" style="--d:.14s">${description}</p><div class="hero-actions hero-in" style="--d:.22s"><a class="button button--orange" href="/orcamento">Solicitar orçamento ${ICON.arrow}</a><a class="button button--outline" href="${wa('Olá! Gostaria de falar sobre uma operação de transporte com a GOOBUS.')}" target="_blank" rel="noopener noreferrer">${ICON.whatsapp} Falar no WhatsApp</a></div><div class="hero-proof hero-in" style="--d:.3s"><span>${ICON.route} Roteiro avaliado</span><span>${ICON.shield} Condições confirmadas</span><span>${ICON.users} Atendimento humano</span></div></div>${panel ? `<aside class="hero-panel hero-in" style="--d:.36s"><div class="hero-panel__head"><span class="hero-panel__label">Briefing operacional</span><span class="hero-panel__pill"><i></i>4 etapas</span></div><h2>Uma boa viagem começa antes da partida.</h2><div class="hero-panel__rows"><div class="hero-panel__row"><span>Passageiros</span><b>Perfil e quantidade</b></div><div class="hero-panel__row"><span>Rota</span><b>Origem, destino e paradas</b></div><div class="hero-panel__row"><span>Agenda</span><b>Ida, retorno e janelas</b></div><div class="hero-panel__row"><span>Veículo</span><b>Confirmado na proposta</b></div></div></aside>` : ''}</div><a class="scroll-cue" href="#inicio"><i></i>Continue a viagem</a></section>`;
   }
 
   function internalHero(title, description, imagePath, label, stamp) {
-    return `<section class="internal-hero"><div class="internal-hero__media">${image(imagePath, title, 'fetchpriority="high"')}</div><div class="container internal-hero__content"><h1>${title}</h1><p>${description}</p><div class="hero-actions"><a class="button button--orange" href="/orcamento">Solicitar orçamento ${ICON.arrow}</a><a class="button button--outline" href="${wa(`Olá! Gostaria de mais informações sobre ${label || title}.`)}" target="_blank" rel="noopener noreferrer">${ICON.whatsapp} Falar com especialista</a></div>${stamp ? `<div class="page-stamp"><strong>${stamp[0]}</strong><span>${stamp[1]}</span></div>` : ''}</div></section>`;
+    return `<section class="internal-hero"><div class="internal-hero__media">${image(imagePath, title, 'fetchpriority="high"')}</div><div class="container internal-hero__content">${label ? `<span class="hero-badge hero-in"><span class="hero-badge__dot"></span>${label}</span>` : ''}<h1 class="hero-in" style="--d:.08s">${title}</h1><p class="hero-in" style="--d:.16s">${description}</p><div class="hero-actions hero-in" style="--d:.24s"><a class="button button--orange" href="/orcamento">Solicitar orçamento ${ICON.arrow}</a><a class="button button--outline" href="${wa(`Olá! Gostaria de mais informações sobre ${label || title}.`)}" target="_blank" rel="noopener noreferrer">${ICON.whatsapp} Falar com especialista</a></div>${stamp ? `<div class="page-stamp hero-in" style="--d:.3s"><strong>${stamp[0]}</strong><span>${stamp[1]}</span></div>` : ''}</div></section>`;
   }
 
   function ctaBand(title = 'Vamos desenhar a próxima rota?') {
@@ -308,7 +308,7 @@
 
   function render() {
     document.body.dataset.page = route;
-    document.body.dataset.build = '20260715';
+    document.body.dataset.build = '20260720';
     const content = pageContent();
     root.innerHTML = route === 'not-found' ? `<main id="conteudo">${content}</main>` : `${header()}<main id="conteudo">${content}</main>${footer()}`;
     document.documentElement.classList.add('js');
